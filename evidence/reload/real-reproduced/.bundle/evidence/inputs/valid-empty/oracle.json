@@ -1,0 +1,16 @@
+{
+  "exit_code": 0,
+  "provenance": {
+    "independent": true,
+    "source": "oracles/tlvparse/SPEC.md#Input format"
+  },
+  "schema_version": "1.0",
+  "stderr": {
+    "base64": "",
+    "mode": "exact"
+  },
+  "stdout": {
+    "base64": "cmVjb3JkczogMAo=",
+    "mode": "exact"
+  }
+}

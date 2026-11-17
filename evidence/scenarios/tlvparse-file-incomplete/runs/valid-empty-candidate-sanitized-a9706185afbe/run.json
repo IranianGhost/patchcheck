@@ -1,0 +1,112 @@
+{
+  "analysis": {
+    "complete": true,
+    "observations": [],
+    "reason": "normal termination with exit code 0"
+  },
+  "build_id": "candidate-sanitized",
+  "build_type": "sanitized",
+  "command": [
+    "/binary",
+    "/case-input"
+  ],
+  "cwd": "/work",
+  "diagnostics": [],
+  "duration_seconds": 0.08512066699995557,
+  "environment": {
+    "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+    "HOME": "/tmp",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "TZ": "UTC",
+    "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+  },
+  "exit_code": 0,
+  "id": "valid-empty-candidate-sanitized-a9706185afbe",
+  "input": "inputs/valid-empty/original.bin",
+  "input_sha256": "5149e1b8c808febeba5c30085d917c6d1bbfd7176bd17a9456dc1ca455f2fb54",
+  "limits": {
+    "build_wall_seconds": 90,
+    "cpu_seconds": 2,
+    "file_bytes": 16777216,
+    "memory_mb": 384,
+    "output_bytes": 1048576,
+    "pids": 32,
+    "wall_seconds": 3
+  },
+  "oracle": {
+    "checks": {
+      "exit_code": true,
+      "stderr": true,
+      "stdout": true
+    },
+    "source": "oracles/tlvparse/SPEC.md#Input format",
+    "status": "pass"
+  },
+  "output_truncated": false,
+  "replay_of": null,
+  "resource_status": "ok",
+  "runner_error": null,
+  "rusage": {
+    "major_faults": 1,
+    "max_rss_kb": 20848,
+    "minor_faults": 1885,
+    "system_seconds": 0.0020729999999999998,
+    "user_seconds": 0.02488
+  },
+  "sandbox": {
+    "host_config": {
+      "CapAdd": [
+        "CAP_SETGID",
+        "CAP_SETUID"
+      ],
+      "CapDrop": [
+        "ALL"
+      ],
+      "Memory": 402653184,
+      "MemorySwap": 402653184,
+      "NanoCpus": 500000000,
+      "NetworkMode": "none",
+      "PidsLimit": 32,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges:true"
+      ]
+    },
+    "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "image": {
+      "architecture": "amd64",
+      "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+      "os": "linux",
+      "repo_digests": [],
+      "requested": "patchcheck-framework:1.0"
+    },
+    "name": "patchcheck-6bdaf065bf524e2f88a5286067d1f849",
+    "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+    "state": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 0,
+      "FinishedAt": "2026-11-16T22:02:12.146020716Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "2026-11-16T22:02:11.682617175Z",
+      "Status": "exited"
+    },
+    "target_uid": 65534
+  },
+  "schema_version": "1.0",
+  "signal": null,
+  "stderr": "runs/valid-empty-candidate-sanitized-a9706185afbe/stderr.bin",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout": "runs/valid-empty-candidate-sanitized-a9706185afbe/stdout.bin",
+  "stdout_sha256": "3b1148d44e3e5fe86970cb81ddb855f57527236cce120e77dd0e017dbce71d00",
+  "test_id": "valid-empty",
+  "timeout": false,
+  "trace": [],
+  "version": "candidate"
+}

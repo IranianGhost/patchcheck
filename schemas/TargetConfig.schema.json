@@ -1,0 +1,372 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:patchcheck:TargetConfig",
+  "$ref": "#/$defs/TargetConfig",
+  "$defs": {
+    "BuildSpec": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "binary": {
+          "type": "string"
+        },
+        "compiler": {
+          "type": "string"
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "instrumentation": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "command",
+        "binary",
+        "compiler",
+        "flags"
+      ],
+      "additionalProperties": false
+    },
+    "Limits": {
+      "type": "object",
+      "properties": {
+        "wall_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 120
+        },
+        "cpu_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "memory_mb": {
+          "type": "integer",
+          "minimum": 32,
+          "maximum": 2048
+        },
+        "pids": {
+          "type": "integer",
+          "minimum": 4,
+          "maximum": 128
+        },
+        "output_bytes": {
+          "type": "integer",
+          "minimum": 128,
+          "maximum": 16777216
+        },
+        "file_bytes": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 67108864
+        },
+        "build_wall_seconds": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 300
+        }
+      },
+      "required": [
+        "wall_seconds",
+        "cpu_seconds",
+        "memory_mb",
+        "pids",
+        "output_bytes",
+        "file_bytes",
+        "build_wall_seconds"
+      ],
+      "additionalProperties": false
+    },
+    "Signature": {
+      "type": "object",
+      "properties": {
+        "error_type": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "error_type",
+        "location",
+        "key"
+      ],
+      "additionalProperties": false
+    },
+    "TargetConfig": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "fixture": {
+          "type": "boolean"
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "repo": {
+              "type": "string"
+            },
+            "base": {
+              "type": "string"
+            },
+            "candidate": {
+              "type": "string"
+            },
+            "diff": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "patch": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "dirty": {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "enum": [
+                    "base",
+                    "candidate"
+                  ]
+                },
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "version",
+                "path"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "repo",
+            "base",
+            "candidate"
+          ],
+          "additionalProperties": false
+        },
+        "builds": {
+          "type": "object",
+          "properties": {
+            "release": {
+              "$ref": "#/$defs/BuildSpec"
+            },
+            "sanitized": {
+              "$ref": "#/$defs/BuildSpec"
+            },
+            "coverage": {
+              "$ref": "#/$defs/BuildSpec"
+            }
+          },
+          "required": [
+            "release",
+            "sanitized"
+          ],
+          "additionalProperties": false
+        },
+        "input": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "enum": [
+                "stdin",
+                "file",
+                "argv"
+              ]
+            },
+            "argv": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              }
+            },
+            "cwd": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "mode",
+            "argv",
+            "cwd"
+          ],
+          "additionalProperties": false
+        },
+        "environment": {
+          "type": "object",
+          "properties": {
+            "image": {
+              "type": "string"
+            },
+            "variables": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "image",
+            "variables"
+          ],
+          "additionalProperties": false
+        },
+        "tools": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "limits": {
+          "$ref": "#/$defs/Limits"
+        },
+        "tests": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/TestSpec"
+          }
+        },
+        "corpus_dir": {
+          "type": "string"
+        },
+        "analyzers": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "fixture-marker"
+            ]
+          }
+        },
+        "minimization": {
+          "type": "object",
+          "properties": {
+            "max_attempts": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10000
+            },
+            "wall_seconds": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 3600
+            }
+          },
+          "required": [
+            "max_attempts",
+            "wall_seconds"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "schema_version",
+        "target",
+        "fixture",
+        "source",
+        "builds",
+        "input",
+        "environment",
+        "tools",
+        "limits",
+        "tests",
+        "corpus_dir",
+        "analyzers",
+        "minimization"
+      ],
+      "additionalProperties": false
+    },
+    "TestSpec": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "category": {
+          "enum": [
+            "valid",
+            "boundary",
+            "invalid",
+            "original",
+            "minimized"
+          ]
+        },
+        "input": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "oracle": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "signature": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Signature"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "input_mode": {
+          "enum": [
+            "stdin",
+            "file",
+            "argv"
+          ]
+        },
+        "origin": {
+          "type": "string"
+        },
+        "regression": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "category",
+        "input",
+        "oracle",
+        "signature"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

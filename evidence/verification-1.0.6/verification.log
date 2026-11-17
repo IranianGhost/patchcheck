@@ -1,0 +1,4 @@
+19 historical reports passed
+Bytecount: 2 confirmed functional Diff relations with matching SHA-256 of observed stdout
+tlvparse: 16/16 independent oracle comparisons matched, all four x86_64 build cells
+giflib: 12/12 independent oracle comparisons matched, all four x86_64 build cells

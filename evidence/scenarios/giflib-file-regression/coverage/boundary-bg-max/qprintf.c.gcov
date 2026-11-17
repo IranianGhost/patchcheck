@@ -1,0 +1,60 @@
+        -:    0:Source:util/qprintf.c
+        -:    0:Graph:gif2rgb-qprintf.gcno
+        -:    0:Data:gif2rgb-qprintf.gcda
+        -:    0:Runs:1
+        -:    1:/*****************************************************************************
+        -:    2:
+        -:    3: qprintf.c - module to emulate a printf with a possible quiet (disable mode.)
+        -:    4:
+        -:    5: A global variable GifNoisyPrint controls the printing of this routine
+        -:    6: 
+        -:    7:*****************************************************************************/
+        -:    8:
+        -:    9:
+        -:   10:#include <stdio.h>
+        -:   11:#include <stdbool.h>
+        -:   12:#include <stdarg.h>
+        -:   13:
+        -:   14:#include "gif_lib.h"
+        -:   15:
+        -:   16:bool GifNoisyPrint = false;
+        -:   17:
+        -:   18:/*****************************************************************************
+        -:   19: Same as fprintf to stderr but with optional print.
+        -:   20:******************************************************************************/
+        -:   21:void
+function GifQprintf called 3 returned 100% blocks executed 50%
+        3:   22:GifQprintf(char *Format, ...) {
+        -:   23:    va_list ArgPtr;
+        -:   24:
+        3:   25:    va_start(ArgPtr, Format);
+        -:   26:
+        3:   27:    if (GifNoisyPrint) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 3
+        -:   28:	char Line[128];
+    #####:   29:	(void)vsnprintf(Line, sizeof(Line), Format, ArgPtr);
+    #####:   30:	(void)fputs(Line, stderr);
+call    0 never executed
+        -:   31:    }
+        -:   32:
+        3:   33:    va_end(ArgPtr);
+        3:   34:}
+        -:   35:
+        -:   36:void
+function PrintGifError called 0 returned 0% blocks executed 0%
+    #####:   37:PrintGifError(int ErrorCode) {
+    #####:   38:    const char *Err = GifErrorString(ErrorCode);
+call    0 never executed
+        -:   39:
+    #####:   40:    if (Err != NULL)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   41:        fprintf(stderr, "GIF-LIB error: %s.\n", Err);
+call    0 never executed
+        -:   42:    else
+    #####:   43:        fprintf(stderr, "GIF-LIB undefined error %d.\n", ErrorCode);
+call    0 never executed
+    #####:   44:}
+        -:   45:
+        -:   46:/* end */

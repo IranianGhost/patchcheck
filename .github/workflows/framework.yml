@@ -1,0 +1,28 @@
+name: Patch validation (self-tests and patch scenarios)
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  framework:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install locked dependencies from checked wheels
+        run: |
+          python -m venv .venv
+          .venv/bin/python ci/bootstrap.py
+      - name: Build frozen Linux x86_64 toolchain
+        run: docker build --platform linux/amd64 -t patchcheck-framework:1.0 -f environment/Dockerfile .
+      - name: Self-tests, fixtures (expect 40) and patch scenarios (expect 0/10/20)
+        run: .venv/bin/python ci/smoke.py --out artifacts/ci --include-image
+      - name: Upload reports, raw logs, replays, sources and reproduction bundle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: framework-evidence
+          path: artifacts/ci/
+          if-no-files-found: error

@@ -1,0 +1,91 @@
+{
+  "base": {
+    "archive": "sources/base.tar",
+    "archive_sha256": "66ab91604a9362b895f715cd55b365ac100903cb2eb8e8e8ffa11ed307a24021",
+    "commit": "1b303c4e13dfb3316a23fc5551a32fa7e42bca65",
+    "dirty": false,
+    "manifest": "sources/base.manifest.json",
+    "path": "sources/base",
+    "requested_ref": "base"
+  },
+  "candidate": {
+    "archive": "sources/candidate.tar",
+    "archive_sha256": "a0bd42032fca1e9d5029124f0294a395a5e2ff14db8e332846e9f860d533f1fe",
+    "commit": "1b303c4e13dfb3316a23fc5551a32fa7e42bca65",
+    "dirty": false,
+    "manifest": "sources/candidate.manifest.json",
+    "path": "sources/candidate",
+    "requested_ref": "base+patch:deletion.diff"
+  },
+  "diff": {
+    "files": [
+      "main.c"
+    ],
+    "hunks": [
+      {
+        "added": [],
+        "after": {
+          "count": 4,
+          "start": 27
+        },
+        "before": {
+          "count": 5,
+          "start": 27
+        },
+        "context": "int main(int argc, char **argv) {",
+        "define_lines": {
+          "base": [],
+          "candidate": []
+        },
+        "defines": [],
+        "file": "main.c",
+        "functions": [
+          {
+            "end": 31,
+            "file": "main.c",
+            "function": "main",
+            "short": "main",
+            "start": 5,
+            "version": "base"
+          },
+          {
+            "end": 30,
+            "file": "main.c",
+            "function": "main",
+            "short": "main",
+            "start": 5,
+            "version": "candidate"
+          }
+        ],
+        "id": "h1",
+        "old_file": "main.c",
+        "removed": [
+          30
+        ],
+        "unmapped": false,
+        "unmapped_lines": {
+          "base": [],
+          "candidate": []
+        }
+      }
+    ],
+    "path": "sources/versions.patch",
+    "sha256": "f058555d2ad85c535136b309eb59940a2b35c3276b7804de6795bed64956a88d",
+    "snapshot_bundle": "sources/snapshots.bundle",
+    "source_map": {
+      "base": {
+        "callers": {
+          "main": []
+        },
+        "macro_users": {}
+      },
+      "candidate": {
+        "callers": {
+          "main": []
+        },
+        "macro_users": {}
+      }
+    },
+    "tool_version": "git version 2.50.1 (Apple Git-155)"
+  }
+}

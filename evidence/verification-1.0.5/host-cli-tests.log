@@ -1,0 +1,7 @@
+test_candidate_override_is_recorded_and_unknown_ref_is_technical (test_cli.CliTests.test_candidate_override_is_recorded_and_unknown_ref_is_technical) ... ok
+test_patch_with_candidate_is_rejected_as_technical (test_cli.CliTests.test_patch_with_candidate_is_rejected_as_technical) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.434s
+
+OK

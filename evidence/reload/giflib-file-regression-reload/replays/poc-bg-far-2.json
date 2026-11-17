@@ -1,0 +1,321 @@
+{
+  "additional_count_per_cell": 3,
+  "finding_ids": [
+    "finding-security-poc-bg-far-sanitized"
+  ],
+  "groups": [
+    {
+      "build_id": "base-release",
+      "compared": [
+        {
+          "exit_code": 0,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "5694182c85b30c1bd728b142f1c9b8f3ef69882c812d5fec50b08d969d93e098",
+          "timeout": false
+        },
+        {
+          "exit_code": 0,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "5694182c85b30c1bd728b142f1c9b8f3ef69882c812d5fec50b08d969d93e098",
+          "timeout": false
+        },
+        {
+          "exit_code": 0,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "5694182c85b30c1bd728b142f1c9b8f3ef69882c812d5fec50b08d969d93e098",
+          "timeout": false
+        },
+        {
+          "exit_code": 0,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "5694182c85b30c1bd728b142f1c9b8f3ef69882c812d5fec50b08d969d93e098",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "poc-bg-far-base-release-af336df8a043",
+      "run_ids": [
+        "poc-bg-far-base-release-e3934f9f88da",
+        "poc-bg-far-base-release-06e5e06ec481",
+        "poc-bg-far-base-release-17abdf8e74c4"
+      ],
+      "stability_required": false,
+      "status": "stable"
+    },
+    {
+      "build_id": "base-sanitized",
+      "compared": [
+        {
+          "crashes": [
+            {
+              "access": "READ",
+              "detection_method": "asan",
+              "error_type": "heap-buffer-overflow",
+              "signature": {
+                "error_type": "heap-buffer-overflow",
+                "key": "READ",
+                "location": "util/gif2rgb.c:DumpScreen2RGB"
+              }
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": "READ",
+              "detection_method": "asan",
+              "error_type": "heap-buffer-overflow",
+              "signature": {
+                "error_type": "heap-buffer-overflow",
+                "key": "READ",
+                "location": "util/gif2rgb.c:DumpScreen2RGB"
+              }
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": "READ",
+              "detection_method": "asan",
+              "error_type": "heap-buffer-overflow",
+              "signature": {
+                "error_type": "heap-buffer-overflow",
+                "key": "READ",
+                "location": "util/gif2rgb.c:DumpScreen2RGB"
+              }
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": "READ",
+              "detection_method": "asan",
+              "error_type": "heap-buffer-overflow",
+              "signature": {
+                "error_type": "heap-buffer-overflow",
+                "key": "READ",
+                "location": "util/gif2rgb.c:DumpScreen2RGB"
+              }
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "poc-bg-far-base-sanitized-e57e6912c5b7",
+      "run_ids": [
+        "poc-bg-far-base-sanitized-0e5ebb7b5e9c",
+        "poc-bg-far-base-sanitized-704b25812118",
+        "poc-bg-far-base-sanitized-4a8e08477200"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    },
+    {
+      "build_id": "candidate-release",
+      "compared": [
+        {
+          "exit_code": 1,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "c80f48d1aa878fe6a40a69568b403157b89180db0dbc738cbf62e8636acb70f3",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 1,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "c80f48d1aa878fe6a40a69568b403157b89180db0dbc738cbf62e8636acb70f3",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 1,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "c80f48d1aa878fe6a40a69568b403157b89180db0dbc738cbf62e8636acb70f3",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 1,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "c80f48d1aa878fe6a40a69568b403157b89180db0dbc738cbf62e8636acb70f3",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "poc-bg-far-candidate-release-b5bd907edaae",
+      "run_ids": [
+        "poc-bg-far-candidate-release-28ed4fa1f9a3",
+        "poc-bg-far-candidate-release-b84a87e515c6",
+        "poc-bg-far-candidate-release-3bb78710ec02"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    },
+    {
+      "build_id": "candidate-sanitized",
+      "compared": [
+        {
+          "exit_code": 1,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "c80f48d1aa878fe6a40a69568b403157b89180db0dbc738cbf62e8636acb70f3",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 1,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "c80f48d1aa878fe6a40a69568b403157b89180db0dbc738cbf62e8636acb70f3",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 1,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "c80f48d1aa878fe6a40a69568b403157b89180db0dbc738cbf62e8636acb70f3",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 1,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "c80f48d1aa878fe6a40a69568b403157b89180db0dbc738cbf62e8636acb70f3",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "poc-bg-far-candidate-sanitized-6cf569d7b256",
+      "run_ids": [
+        "poc-bg-far-candidate-sanitized-cd17fda93b14",
+        "poc-bg-far-candidate-sanitized-f47719e973fd",
+        "poc-bg-far-candidate-sanitized-470036329e7c"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    }
+  ],
+  "input_sha256": "ee96e5d7f00689998519ef0703272f7840765d920e1a9c7bba893e933596b1f3",
+  "run_ids": [
+    "poc-bg-far-base-release-e3934f9f88da",
+    "poc-bg-far-base-release-06e5e06ec481",
+    "poc-bg-far-base-release-17abdf8e74c4",
+    "poc-bg-far-base-sanitized-0e5ebb7b5e9c",
+    "poc-bg-far-base-sanitized-704b25812118",
+    "poc-bg-far-base-sanitized-4a8e08477200",
+    "poc-bg-far-candidate-release-28ed4fa1f9a3",
+    "poc-bg-far-candidate-release-b84a87e515c6",
+    "poc-bg-far-candidate-release-3bb78710ec02",
+    "poc-bg-far-candidate-sanitized-cd17fda93b14",
+    "poc-bg-far-candidate-sanitized-f47719e973fd",
+    "poc-bg-far-candidate-sanitized-470036329e7c"
+  ],
+  "status": "stable",
+  "test_id": "poc-bg-far"
+}

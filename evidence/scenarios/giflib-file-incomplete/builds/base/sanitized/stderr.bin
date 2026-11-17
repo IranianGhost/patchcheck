@@ -1,0 +1,24 @@
+lib/dgif_lib.c: In function 'DGifOpen':
+lib/dgif_lib.c:33:5: warning: argument 4 null where non-null expected [-Wnonnull]
+   33 |     fread(_buf,1,_len,((GifFilePrivateType*)_gif->Private)->File))
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lib/dgif_lib.c:197:9: note: in expansion of macro 'READ'
+  197 |     if (READ(GifFile, (unsigned char *)Buf, GIF_STAMP_LEN) != GIF_STAMP_LEN) {
+      |         ^~~~
+In file included from lib/dgif_lib.c:16:
+/usr/include/stdio.h:728:15: note: in a call to function 'fread' declared 'nonnull'
+  728 | extern size_t fread (void *__restrict __ptr, size_t __size,
+      |               ^~~~~
+util/gif2rgb.c: In function 'SaveGif':
+util/gif2rgb.c:177:5: warning: this 'if' clause does not guard... [-Wmisleading-indentation]
+  177 |     if (EGifPutScreenDesc(GifFile,
+      |     ^~
+util/gif2rgb.c:184:9: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+  184 |         exit(EXIT_FAILURE);
+      |         ^~~~
+util/gif2rgb.c:198:5: warning: this 'if' clause does not guard... [-Wmisleading-indentation]
+  198 |     if (EGifCloseFile(GifFile, &Error) == GIF_ERROR)
+      |     ^~
+util/gif2rgb.c:200:9: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+  200 |         exit(EXIT_FAILURE);
+      |         ^~~~

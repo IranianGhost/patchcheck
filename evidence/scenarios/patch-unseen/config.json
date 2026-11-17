@@ -1,0 +1,205 @@
+{
+  "analyzers": [],
+  "builds": {
+    "coverage": {
+      "binary": "gif2rgb",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "-Ilib",
+        "-Iutil",
+        "lib/dgif_lib.c",
+        "lib/egif_lib.c",
+        "lib/gif_err.c",
+        "lib/gif_hash.c",
+        "lib/gifalloc.c",
+        "lib/openbsd-reallocarray.c",
+        "lib/quantize.c",
+        "util/gif2rgb.c",
+        "util/getarg.c",
+        "util/qprintf.c",
+        "-o",
+        "gif2rgb"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-O0",
+        "-g",
+        "--coverage"
+      ]
+    },
+    "release": {
+      "binary": "gif2rgb",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "-Ilib",
+        "-Iutil",
+        "lib/dgif_lib.c",
+        "lib/egif_lib.c",
+        "lib/gif_err.c",
+        "lib/gif_hash.c",
+        "lib/gifalloc.c",
+        "lib/openbsd-reallocarray.c",
+        "lib/quantize.c",
+        "util/gif2rgb.c",
+        "util/getarg.c",
+        "util/qprintf.c",
+        "-o",
+        "gif2rgb"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-D_FORTIFY_SOURCE=2",
+        "-O2"
+      ]
+    },
+    "sanitized": {
+      "binary": "gif2rgb",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "-Ilib",
+        "-Iutil",
+        "lib/dgif_lib.c",
+        "lib/egif_lib.c",
+        "lib/gif_err.c",
+        "lib/gif_hash.c",
+        "lib/gifalloc.c",
+        "lib/openbsd-reallocarray.c",
+        "lib/quantize.c",
+        "util/gif2rgb.c",
+        "util/getarg.c",
+        "util/qprintf.c",
+        "-o",
+        "gif2rgb"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined"
+      ],
+      "instrumentation": [
+        "__asan_init"
+      ]
+    }
+  },
+  "corpus_dir": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/regressions/giflib-file",
+  "environment": {
+    "image": "patchcheck-framework:1.0",
+    "variables": {
+      "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+      "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+    }
+  },
+  "fixture": false,
+  "input": {
+    "argv": [
+      "{binary}",
+      "-1",
+      "{input}"
+    ],
+    "cwd": ".",
+    "mode": "file"
+  },
+  "limits": {
+    "build_wall_seconds": 180,
+    "cpu_seconds": 4,
+    "file_bytes": 16777216,
+    "memory_mb": 512,
+    "output_bytes": 4194304,
+    "pids": 32,
+    "wall_seconds": 5
+  },
+  "minimization": {
+    "max_attempts": 400,
+    "wall_seconds": 1200
+  },
+  "schema_version": "1.0",
+  "source": {
+    "base": "base",
+    "candidate": "base",
+    "patch": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/unseen.diff",
+    "repo": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.fixture-repos/giflib"
+  },
+  "target": "giflib",
+  "tests": [
+    {
+      "category": "valid",
+      "id": "valid-fill",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/giflib/inputs/valid-fill.gif",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/giflib/valid-fill.json",
+      "signature": null
+    },
+    {
+      "category": "valid",
+      "id": "valid-margin",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/giflib/inputs/valid-margin.gif",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/giflib/valid-margin.json",
+      "signature": null
+    },
+    {
+      "category": "boundary",
+      "id": "boundary-bg-max",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/giflib/inputs/boundary-bg-max.gif",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/giflib/boundary-bg-max.json",
+      "signature": null
+    },
+    {
+      "category": "invalid",
+      "id": "invalid-oversize",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/giflib/inputs/invalid-oversize.gif",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/giflib/invalid-oversize.json",
+      "signature": null
+    },
+    {
+      "category": "invalid",
+      "id": "invalid-zero-dim",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/giflib/inputs/invalid-zero-dim.gif",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/giflib/invalid-zero-dim.json",
+      "signature": null
+    },
+    {
+      "category": "original",
+      "id": "poc-bg-oob",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/giflib/inputs/poc-bg-oob.gif",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/giflib/poc-bg-oob.json",
+      "signature": {
+        "error_type": "heap-buffer-overflow",
+        "key": "READ",
+        "location": "util/gif2rgb.c:DumpScreen2RGB"
+      }
+    },
+    {
+      "category": "original",
+      "id": "poc-bg-far",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/giflib/inputs/poc-bg-far.gif",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/giflib/poc-bg-far.json",
+      "signature": {
+        "error_type": "heap-buffer-overflow",
+        "key": "READ",
+        "location": "util/gif2rgb.c:DumpScreen2RGB"
+      }
+    }
+  ],
+  "tools": {
+    "g++": "g\\+\\+ .*",
+    "gcc": "gcc .*",
+    "git": "git version .*",
+    "python3": "Python 3\\..*",
+    "readelf": "GNU readelf .*"
+  }
+}

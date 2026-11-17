@@ -1,0 +1,168 @@
+{
+  "analyzers": [],
+  "builds": {
+    "coverage": {
+      "binary": "gif2rgb",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "-Ilib",
+        "-Iutil",
+        "lib/dgif_lib.c",
+        "lib/egif_lib.c",
+        "lib/gif_err.c",
+        "lib/gif_hash.c",
+        "lib/gifalloc.c",
+        "lib/openbsd-reallocarray.c",
+        "lib/quantize.c",
+        "util/gif2rgb.c",
+        "util/getarg.c",
+        "util/qprintf.c",
+        "-o",
+        "gif2rgb"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-O0",
+        "-g",
+        "--coverage"
+      ]
+    },
+    "release": {
+      "binary": "gif2rgb",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "-Ilib",
+        "-Iutil",
+        "lib/dgif_lib.c",
+        "lib/egif_lib.c",
+        "lib/gif_err.c",
+        "lib/gif_hash.c",
+        "lib/gifalloc.c",
+        "lib/openbsd-reallocarray.c",
+        "lib/quantize.c",
+        "util/gif2rgb.c",
+        "util/getarg.c",
+        "util/qprintf.c",
+        "-o",
+        "gif2rgb"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-D_FORTIFY_SOURCE=2",
+        "-O2"
+      ]
+    },
+    "sanitized": {
+      "binary": "gif2rgb",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "-Ilib",
+        "-Iutil",
+        "lib/dgif_lib.c",
+        "lib/egif_lib.c",
+        "lib/gif_err.c",
+        "lib/gif_hash.c",
+        "lib/gifalloc.c",
+        "lib/openbsd-reallocarray.c",
+        "lib/quantize.c",
+        "util/gif2rgb.c",
+        "util/getarg.c",
+        "util/qprintf.c",
+        "-o",
+        "gif2rgb"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined"
+      ],
+      "instrumentation": [
+        "__asan_init"
+      ]
+    }
+  },
+  "corpus_dir": "/private/tmp/patchcheck-106.74bTBhk2/grade/giflib-empty-corpus",
+  "environment": {
+    "image": "patchcheck-framework:1.0",
+    "variables": {
+      "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+      "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+    }
+  },
+  "fixture": false,
+  "input": {
+    "argv": [
+      "{binary}",
+      "-1",
+      "{input}"
+    ],
+    "cwd": ".",
+    "mode": "file"
+  },
+  "limits": {
+    "build_wall_seconds": 180,
+    "cpu_seconds": 4,
+    "file_bytes": 16777216,
+    "memory_mb": 512,
+    "output_bytes": 4194304,
+    "pids": 32,
+    "wall_seconds": 5
+  },
+  "minimization": {
+    "max_attempts": 400,
+    "wall_seconds": 1200
+  },
+  "schema_version": "1.0",
+  "source": {
+    "base": "base",
+    "candidate": "correct",
+    "repo": "/private/tmp/patchcheck-106.74bTBhk2/.fixture-repos/giflib"
+  },
+  "target": "giflib",
+  "tests": [
+    {
+      "category": "valid",
+      "id": "valid-fill",
+      "input": "/private/tmp/patchcheck-106.74bTBhk2/corpus/giflib/inputs/valid-fill.gif",
+      "oracle": "/private/tmp/patchcheck-106.74bTBhk2/oracles/giflib/valid-fill.json",
+      "signature": null
+    },
+    {
+      "category": "valid",
+      "id": "valid-margin",
+      "input": "/private/tmp/patchcheck-106.74bTBhk2/corpus/giflib/inputs/valid-margin.gif",
+      "oracle": "/private/tmp/patchcheck-106.74bTBhk2/oracles/giflib/valid-margin.json",
+      "signature": null
+    },
+    {
+      "category": "boundary",
+      "id": "boundary-bg-max",
+      "input": "/private/tmp/patchcheck-106.74bTBhk2/corpus/giflib/inputs/boundary-bg-max.gif",
+      "oracle": "/private/tmp/patchcheck-106.74bTBhk2/oracles/giflib/boundary-bg-max.json",
+      "signature": null
+    }
+  ],
+  "tools": {
+    "g++": "g\\+\\+ .*",
+    "gcc": "gcc .*",
+    "git": "git version .*",
+    "python3": "Python 3\\..*",
+    "readelf": "GNU readelf .*"
+  }
+}

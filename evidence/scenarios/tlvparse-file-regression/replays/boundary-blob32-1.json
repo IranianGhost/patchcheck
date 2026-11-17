@@ -1,0 +1,278 @@
+{
+  "additional_count_per_cell": 3,
+  "finding_ids": [
+    "finding-functional-boundary-blob32-release",
+    "finding-functional-boundary-blob32-sanitized"
+  ],
+  "groups": [
+    {
+      "build_id": "base-release",
+      "compared": [
+        {
+          "exit_code": 0,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "43310c971bc3d3890bf5c1d6218b668143235e541b62f8199ebc048d4c8bf5ef",
+          "timeout": false
+        },
+        {
+          "exit_code": 0,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "43310c971bc3d3890bf5c1d6218b668143235e541b62f8199ebc048d4c8bf5ef",
+          "timeout": false
+        },
+        {
+          "exit_code": 0,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "43310c971bc3d3890bf5c1d6218b668143235e541b62f8199ebc048d4c8bf5ef",
+          "timeout": false
+        },
+        {
+          "exit_code": 0,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "43310c971bc3d3890bf5c1d6218b668143235e541b62f8199ebc048d4c8bf5ef",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "boundary-blob32-base-release-a4e915c812c1",
+      "run_ids": [
+        "boundary-blob32-base-release-b8a77d5f1a6a",
+        "boundary-blob32-base-release-8a86a700e445",
+        "boundary-blob32-base-release-aeccd9656be8"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    },
+    {
+      "build_id": "base-sanitized",
+      "compared": [
+        {
+          "exit_code": 0,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "43310c971bc3d3890bf5c1d6218b668143235e541b62f8199ebc048d4c8bf5ef",
+          "timeout": false
+        },
+        {
+          "exit_code": 0,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "43310c971bc3d3890bf5c1d6218b668143235e541b62f8199ebc048d4c8bf5ef",
+          "timeout": false
+        },
+        {
+          "exit_code": 0,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "43310c971bc3d3890bf5c1d6218b668143235e541b62f8199ebc048d4c8bf5ef",
+          "timeout": false
+        },
+        {
+          "exit_code": 0,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout_sha256": "43310c971bc3d3890bf5c1d6218b668143235e541b62f8199ebc048d4c8bf5ef",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "boundary-blob32-base-sanitized-c122a2df9ffb",
+      "run_ids": [
+        "boundary-blob32-base-sanitized-9c7b17ec1b02",
+        "boundary-blob32-base-sanitized-02c41f495512",
+        "boundary-blob32-base-sanitized-2f5a123ceb8f"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    },
+    {
+      "build_id": "candidate-release",
+      "compared": [
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "boundary-blob32-candidate-release-ab5d29a6f25b",
+      "run_ids": [
+        "boundary-blob32-candidate-release-3e1250adf4fd",
+        "boundary-blob32-candidate-release-341b59daafbc",
+        "boundary-blob32-candidate-release-b0a903c2d001"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    },
+    {
+      "build_id": "candidate-sanitized",
+      "compared": [
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "boundary-blob32-candidate-sanitized-ee2ed5eb6412",
+      "run_ids": [
+        "boundary-blob32-candidate-sanitized-6e868657ffd2",
+        "boundary-blob32-candidate-sanitized-8024df492bf5",
+        "boundary-blob32-candidate-sanitized-81388e8edbbb"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    }
+  ],
+  "input_sha256": "8e49c9c60d0294541bac949735ffa9013c27e1facb39ec8335d574f717243de7",
+  "run_ids": [
+    "boundary-blob32-base-release-b8a77d5f1a6a",
+    "boundary-blob32-base-release-8a86a700e445",
+    "boundary-blob32-base-release-aeccd9656be8",
+    "boundary-blob32-base-sanitized-9c7b17ec1b02",
+    "boundary-blob32-base-sanitized-02c41f495512",
+    "boundary-blob32-base-sanitized-2f5a123ceb8f",
+    "boundary-blob32-candidate-release-3e1250adf4fd",
+    "boundary-blob32-candidate-release-341b59daafbc",
+    "boundary-blob32-candidate-release-b0a903c2d001",
+    "boundary-blob32-candidate-sanitized-6e868657ffd2",
+    "boundary-blob32-candidate-sanitized-8024df492bf5",
+    "boundary-blob32-candidate-sanitized-81388e8edbbb"
+  ],
+  "status": "stable",
+  "test_id": "boundary-blob32"
+}

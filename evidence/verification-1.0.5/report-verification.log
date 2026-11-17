@@ -1,0 +1,22 @@
+Installed tool: 1.0.5
+Both schema copies are identical and valid
+historical OK evidence/reload/giflib-file-regression-reload/report.json exit 0
+historical OK evidence/reload/real-reproduced/.bundle/evidence/report.json exit 10
+historical OK evidence/reload/real-reproduced/result/report.json exit 10
+historical OK evidence/reload/regression-reload/report.json exit 40
+historical OK evidence/reload/reproduced/.bundle/evidence/report.json exit 40
+historical OK evidence/reload/reproduced/result/report.json exit 40
+historical OK evidence/reload/tlvparse-file-regression-reload/report.json exit 0
+historical OK evidence/scenarios/bytecount-file/report.json exit 40
+historical OK evidence/scenarios/bytecount-stdin/report.json exit 40
+historical OK evidence/scenarios/giflib-file-correct/report.json exit 0
+historical OK evidence/scenarios/giflib-file-incomplete/report.json exit 10
+historical OK evidence/scenarios/giflib-file-regression/report.json exit 20
+historical OK evidence/scenarios/lineparse-argv/report.json exit 40
+historical OK evidence/scenarios/patch-fresh-regression/report.json exit 20
+historical OK evidence/scenarios/patch-unseen/report.json exit 0
+historical OK evidence/scenarios/tlvparse-file-correct/report.json exit 0
+historical OK evidence/scenarios/tlvparse-file-incomplete/report.json exit 10
+historical OK evidence/scenarios/tlvparse-file-regression/report.json exit 20
+fresh OK: all four x86_64 builds, expected exit 40, schema, evidence hashes and JSON/summary/corpus agreement
+incomplete new scope record rejected as expected

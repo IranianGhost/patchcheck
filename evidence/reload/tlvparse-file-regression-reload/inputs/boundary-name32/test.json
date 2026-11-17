@@ -1,0 +1,29 @@
+{
+  "category": "boundary",
+  "id": "boundary-name32",
+  "input": "inputs/boundary-name32/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 0,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/tlvparse/SPEC.md#Input format"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "bmFtZTogTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk5OTk4KcmVjb3JkczogMQo=",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "d59abdff7a76e05f6aecf13741d6dfb252d1803d95063895cdb8b120db577efb",
+  "signature": null,
+  "size": 38,
+  "target": "tlvparse"
+}

@@ -1,0 +1,539 @@
+        -:    0:Source:lib/gifalloc.c
+        -:    0:Graph:gif2rgb-gifalloc.gcno
+        -:    0:Data:gif2rgb-gifalloc.gcda
+        -:    0:Runs:1
+        -:    1:/*****************************************************************************
+        -:    2:
+        -:    3: GIF construction tools
+        -:    4:
+        -:    5:****************************************************************************/
+        -:    6:
+        -:    7:#include <stdlib.h>
+        -:    8:#include <stdio.h>
+        -:    9:#include <string.h>
+        -:   10:
+        -:   11:#include "gif_lib.h"
+        -:   12:
+        -:   13:#define MAX(x, y)    (((x) > (y)) ? (x) : (y))
+        -:   14:
+        -:   15:/******************************************************************************
+        -:   16: Miscellaneous utility functions                          
+        -:   17:******************************************************************************/
+        -:   18:
+        -:   19:/* return smallest bitfield size n will fit in */
+        -:   20:int
+function GifBitSize called 2 returned 100% blocks executed 100%
+        2:   21:GifBitSize(int n)
+        -:   22:{
+        -:   23:    register int i;
+        -:   24:
+        4:   25:    for (i = 1; i <= 8; i++)
+branch  0 taken 4
+branch  1 taken 0 (fallthrough)
+        4:   26:        if ((1 << i) >= n)
+branch  0 taken 2 (fallthrough)
+branch  1 taken 2
+        2:   27:            break;
+        2:   28:    return (i);
+        -:   29:}
+        -:   30:
+        -:   31:/******************************************************************************
+        -:   32:  Color map object functions                              
+        -:   33:******************************************************************************/
+        -:   34:
+        -:   35:/*
+        -:   36: * Allocate a color map of given size; initialize with contents of
+        -:   37: * ColorMap if that pointer is non-NULL.
+        -:   38: */
+        -:   39:ColorMapObject *
+function GifMakeMapObject called 1 returned 100% blocks executed 67%
+        1:   40:GifMakeMapObject(int ColorCount, const GifColorType *ColorMap)
+        -:   41:{
+        -:   42:    ColorMapObject *Object;
+        -:   43:
+        -:   44:    /*** FIXME: Our ColorCount has to be a power of two.  Is it necessary to
+        -:   45:     * make the user know that or should we automatically round up instead? */
+        1:   46:    if (ColorCount != (1 << GifBitSize(ColorCount))) {
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+    #####:   47:        return ((ColorMapObject *) NULL);
+        -:   48:    }
+        -:   49:    
+        1:   50:    Object = (ColorMapObject *)malloc(sizeof(ColorMapObject));
+        1:   51:    if (Object == (ColorMapObject *) NULL) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:   52:        return ((ColorMapObject *) NULL);
+        -:   53:    }
+        -:   54:
+        1:   55:    Object->Colors = (GifColorType *)calloc(ColorCount, sizeof(GifColorType));
+        1:   56:    if (Object->Colors == (GifColorType *) NULL) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:   57:	free(Object);
+    #####:   58:        return ((ColorMapObject *) NULL);
+        -:   59:    }
+        -:   60:
+        1:   61:    Object->ColorCount = ColorCount;
+        1:   62:    Object->BitsPerPixel = GifBitSize(ColorCount);
+call    0 returned 1
+        1:   63:    Object->SortFlag = false;
+        -:   64:
+        1:   65:    if (ColorMap != NULL) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:   66:        memcpy((char *)Object->Colors,
+        -:   67:               (char *)ColorMap, ColorCount * sizeof(GifColorType));
+        -:   68:    }
+        -:   69:
+        1:   70:    return (Object);
+        -:   71:}
+        -:   72:
+        -:   73:/*******************************************************************************
+        -:   74:Free a color map object
+        -:   75:*******************************************************************************/
+        -:   76:void
+function GifFreeMapObject called 0 returned 0% blocks executed 0%
+    #####:   77:GifFreeMapObject(ColorMapObject *Object)
+        -:   78:{
+    #####:   79:    if (Object != NULL) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   80:        (void)free(Object->Colors);
+    #####:   81:        (void)free(Object);
+        -:   82:    }
+    #####:   83:}
+        -:   84:
+        -:   85:#ifdef DEBUG
+        -:   86:void
+        -:   87:DumpColorMap(ColorMapObject *Object,
+        -:   88:             FILE * fp)
+        -:   89:{
+        -:   90:    if (Object != NULL) {
+        -:   91:        int i, j, Len = Object->ColorCount;
+        -:   92:
+        -:   93:        for (i = 0; i < Len; i += 4) {
+        -:   94:            for (j = 0; j < 4 && j < Len; j++) {
+        -:   95:                (void)fprintf(fp, "%3d: %02x %02x %02x   ", i + j,
+        -:   96:			      Object->Colors[i + j].Red,
+        -:   97:			      Object->Colors[i + j].Green,
+        -:   98:			      Object->Colors[i + j].Blue);
+        -:   99:            }
+        -:  100:            (void)fprintf(fp, "\n");
+        -:  101:        }
+        -:  102:    }
+        -:  103:}
+        -:  104:#endif /* DEBUG */
+        -:  105:
+        -:  106:/*******************************************************************************
+        -:  107: Compute the union of two given color maps and return it.  If result can't 
+        -:  108: fit into 256 colors, NULL is returned, the allocated union otherwise.
+        -:  109: ColorIn1 is copied as is to ColorUnion, while colors from ColorIn2 are
+        -:  110: copied iff they didn't exist before.  ColorTransIn2 maps the old
+        -:  111: ColorIn2 into the ColorUnion color map table./
+        -:  112:*******************************************************************************/
+        -:  113:ColorMapObject *
+function GifUnionColorMap called 0 returned 0% blocks executed 0%
+    #####:  114:GifUnionColorMap(const ColorMapObject *ColorIn1,
+        -:  115:              const ColorMapObject *ColorIn2,
+        -:  116:              GifPixelType ColorTransIn2[])
+        -:  117:{
+        -:  118:    int i, j, CrntSlot, RoundUpTo, NewGifBitSize;
+        -:  119:    ColorMapObject *ColorUnion;
+        -:  120:
+        -:  121:    /*
+        -:  122:     * We don't worry about duplicates within either color map; if
+        -:  123:     * the caller wants to resolve those, he can perform unions
+        -:  124:     * with an empty color map.
+        -:  125:     */
+        -:  126:
+        -:  127:    /* Allocate table which will hold the result for sure. */
+    #####:  128:    ColorUnion = GifMakeMapObject(MAX(ColorIn1->ColorCount,
+call    0 never executed
+        -:  129:                               ColorIn2->ColorCount) * 2, NULL);
+        -:  130:
+    #####:  131:    if (ColorUnion == NULL)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  132:        return (NULL);
+        -:  133:
+        -:  134:    /* 
+        -:  135:     * Copy ColorIn1 to ColorUnion.
+        -:  136:     */
+    #####:  137:    for (i = 0; i < ColorIn1->ColorCount; i++)
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  138:        ColorUnion->Colors[i] = ColorIn1->Colors[i];
+    #####:  139:    CrntSlot = ColorIn1->ColorCount;
+        -:  140:
+        -:  141:    /* 
+        -:  142:     * Potentially obnoxious hack:
+        -:  143:     *
+        -:  144:     * Back CrntSlot down past all contiguous {0, 0, 0} slots at the end
+        -:  145:     * of table 1.  This is very useful if your display is limited to
+        -:  146:     * 16 colors.
+        -:  147:     */
+    #####:  148:    while (ColorIn1->Colors[CrntSlot - 1].Red == 0
+    #####:  149:           && ColorIn1->Colors[CrntSlot - 1].Green == 0
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  150:           && ColorIn1->Colors[CrntSlot - 1].Blue == 0)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed (fallthrough)
+    #####:  151:        CrntSlot--;
+        -:  152:
+        -:  153:    /* Copy ColorIn2 to ColorUnion (use old colors if they exist): */
+    #####:  154:    for (i = 0; i < ColorIn2->ColorCount && CrntSlot <= 256; i++) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed (fallthrough)
+        -:  155:        /* Let's see if this color already exists: */
+    #####:  156:        for (j = 0; j < ColorIn1->ColorCount; j++)
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  157:            if (memcmp (&ColorIn1->Colors[j], &ColorIn2->Colors[i], 
+branch  0 never executed (fallthrough)
+branch  1 never executed
+        -:  158:                        sizeof(GifColorType)) == 0)
+    #####:  159:                break;
+        -:  160:
+    #####:  161:        if (j < ColorIn1->ColorCount)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  162:            ColorTransIn2[i] = j;    /* color exists in Color1 */
+        -:  163:        else {
+        -:  164:            /* Color is new - copy it to a new slot: */
+    #####:  165:            ColorUnion->Colors[CrntSlot] = ColorIn2->Colors[i];
+    #####:  166:            ColorTransIn2[i] = CrntSlot++;
+        -:  167:        }
+        -:  168:    }
+        -:  169:
+    #####:  170:    if (CrntSlot > 256) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  171:        GifFreeMapObject(ColorUnion);
+call    0 never executed
+    #####:  172:        return ((ColorMapObject *) NULL);
+        -:  173:    }
+        -:  174:
+    #####:  175:    NewGifBitSize = GifBitSize(CrntSlot);
+call    0 never executed
+    #####:  176:    RoundUpTo = (1 << NewGifBitSize);
+        -:  177:
+    #####:  178:    if (RoundUpTo != ColorUnion->ColorCount) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  179:        register GifColorType *Map = ColorUnion->Colors;
+        -:  180:
+        -:  181:        /* 
+        -:  182:         * Zero out slots up to next power of 2.
+        -:  183:         * We know these slots exist because of the way ColorUnion's
+        -:  184:         * start dimension was computed.
+        -:  185:         */
+    #####:  186:        for (j = CrntSlot; j < RoundUpTo; j++)
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  187:            Map[j].Red = Map[j].Green = Map[j].Blue = 0;
+        -:  188:
+        -:  189:        /* perhaps we can shrink the map? */
+    #####:  190:        if (RoundUpTo < ColorUnion->ColorCount) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  191:            GifColorType *new_map = (GifColorType *)reallocarray(Map,
+call    0 never executed
+        -:  192:                                 RoundUpTo, sizeof(GifColorType));
+    #####:  193:            if( new_map == NULL ) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  194:                GifFreeMapObject(ColorUnion);
+call    0 never executed
+    #####:  195:                return ((ColorMapObject *) NULL);
+        -:  196:            }
+    #####:  197:            ColorUnion->Colors = new_map;
+        -:  198:        }
+        -:  199:    }
+        -:  200:
+    #####:  201:    ColorUnion->ColorCount = RoundUpTo;
+    #####:  202:    ColorUnion->BitsPerPixel = NewGifBitSize;
+        -:  203:
+    #####:  204:    return (ColorUnion);
+        -:  205:}
+        -:  206:
+        -:  207:/*******************************************************************************
+        -:  208: Apply a given color translation to the raster bits of an image
+        -:  209:*******************************************************************************/
+        -:  210:void
+function GifApplyTranslation called 0 returned 0% blocks executed 0%
+    #####:  211:GifApplyTranslation(SavedImage *Image, GifPixelType Translation[])
+        -:  212:{
+        -:  213:    register int i;
+    #####:  214:    register int RasterSize = Image->ImageDesc.Height * Image->ImageDesc.Width;
+        -:  215:
+    #####:  216:    for (i = 0; i < RasterSize; i++)
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  217:        Image->RasterBits[i] = Translation[Image->RasterBits[i]];
+    #####:  218:}
+        -:  219:
+        -:  220:/******************************************************************************
+        -:  221: Extension record functions                              
+        -:  222:******************************************************************************/
+        -:  223:int
+function GifAddExtensionBlock called 0 returned 0% blocks executed 0%
+    #####:  224:GifAddExtensionBlock(int *ExtensionBlockCount,
+        -:  225:		     ExtensionBlock **ExtensionBlocks,
+        -:  226:		     int Function,
+        -:  227:		     unsigned int Len,
+        -:  228:		     unsigned char ExtData[])
+        -:  229:{
+        -:  230:    ExtensionBlock *ep;
+        -:  231:
+    #####:  232:    if (*ExtensionBlocks == NULL)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  233:        *ExtensionBlocks=(ExtensionBlock *)malloc(sizeof(ExtensionBlock));
+        -:  234:    else {
+    #####:  235:        ExtensionBlock* ep_new = (ExtensionBlock *)reallocarray
+    #####:  236:				 (*ExtensionBlocks, (*ExtensionBlockCount + 1),
+call    0 never executed
+        -:  237:                                      sizeof(ExtensionBlock));
+    #####:  238:        if( ep_new == NULL )
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  239:            return (GIF_ERROR);
+    #####:  240:        *ExtensionBlocks = ep_new;
+        -:  241:    }
+        -:  242:
+    #####:  243:    if (*ExtensionBlocks == NULL)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  244:        return (GIF_ERROR);
+        -:  245:
+    #####:  246:    ep = &(*ExtensionBlocks)[(*ExtensionBlockCount)++];
+        -:  247:
+    #####:  248:    ep->Function = Function;
+    #####:  249:    ep->ByteCount=Len;
+    #####:  250:    ep->Bytes = (GifByteType *)malloc(ep->ByteCount);
+    #####:  251:    if (ep->Bytes == NULL)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  252:        return (GIF_ERROR);
+        -:  253:
+    #####:  254:    if (ExtData != NULL) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  255:        memcpy(ep->Bytes, ExtData, Len);
+        -:  256:    }
+        -:  257:
+    #####:  258:    return (GIF_OK);
+        -:  259:}
+        -:  260:
+        -:  261:void
+function GifFreeExtensions called 0 returned 0% blocks executed 0%
+    #####:  262:GifFreeExtensions(int *ExtensionBlockCount,
+        -:  263:		  ExtensionBlock **ExtensionBlocks)
+        -:  264:{
+        -:  265:    ExtensionBlock *ep;
+        -:  266:
+    #####:  267:    if (*ExtensionBlocks == NULL)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  268:        return;
+        -:  269:
+    #####:  270:    for (ep = *ExtensionBlocks;
+    #####:  271:	 ep < (*ExtensionBlocks + *ExtensionBlockCount); 
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  272:	 ep++)
+    #####:  273:        (void)free((char *)ep->Bytes);
+    #####:  274:    (void)free((char *)*ExtensionBlocks);
+    #####:  275:    *ExtensionBlocks = NULL;
+    #####:  276:    *ExtensionBlockCount = 0;
+        -:  277:}
+        -:  278:
+        -:  279:/******************************************************************************
+        -:  280: Image block allocation functions                          
+        -:  281:******************************************************************************/
+        -:  282:
+        -:  283:/* Private Function:
+        -:  284: * Frees the last image in the GifFile->SavedImages array
+        -:  285: */
+        -:  286:void
+function FreeLastSavedImage called 0 returned 0% blocks executed 0%
+    #####:  287:FreeLastSavedImage(GifFileType *GifFile)
+        -:  288:{
+        -:  289:    SavedImage *sp;
+        -:  290:    
+    #####:  291:    if ((GifFile == NULL) || (GifFile->SavedImages == NULL))
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed (fallthrough)
+branch  3 never executed
+    #####:  292:        return;
+        -:  293:
+        -:  294:    /* Remove one SavedImage from the GifFile */
+    #####:  295:    GifFile->ImageCount--;
+    #####:  296:    sp = &GifFile->SavedImages[GifFile->ImageCount];
+        -:  297:
+        -:  298:    /* Deallocate its Colormap */
+    #####:  299:    if (sp->ImageDesc.ColorMap != NULL) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  300:        GifFreeMapObject(sp->ImageDesc.ColorMap);
+call    0 never executed
+    #####:  301:        sp->ImageDesc.ColorMap = NULL;
+        -:  302:    }
+        -:  303:
+        -:  304:    /* Deallocate the image data */
+    #####:  305:    if (sp->RasterBits != NULL)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  306:        free((char *)sp->RasterBits);
+        -:  307:
+        -:  308:    /* Deallocate any extensions */
+    #####:  309:    GifFreeExtensions(&sp->ExtensionBlockCount, &sp->ExtensionBlocks);
+call    0 never executed
+        -:  310:
+        -:  311:    /*** FIXME: We could realloc the GifFile->SavedImages structure but is
+        -:  312:     * there a point to it? Saves some memory but we'd have to do it every
+        -:  313:     * time.  If this is used in GifFreeSavedImages then it would be inefficient
+        -:  314:     * (The whole array is going to be deallocated.)  If we just use it when
+        -:  315:     * we want to free the last Image it's convenient to do it here.
+        -:  316:     */
+        -:  317:}
+        -:  318:
+        -:  319:/*
+        -:  320: * Append an image block to the SavedImages array  
+        -:  321: */
+        -:  322:SavedImage *
+function GifMakeSavedImage called 0 returned 0% blocks executed 0%
+    #####:  323:GifMakeSavedImage(GifFileType *GifFile, const SavedImage *CopyFrom)
+        -:  324:{
+    #####:  325:    if (GifFile->SavedImages == NULL)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  326:        GifFile->SavedImages = (SavedImage *)malloc(sizeof(SavedImage));
+        -:  327:    else
+    #####:  328:        GifFile->SavedImages = (SavedImage *)reallocarray(GifFile->SavedImages,
+    #####:  329:                               (GifFile->ImageCount + 1), sizeof(SavedImage));
+call    0 never executed
+        -:  330:
+    #####:  331:    if (GifFile->SavedImages == NULL)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  332:        return ((SavedImage *)NULL);
+        -:  333:    else {
+    #####:  334:        SavedImage *sp = &GifFile->SavedImages[GifFile->ImageCount++];
+    #####:  335:        memset((char *)sp, '\0', sizeof(SavedImage));
+        -:  336:
+    #####:  337:        if (CopyFrom != NULL) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  338:            memcpy((char *)sp, CopyFrom, sizeof(SavedImage));
+        -:  339:
+        -:  340:            /* 
+        -:  341:             * Make our own allocated copies of the heap fields in the
+        -:  342:             * copied record.  This guards against potential aliasing
+        -:  343:             * problems.
+        -:  344:             */
+        -:  345:
+        -:  346:            /* first, the local color map */
+    #####:  347:            if (sp->ImageDesc.ColorMap != NULL) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  348:                sp->ImageDesc.ColorMap = GifMakeMapObject(
+    #####:  349:                                         CopyFrom->ImageDesc.ColorMap->ColorCount,
+    #####:  350:                                         CopyFrom->ImageDesc.ColorMap->Colors);
+call    0 never executed
+    #####:  351:                if (sp->ImageDesc.ColorMap == NULL) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  352:                    FreeLastSavedImage(GifFile);
+call    0 never executed
+    #####:  353:                    return (SavedImage *)(NULL);
+        -:  354:                }
+        -:  355:            }
+        -:  356:
+        -:  357:            /* next, the raster */
+    #####:  358:            sp->RasterBits = (unsigned char *)reallocarray(NULL,
+    #####:  359:                                                  (CopyFrom->ImageDesc.Height *
+    #####:  360:                                                  CopyFrom->ImageDesc.Width),
+call    0 never executed
+        -:  361:						  sizeof(GifPixelType));
+    #####:  362:            if (sp->RasterBits == NULL) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  363:                FreeLastSavedImage(GifFile);
+call    0 never executed
+    #####:  364:                return (SavedImage *)(NULL);
+        -:  365:            }
+    #####:  366:            memcpy(sp->RasterBits, CopyFrom->RasterBits,
+    #####:  367:                   sizeof(GifPixelType) * CopyFrom->ImageDesc.Height *
+    #####:  368:                   CopyFrom->ImageDesc.Width);
+        -:  369:
+        -:  370:            /* finally, the extension blocks */
+    #####:  371:            if (sp->ExtensionBlocks != NULL) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  372:                sp->ExtensionBlocks = (ExtensionBlock *)reallocarray(NULL,
+    #####:  373:                                      CopyFrom->ExtensionBlockCount,
+call    0 never executed
+        -:  374:				      sizeof(ExtensionBlock));
+    #####:  375:                if (sp->ExtensionBlocks == NULL) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  376:                    FreeLastSavedImage(GifFile);
+call    0 never executed
+    #####:  377:                    return (SavedImage *)(NULL);
+        -:  378:                }
+    #####:  379:                memcpy(sp->ExtensionBlocks, CopyFrom->ExtensionBlocks,
+    #####:  380:                       sizeof(ExtensionBlock) * CopyFrom->ExtensionBlockCount);
+        -:  381:            }
+        -:  382:        }
+        -:  383:
+    #####:  384:        return (sp);
+        -:  385:    }
+        -:  386:}
+        -:  387:
+        -:  388:void
+function GifFreeSavedImages called 0 returned 0% blocks executed 0%
+    #####:  389:GifFreeSavedImages(GifFileType *GifFile)
+        -:  390:{
+        -:  391:    SavedImage *sp;
+        -:  392:
+    #####:  393:    if ((GifFile == NULL) || (GifFile->SavedImages == NULL)) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed (fallthrough)
+branch  3 never executed
+    #####:  394:        return;
+        -:  395:    }
+    #####:  396:    for (sp = GifFile->SavedImages;
+    #####:  397:         sp < GifFile->SavedImages + GifFile->ImageCount; sp++) {
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  398:        if (sp->ImageDesc.ColorMap != NULL) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  399:            GifFreeMapObject(sp->ImageDesc.ColorMap);
+call    0 never executed
+    #####:  400:            sp->ImageDesc.ColorMap = NULL;
+        -:  401:        }
+        -:  402:
+    #####:  403:        if (sp->RasterBits != NULL)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  404:            free((char *)sp->RasterBits);
+        -:  405:	
+    #####:  406:	GifFreeExtensions(&sp->ExtensionBlockCount, &sp->ExtensionBlocks);
+call    0 never executed
+        -:  407:    }
+    #####:  408:    free((char *)GifFile->SavedImages);
+    #####:  409:    GifFile->SavedImages = NULL;
+        -:  410:}
+        -:  411:
+        -:  412:/* end */

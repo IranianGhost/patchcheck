@@ -1,0 +1,10 @@
+diff --git a/main.c b/main.c
+index 2515db5..32861a8 100644
+--- a/main.c
++++ b/main.c
+@@ -27,5 +27,4 @@ int main(int argc, char **argv) {
+             fputs("FIXTURE_FAILURE:MARK:marker-check\n", stderr); return 7;
+         }
+     }
+-    fputs("OK\n", stdout); return 0;
+ }

@@ -1,0 +1,93 @@
+{
+  "base": {
+    "archive": "sources/base.tar",
+    "archive_sha256": "7c1f9c3b11d9fcb175533a99dee410a61ae96f8cec8c3563b52598ec574469ce",
+    "commit": "0fcf9cebb03caf68838c27743cc426ad3f1bd7c4",
+    "dirty": false,
+    "manifest": "sources/base.manifest.json",
+    "path": "sources/base",
+    "requested_ref": "base"
+  },
+  "candidate": {
+    "archive": "sources/candidate.tar",
+    "archive_sha256": "980941c67b5fff80b4d2d42e969223456699eb434f97035f2de35c167af88854",
+    "commit": "33ae3023c736ffd7fdc5c90febddec34c35be42e",
+    "dirty": false,
+    "manifest": "sources/candidate.manifest.json",
+    "path": "sources/candidate",
+    "requested_ref": "candidate"
+  },
+  "diff": {
+    "files": [
+      "main.cpp"
+    ],
+    "hunks": [
+      {
+        "added": [
+          12
+        ],
+        "after": {
+          "count": 7,
+          "start": 9
+        },
+        "before": {
+          "count": 7,
+          "start": 9
+        },
+        "context": "int main(int argc, char **argv) {",
+        "define_lines": {
+          "base": [],
+          "candidate": []
+        },
+        "defines": [],
+        "file": "main.cpp",
+        "functions": [
+          {
+            "end": 16,
+            "file": "main.cpp",
+            "function": "main",
+            "short": "main",
+            "start": 6,
+            "version": "base"
+          },
+          {
+            "end": 16,
+            "file": "main.cpp",
+            "function": "main",
+            "short": "main",
+            "start": 6,
+            "version": "candidate"
+          }
+        ],
+        "id": "h1",
+        "old_file": "main.cpp",
+        "removed": [
+          12
+        ],
+        "unmapped": false,
+        "unmapped_lines": {
+          "base": [],
+          "candidate": []
+        }
+      }
+    ],
+    "path": "sources/versions.patch",
+    "sha256": "3aba7a269acaf65db7a1b28085a89db8e8aefbccd4bb3f533909d406c06ccf6f",
+    "snapshot_bundle": "sources/snapshots.bundle",
+    "source_map": {
+      "base": {
+        "callers": {
+          "main": []
+        },
+        "macro_users": {}
+      },
+      "candidate": {
+        "callers": {
+          "main": []
+        },
+        "macro_users": {}
+      }
+    },
+    "tool_version": "git version 2.50.1 (Apple Git-155)"
+  }
+}

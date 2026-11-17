@@ -1,0 +1,10 @@
+.git
+.venv
+.fixture-repos
+artifacts
+docs
+tests
+vendor
+_old-handoff
+__pycache__
+*.egg-info

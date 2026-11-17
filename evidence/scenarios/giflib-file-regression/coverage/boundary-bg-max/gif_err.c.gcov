@@ -1,0 +1,126 @@
+        -:    0:Source:lib/gif_err.c
+        -:    0:Graph:gif2rgb-gif_err.gcno
+        -:    0:Data:gif2rgb-gif_err.gcda
+        -:    0:Runs:1
+        -:    1:/*****************************************************************************
+        -:    2:
+        -:    3:gif_err.c - handle error reporting for the GIF library.
+        -:    4:
+        -:    5:****************************************************************************/
+        -:    6:
+        -:    7:#include <stdio.h>
+        -:    8:
+        -:    9:#include "gif_lib.h"
+        -:   10:#include "gif_lib_private.h"
+        -:   11:
+        -:   12:/*****************************************************************************
+        -:   13: Return a string description of  the last GIF error
+        -:   14:*****************************************************************************/
+        -:   15:const char *
+function GifErrorString called 0 returned 0% blocks executed 0%
+    #####:   16:GifErrorString(int ErrorCode)
+        -:   17:{
+        -:   18:    const char *Err;
+        -:   19:
+    #####:   20:    switch (ErrorCode) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+branch  8 never executed
+branch  9 never executed
+branch 10 never executed
+branch 11 never executed
+branch 12 never executed
+branch 13 never executed
+branch 14 never executed
+branch 15 never executed
+branch 16 never executed
+branch 17 never executed
+branch 18 never executed
+branch 19 never executed
+branch 20 never executed
+branch 21 never executed
+branch 22 never executed
+branch 23 never executed
+    #####:   21:      case E_GIF_ERR_OPEN_FAILED:
+    #####:   22:        Err = "Failed to open given file";
+    #####:   23:        break;
+    #####:   24:      case E_GIF_ERR_WRITE_FAILED:
+    #####:   25:        Err = "Failed to write to given file";
+    #####:   26:        break;
+    #####:   27:      case E_GIF_ERR_HAS_SCRN_DSCR:
+    #####:   28:        Err = "Screen descriptor has already been set";
+    #####:   29:        break;
+    #####:   30:      case E_GIF_ERR_HAS_IMAG_DSCR:
+    #####:   31:        Err = "Image descriptor is still active";
+    #####:   32:        break;
+    #####:   33:      case E_GIF_ERR_NO_COLOR_MAP:
+    #####:   34:        Err = "Neither global nor local color map";
+    #####:   35:        break;
+    #####:   36:      case E_GIF_ERR_DATA_TOO_BIG:
+    #####:   37:        Err = "Number of pixels bigger than width * height";
+    #####:   38:        break;
+    #####:   39:      case E_GIF_ERR_NOT_ENOUGH_MEM:
+    #####:   40:        Err = "Failed to allocate required memory";
+    #####:   41:        break;
+    #####:   42:      case E_GIF_ERR_DISK_IS_FULL:
+    #####:   43:        Err = "Write failed (disk full?)";
+    #####:   44:        break;
+    #####:   45:      case E_GIF_ERR_CLOSE_FAILED:
+    #####:   46:        Err = "Failed to close given file";
+    #####:   47:        break;
+    #####:   48:      case E_GIF_ERR_NOT_WRITEABLE:
+    #####:   49:        Err = "Given file was not opened for write";
+    #####:   50:        break;
+    #####:   51:      case D_GIF_ERR_OPEN_FAILED:
+    #####:   52:        Err = "Failed to open given file";
+    #####:   53:        break;
+    #####:   54:      case D_GIF_ERR_READ_FAILED:
+    #####:   55:        Err = "Failed to read from given file";
+    #####:   56:        break;
+    #####:   57:      case D_GIF_ERR_NOT_GIF_FILE:
+    #####:   58:        Err = "Data is not in GIF format";
+    #####:   59:        break;
+    #####:   60:      case D_GIF_ERR_NO_SCRN_DSCR:
+    #####:   61:        Err = "No screen descriptor detected";
+    #####:   62:        break;
+    #####:   63:      case D_GIF_ERR_NO_IMAG_DSCR:
+    #####:   64:        Err = "No Image Descriptor detected";
+    #####:   65:        break;
+    #####:   66:      case D_GIF_ERR_NO_COLOR_MAP:
+    #####:   67:        Err = "Neither global nor local color map";
+    #####:   68:        break;
+    #####:   69:      case D_GIF_ERR_WRONG_RECORD:
+    #####:   70:        Err = "Wrong record type detected";
+    #####:   71:        break;
+    #####:   72:      case D_GIF_ERR_DATA_TOO_BIG:
+    #####:   73:        Err = "Number of pixels bigger than width * height";
+    #####:   74:        break;
+    #####:   75:      case D_GIF_ERR_NOT_ENOUGH_MEM:
+    #####:   76:        Err = "Failed to allocate required memory";
+    #####:   77:        break;
+    #####:   78:      case D_GIF_ERR_CLOSE_FAILED:
+    #####:   79:        Err = "Failed to close given file";
+    #####:   80:        break;
+    #####:   81:      case D_GIF_ERR_NOT_READABLE:
+    #####:   82:        Err = "Given file was not opened for read";
+    #####:   83:        break;
+    #####:   84:      case D_GIF_ERR_IMAGE_DEFECT:
+    #####:   85:        Err = "Image is defective, decoding aborted";
+    #####:   86:        break;
+    #####:   87:      case D_GIF_ERR_EOF_TOO_SOON:
+    #####:   88:        Err = "Image EOF detected before image complete";
+    #####:   89:        break;
+    #####:   90:      default:
+    #####:   91:        Err = NULL;
+    #####:   92:        break;
+        -:   93:    }
+    #####:   94:    return Err;
+        -:   95:}
+        -:   96:
+        -:   97:/* end */

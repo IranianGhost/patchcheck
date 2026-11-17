@@ -1,0 +1,29 @@
+{
+  "category": "valid",
+  "id": "plus",
+  "input": "inputs/plus/original.bin",
+  "input_mode": "argv",
+  "oracle": {
+    "exit_code": 0,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/lineparse/SPEC.md#seven"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "NDkK",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "72b9fdd468dd3502e9de26691450d5d18b503eb0cd8fcdc4c3b300f2a8f2e549",
+  "signature": null,
+  "size": 2,
+  "target": "lineparse"
+}

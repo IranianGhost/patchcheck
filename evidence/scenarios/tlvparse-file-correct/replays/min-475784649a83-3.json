@@ -1,0 +1,350 @@
+{
+  "additional_count_per_cell": 3,
+  "finding_ids": [
+    "finding-security-min-475784649a83-release",
+    "finding-security-min-475784649a83-sanitized"
+  ],
+  "groups": [
+    {
+      "build_id": "base-release",
+      "compared": [
+        {
+          "crashes": [
+            {
+              "access": null,
+              "detection_method": "fortify-source",
+              "error_type": "buffer-overflow",
+              "signature": null
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": null,
+              "detection_method": "fortify-source",
+              "error_type": "buffer-overflow",
+              "signature": null
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": null,
+              "detection_method": "fortify-source",
+              "error_type": "buffer-overflow",
+              "signature": null
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": null,
+              "detection_method": "fortify-source",
+              "error_type": "buffer-overflow",
+              "signature": null
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "min-475784649a83-base-release-80fb4c2bd291",
+      "run_ids": [
+        "min-475784649a83-base-release-4718919256ea",
+        "min-475784649a83-base-release-1712b53df447",
+        "min-475784649a83-base-release-31d817a461c6"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    },
+    {
+      "build_id": "base-sanitized",
+      "compared": [
+        {
+          "crashes": [
+            {
+              "access": "WRITE",
+              "detection_method": "asan",
+              "error_type": "heap-buffer-overflow",
+              "signature": {
+                "error_type": "heap-buffer-overflow",
+                "key": "WRITE",
+                "location": "tlvparse.c:copy_value"
+              }
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": "WRITE",
+              "detection_method": "asan",
+              "error_type": "heap-buffer-overflow",
+              "signature": {
+                "error_type": "heap-buffer-overflow",
+                "key": "WRITE",
+                "location": "tlvparse.c:copy_value"
+              }
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": "WRITE",
+              "detection_method": "asan",
+              "error_type": "heap-buffer-overflow",
+              "signature": {
+                "error_type": "heap-buffer-overflow",
+                "key": "WRITE",
+                "location": "tlvparse.c:copy_value"
+              }
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": "WRITE",
+              "detection_method": "asan",
+              "error_type": "heap-buffer-overflow",
+              "signature": {
+                "error_type": "heap-buffer-overflow",
+                "key": "WRITE",
+                "location": "tlvparse.c:copy_value"
+              }
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "min-475784649a83-base-sanitized-806c25b40702",
+      "run_ids": [
+        "min-475784649a83-base-sanitized-1a347d51563d",
+        "min-475784649a83-base-sanitized-444af205f6c5",
+        "min-475784649a83-base-sanitized-88609d259179"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    },
+    {
+      "build_id": "candidate-release",
+      "compared": [
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "min-475784649a83-candidate-release-1cc4fbb89821",
+      "run_ids": [
+        "min-475784649a83-candidate-release-72a260262d15",
+        "min-475784649a83-candidate-release-3e5cb3b23d7c",
+        "min-475784649a83-candidate-release-0748f466fd44"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    },
+    {
+      "build_id": "candidate-sanitized",
+      "compared": [
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "min-475784649a83-candidate-sanitized-b83708973c4e",
+      "run_ids": [
+        "min-475784649a83-candidate-sanitized-788074f03cc8",
+        "min-475784649a83-candidate-sanitized-46ac539e8dcf",
+        "min-475784649a83-candidate-sanitized-fb3a7e891043"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    }
+  ],
+  "input_sha256": "afe24c6fd035b0ecb77eb2ae08763eae97fba18a510947014958cf8a5f850af5",
+  "run_ids": [
+    "min-475784649a83-base-release-4718919256ea",
+    "min-475784649a83-base-release-1712b53df447",
+    "min-475784649a83-base-release-31d817a461c6",
+    "min-475784649a83-base-sanitized-1a347d51563d",
+    "min-475784649a83-base-sanitized-444af205f6c5",
+    "min-475784649a83-base-sanitized-88609d259179",
+    "min-475784649a83-candidate-release-72a260262d15",
+    "min-475784649a83-candidate-release-3e5cb3b23d7c",
+    "min-475784649a83-candidate-release-0748f466fd44",
+    "min-475784649a83-candidate-sanitized-788074f03cc8",
+    "min-475784649a83-candidate-sanitized-46ac539e8dcf",
+    "min-475784649a83-candidate-sanitized-fb3a7e891043"
+  ],
+  "status": "stable",
+  "test_id": "min-475784649a83"
+}

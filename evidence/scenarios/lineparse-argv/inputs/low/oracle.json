@@ -1,0 +1,16 @@
+{
+  "exit_code": 0,
+  "provenance": {
+    "independent": true,
+    "source": "oracles/lineparse/SPEC.md#boundary"
+  },
+  "schema_version": "1.0",
+  "stderr": {
+    "base64": "",
+    "mode": "exact"
+  },
+  "stdout": {
+    "base64": "MTAwMDAK",
+    "mode": "exact"
+  }
+}

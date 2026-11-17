@@ -1,0 +1,29 @@
+{
+  "category": "valid",
+  "id": "valid-basic",
+  "input": "inputs/valid-basic/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 0,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/tlvparse/SPEC.md#Input format"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "bmFtZTogYWxpY2UKbnVtYmVyOiA0MgpibG9iOiAzIGJ5dGVzLCBzdW09Mjk0CnJlY29yZHM6IDMK",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": {},
+  "schema_version": "1.0",
+  "sha256": "e17c270951e2a5dbd41a6d6b13dd891afe370a1eedf907abd7ef37b0ddc8f189",
+  "signature": null,
+  "size": 22,
+  "target": "tlvparse"
+}

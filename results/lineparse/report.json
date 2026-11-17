@@ -1,0 +1,2873 @@
+{
+  "axes": {
+    "completeness": {
+      "complete": false,
+      "reasons": [
+        "no-security-tests: no original/minimized input targets the vulnerability",
+        "functional-unknown: plus (release) base=fail candidate=pass",
+        "functional-unknown: plus (sanitized) base=fail candidate=pass",
+        "fixture-target: fixture evidence never validates a real patch"
+      ]
+    },
+    "functional": {
+      "comparisons": [
+        {
+          "base": "pass",
+          "base_run_id": "seven-base-release-5757ba2a106a",
+          "build_type": "release",
+          "candidate": "pass",
+          "candidate_run_id": "seven-candidate-release-1d816421321d",
+          "observed_status": "preserved",
+          "replay_stability": "not_run",
+          "status": "preserved",
+          "test_id": "seven"
+        },
+        {
+          "base": "pass",
+          "base_run_id": "seven-base-sanitized-482c3e0dac96",
+          "build_type": "sanitized",
+          "candidate": "pass",
+          "candidate_run_id": "seven-candidate-sanitized-fc8d39f96b2d",
+          "observed_status": "preserved",
+          "replay_stability": "not_run",
+          "status": "preserved",
+          "test_id": "seven"
+        },
+        {
+          "base": "fail",
+          "base_run_id": "plus-base-release-e7c2c0ca8555",
+          "build_type": "release",
+          "candidate": "pass",
+          "candidate_run_id": "plus-candidate-release-cfbb16a42c28",
+          "observed_status": "baseline_fail",
+          "replay_stability": "not_run",
+          "status": "baseline_fail",
+          "test_id": "plus"
+        },
+        {
+          "base": "fail",
+          "base_run_id": "plus-base-sanitized-3c43e4169d58",
+          "build_type": "sanitized",
+          "candidate": "pass",
+          "candidate_run_id": "plus-candidate-sanitized-140f87a1dd84",
+          "observed_status": "baseline_fail",
+          "replay_stability": "not_run",
+          "status": "baseline_fail",
+          "test_id": "plus"
+        },
+        {
+          "base": "pass",
+          "base_run_id": "low-base-release-cc40843ad9d8",
+          "build_type": "release",
+          "candidate": "pass",
+          "candidate_run_id": "low-candidate-release-f68cde9c1c9d",
+          "observed_status": "preserved",
+          "replay_stability": "not_run",
+          "status": "preserved",
+          "test_id": "low"
+        },
+        {
+          "base": "pass",
+          "base_run_id": "low-base-sanitized-b39b459cc06e",
+          "build_type": "sanitized",
+          "candidate": "pass",
+          "candidate_run_id": "low-candidate-sanitized-55a0fbb839d3",
+          "observed_status": "preserved",
+          "replay_stability": "not_run",
+          "status": "preserved",
+          "test_id": "low"
+        },
+        {
+          "base": "pass",
+          "base_run_id": "invalid-base-release-34a2c0995b09",
+          "build_type": "release",
+          "candidate": "pass",
+          "candidate_run_id": "invalid-candidate-release-cd0f442382f4",
+          "observed_status": "preserved",
+          "replay_stability": "not_run",
+          "status": "preserved",
+          "test_id": "invalid"
+        },
+        {
+          "base": "pass",
+          "base_run_id": "invalid-base-sanitized-4be6934aa13a",
+          "build_type": "sanitized",
+          "candidate": "pass",
+          "candidate_run_id": "invalid-candidate-sanitized-95df88ae93e6",
+          "observed_status": "preserved",
+          "replay_stability": "not_run",
+          "status": "preserved",
+          "test_id": "invalid"
+        }
+      ],
+      "decision_engine_code": 40,
+      "status": "unknown"
+    },
+    "security": {
+      "baseline_reproduced": false,
+      "confirmed_issues": [],
+      "fixture_observations": 0,
+      "status": "unknown"
+    }
+  },
+  "builds": [
+    {
+      "architecture": "x86_64",
+      "binary": "builds/base/release/program.elf",
+      "binary_sha256": "06efd057352c8b9a6c689c47428513b1394a8c0d11fa575e579a967502596ecd",
+      "build_type": "release",
+      "command": [
+        "g++",
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O2",
+        "main.cpp",
+        "-o",
+        "program"
+      ],
+      "commit": "0fcf9cebb03caf68838c27743cc426ad3f1bd7c4",
+      "compiler": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+      },
+      "environment": {
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "machine": "x86_64",
+        "orchestrator": {
+          "platform": "darwin",
+          "python": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]"
+        },
+        "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.7\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+        "packages": "adduser\t3.152\napt\t3.0.4\nbase-files\t13.8+deb13u7\nbase-passwd\t3.6.7\nbash\t5.2.37-2+b10\nbinutils\t2.44-3\nbinutils-common:amd64\t2.44-3\nbinutils-x86-64-linux-gnu\t2.44-3\nbsdutils\t1:2.41.5-0+deb13u1\nca-certificates\t20250419+deb13u1\ncoreutils\t9.7-3\ncpp\t4:14.2.0-1\ncpp-14\t14.2.0-19\ncpp-14-x86-64-linux-gnu\t14.2.0-19\ncpp-x86-64-linux-gnu\t4:14.2.0-1\ndash\t0.5.12-12\ndebconf\t1.5.91\ndebian-archive-keyring\t2025.1\ndebianutils\t5.23.2\ndiffutils\t1:3.10-4\ndpkg\t1.22.22\nfindutils\t4.10.0-3\ng++\t4:14.2.0-1\ng++-14\t14.2.0-19\ng++-14-x86-64-linux-gnu\t14.2.0-19\ng++-x86-64-linux-gnu\t4:14.2.0-1\ngcc\t4:14.2.0-1\ngcc-14\t14.2.0-19\ngcc-14-base:amd64\t14.2.0-19\ngcc-14-x86-64-linux-gnu\t14.2.0-19\ngcc-x86-64-linux-gnu\t4:14.2.0-1\ngit\t1:2.47.3-0+deb13u1\ngit-man\t1:2.47.3-0+deb13u1\ngrep\t3.11-4\ngzip\t1.13-1+deb13u1\nhostname\t3.25\ninit-system-helpers\t1.69~deb13u1\nlibacl1:amd64\t2.3.2-2+b1\nlibapt-pkg7.0:amd64\t3.0.4\nlibasan8:amd64\t14.2.0-19\nlibatomic1:amd64\t14.2.0-19\nlibattr1:amd64\t1:2.5.2-3\nlibaudit-common\t1:4.0.2-2+deb13u1\nlibaudit1:amd64\t1:4.0.2-2+deb13u1\nlibbinutils:amd64\t2.44-3\nlibblkid1:amd64\t2.41.5-0+deb13u1\nlibbrotli1:amd64\t1.1.0-2+b7\nlibbsd0:amd64\t0.12.2-2\nlibbz2-1.0:amd64\t1.0.8-6\nlibc-bin\t2.41-12+deb13u4\nlibc-dev-bin\t2.41-12+deb13u4\nlibc6:amd64\t2.41-12+deb13u4\nlibc6-dev:amd64\t2.41-12+deb13u4\nlibcap-ng0:amd64\t0.8.5-4+b1\nlibcap2:amd64\t1:2.75-10+deb13u1+b3\nlibcc1-0:amd64\t14.2.0-19\nlibcom-err2:amd64\t1.47.2-3+b12\nlibcrypt-dev:amd64\t1:4.4.38-1\nlibcrypt1:amd64\t1:4.4.38-1\nlibctf-nobfd0:amd64\t2.44-3\nlibctf0:amd64\t2.44-3\nlibcurl3t64-gnutls:amd64\t8.14.1-2+deb13u5\nlibdb5.3t64:amd64\t5.3.28+dfsg2-9\nlibdebconfclient0:amd64\t0.280\nliberror-perl\t0.17030-1\nlibexpat1:amd64\t2.8.3-1~deb13u1\nlibffi8:amd64\t3.4.8-2\nlibgcc-14-dev:amd64\t14.2.0-19\nlibgcc-s1:amd64\t14.2.0-19\nlibgdbm-compat4t64:amd64\t1.24-2\nlibgdbm6t64:amd64\t1.24-2\nlibgmp10:amd64\t2:6.3.0+dfsg-3\nlibgnutls30t64:amd64\t3.8.9-3+deb13u4\nlibgomp1:amd64\t14.2.0-19\nlibgprofng0:amd64\t2.44-3\nlibgssapi-krb5-2:amd64\t1.21.3-5+deb13u1\nlibhogweed6t64:amd64\t3.10.1-1\nlibhwasan0:amd64\t14.2.0-19\nlibidn2-0:amd64\t2.3.8-2\nlibisl23:amd64\t0.27-1\nlibitm1:amd64\t14.2.0-19\nlibjansson4:amd64\t2.14-2+b3\nlibk5crypto3:amd64\t1.21.3-5+deb13u1\nlibkeyutils1:amd64\t1.6.3-6\nlibkrb5-3:amd64\t1.21.3-5+deb13u1\nlibkrb5support0:amd64\t1.21.3-5+deb13u1\nliblastlog2-2:amd64\t2.41.5-0+deb13u1\nlibldap2:amd64\t2.6.10+dfsg-1\nliblsan0:amd64\t14.2.0-19\nliblz4-1:amd64\t1.10.0-4\nliblzma5:amd64\t5.8.1-1+deb13u2\nlibmd0:amd64\t1.1.0-2+b1\nlibmount1:amd64\t2.41.5-0+deb13u1\nlibmpc3:amd64\t1.3.1-1+b3\nlibmpfr6:amd64\t4.2.2-1\nlibncursesw6:amd64\t6.5+20250216-2\nlibnettle8t64:amd64\t3.10.1-1\nlibnghttp2-14:amd64\t1.64.0-1.1+deb13u1\nlibnghttp3-9:amd64\t1.8.0-1\nlibngtcp2-16:amd64\t1.11.0-1+deb13u1\nlibngtcp2-crypto-gnutls8:amd64\t1.11.0-1+deb13u1\nlibp11-kit0:amd64\t0.25.5-3\nlibpam-modules:amd64\t1.7.0-5\nlibpam-modules-bin\t1.7.0-5\nlibpam-runtime\t1.7.0-5\nlibpam0g:amd64\t1.7.0-5\nlibpcre2-8-0:amd64\t10.46-1~deb13u3\nlibperl5.40:amd64\t5.40.1-6+deb13u1\nlibpsl5t64:amd64\t0.21.2-1.1+b1\nlibquadmath0:amd64\t14.2.0-19\nlibreadline8t64:amd64\t8.2-6\nlibrtmp1:amd64\t2.4+20151223.gitfa8646d.1-2+b5\nlibsasl2-2:amd64\t2.1.28+dfsg1-9\nlibsasl2-modules-db:amd64\t2.1.28+dfsg1-9\nlibseccomp2:amd64\t2.6.0-2\nlibselinux1:amd64\t3.8.1-1\nlibsemanage-common\t3.8.1-1\nlibsemanage2:amd64\t3.8.1-1\nlibsepol2:amd64\t3.8.1-1\nlibsframe1:amd64\t2.44-3\nlibsmartcols1:amd64\t2.41.5-0+deb13u1\nlibsqlite3-0:amd64\t3.46.1-7+deb13u2\nlibssh2-1t64:amd64\t1.11.1-1+deb13u2\nlibssl3t64:amd64\t3.5.7-1~deb13u3\nlibstdc++-14-dev:amd64\t14.2.0-19\nlibstdc++6:amd64\t14.2.0-19\nlibsystemd0:amd64\t257.13-1~deb13u1\nlibtasn1-6:amd64\t4.20.0-2+deb13u1\nlibtinfo6:amd64\t6.5+20250216-2\nlibtsan2:amd64\t14.2.0-19\nlibubsan1:amd64\t14.2.0-19\nlibudev1:amd64\t257.13-1~deb13u1\nlibunistring5:amd64\t1.3-2\nlibuuid1:amd64\t2.41.5-0+deb13u1\nlibxxhash0:amd64\t0.8.3-2\nlibzstd1:amd64\t1.5.7+dfsg-1\nlinux-libc-dev\t6.12.107-1\nlogin\t1:4.16.0-2+really2.41.5-0+deb13u1\nlogin.defs\t1:4.17.4-2\nmake\t4.4.1-2\nmawk\t1.3.4.20250131-1\nmount\t2.41.5-0+deb13u1\nncurses-base\t6.5+20250216-2\nncurses-bin\t6.5+20250216-2\nnetbase\t6.5\nopenssl\t3.5.7-1~deb13u3\nopenssl-provider-legacy\t3.5.7-1~deb13u3\npasswd\t1:4.17.4-2\nperl\t5.40.1-6+deb13u1\nperl-base\t5.40.1-6+deb13u1\nperl-modules-5.40\t5.40.1-6+deb13u1\nreadline-common\t8.2-6\nrpcsvc-proto\t1.4.3-1\nsed\t4.9-2+deb13u1\nsqv\t1.3.0-3+b2\nsysvinit-utils\t3.14-4\ntar\t1.35+dfsg-3.1\ntzdata\t2026f-0+deb13u1\nutil-linux\t2.41.5-0+deb13u1\nzlib1g:amd64\t1:1.3.dfsg+really1.3.1-1+b1\n",
+        "python": "3.12.16",
+        "system": "Linux",
+        "tools": {
+          "g++": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+          },
+          "gcc": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+          },
+          "git": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "git version 2.47.3\n"
+          },
+          "python3": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "Python 3.12.16\n"
+          },
+          "readelf": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "GNU readelf (GNU Binutils for Debian) 2.44\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+          }
+        }
+      },
+      "error": null,
+      "evidence": [
+        "builds/base/release/measurement.json"
+      ],
+      "file_type": "ELF",
+      "flags": [
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O2"
+      ],
+      "hardening": {
+        "bind_now_indicator": true,
+        "extraction_complete": true,
+        "fortify_symbols": [],
+        "gnu_relro_segment": true,
+        "gnu_stack_header": "GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10",
+        "interpretation": "unknown",
+        "nx_indicator": "non_executable_stack",
+        "pie_flag": true,
+        "pie_indicator": "DYN",
+        "raw": "builds/base/release/elf/stdout.bin",
+        "relro_indicator": "full",
+        "stack_canary_note": "symbol presence is an indicator; absence does not establish missing protection",
+        "stack_canary_symbols": [
+          "__stack_chk_fail@GLIBC_2.4"
+        ],
+        "tool_version": "GNU readelf (GNU Binutils for Debian) 2.44\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+      },
+      "id": "base-release",
+      "result": "success",
+      "schema_version": "1.0",
+      "source": {
+        "archive": "sources/base.tar",
+        "archive_sha256": "7c1f9c3b11d9fcb175533a99dee410a61ae96f8cec8c3563b52598ec574469ce",
+        "commit": "0fcf9cebb03caf68838c27743cc426ad3f1bd7c4",
+        "dirty": false,
+        "manifest": "sources/base.manifest.json",
+        "path": "sources/base",
+        "requested_ref": "base"
+      },
+      "stderr": "builds/base/release/stderr.bin",
+      "stdout": "builds/base/release/stdout.bin",
+      "version": "base"
+    },
+    {
+      "architecture": "x86_64",
+      "binary": "builds/base/sanitized/program.elf",
+      "binary_sha256": "d21e83def98a24916bda2527b2da0e64497a3e92b4b73ffa204cfac0e29d39d3",
+      "build_type": "sanitized",
+      "command": [
+        "g++",
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined",
+        "main.cpp",
+        "-o",
+        "program"
+      ],
+      "commit": "0fcf9cebb03caf68838c27743cc426ad3f1bd7c4",
+      "compiler": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+      },
+      "environment": {
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "machine": "x86_64",
+        "orchestrator": {
+          "platform": "darwin",
+          "python": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]"
+        },
+        "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.7\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+        "packages": "adduser\t3.152\napt\t3.0.4\nbase-files\t13.8+deb13u7\nbase-passwd\t3.6.7\nbash\t5.2.37-2+b10\nbinutils\t2.44-3\nbinutils-common:amd64\t2.44-3\nbinutils-x86-64-linux-gnu\t2.44-3\nbsdutils\t1:2.41.5-0+deb13u1\nca-certificates\t20250419+deb13u1\ncoreutils\t9.7-3\ncpp\t4:14.2.0-1\ncpp-14\t14.2.0-19\ncpp-14-x86-64-linux-gnu\t14.2.0-19\ncpp-x86-64-linux-gnu\t4:14.2.0-1\ndash\t0.5.12-12\ndebconf\t1.5.91\ndebian-archive-keyring\t2025.1\ndebianutils\t5.23.2\ndiffutils\t1:3.10-4\ndpkg\t1.22.22\nfindutils\t4.10.0-3\ng++\t4:14.2.0-1\ng++-14\t14.2.0-19\ng++-14-x86-64-linux-gnu\t14.2.0-19\ng++-x86-64-linux-gnu\t4:14.2.0-1\ngcc\t4:14.2.0-1\ngcc-14\t14.2.0-19\ngcc-14-base:amd64\t14.2.0-19\ngcc-14-x86-64-linux-gnu\t14.2.0-19\ngcc-x86-64-linux-gnu\t4:14.2.0-1\ngit\t1:2.47.3-0+deb13u1\ngit-man\t1:2.47.3-0+deb13u1\ngrep\t3.11-4\ngzip\t1.13-1+deb13u1\nhostname\t3.25\ninit-system-helpers\t1.69~deb13u1\nlibacl1:amd64\t2.3.2-2+b1\nlibapt-pkg7.0:amd64\t3.0.4\nlibasan8:amd64\t14.2.0-19\nlibatomic1:amd64\t14.2.0-19\nlibattr1:amd64\t1:2.5.2-3\nlibaudit-common\t1:4.0.2-2+deb13u1\nlibaudit1:amd64\t1:4.0.2-2+deb13u1\nlibbinutils:amd64\t2.44-3\nlibblkid1:amd64\t2.41.5-0+deb13u1\nlibbrotli1:amd64\t1.1.0-2+b7\nlibbsd0:amd64\t0.12.2-2\nlibbz2-1.0:amd64\t1.0.8-6\nlibc-bin\t2.41-12+deb13u4\nlibc-dev-bin\t2.41-12+deb13u4\nlibc6:amd64\t2.41-12+deb13u4\nlibc6-dev:amd64\t2.41-12+deb13u4\nlibcap-ng0:amd64\t0.8.5-4+b1\nlibcap2:amd64\t1:2.75-10+deb13u1+b3\nlibcc1-0:amd64\t14.2.0-19\nlibcom-err2:amd64\t1.47.2-3+b12\nlibcrypt-dev:amd64\t1:4.4.38-1\nlibcrypt1:amd64\t1:4.4.38-1\nlibctf-nobfd0:amd64\t2.44-3\nlibctf0:amd64\t2.44-3\nlibcurl3t64-gnutls:amd64\t8.14.1-2+deb13u5\nlibdb5.3t64:amd64\t5.3.28+dfsg2-9\nlibdebconfclient0:amd64\t0.280\nliberror-perl\t0.17030-1\nlibexpat1:amd64\t2.8.3-1~deb13u1\nlibffi8:amd64\t3.4.8-2\nlibgcc-14-dev:amd64\t14.2.0-19\nlibgcc-s1:amd64\t14.2.0-19\nlibgdbm-compat4t64:amd64\t1.24-2\nlibgdbm6t64:amd64\t1.24-2\nlibgmp10:amd64\t2:6.3.0+dfsg-3\nlibgnutls30t64:amd64\t3.8.9-3+deb13u4\nlibgomp1:amd64\t14.2.0-19\nlibgprofng0:amd64\t2.44-3\nlibgssapi-krb5-2:amd64\t1.21.3-5+deb13u1\nlibhogweed6t64:amd64\t3.10.1-1\nlibhwasan0:amd64\t14.2.0-19\nlibidn2-0:amd64\t2.3.8-2\nlibisl23:amd64\t0.27-1\nlibitm1:amd64\t14.2.0-19\nlibjansson4:amd64\t2.14-2+b3\nlibk5crypto3:amd64\t1.21.3-5+deb13u1\nlibkeyutils1:amd64\t1.6.3-6\nlibkrb5-3:amd64\t1.21.3-5+deb13u1\nlibkrb5support0:amd64\t1.21.3-5+deb13u1\nliblastlog2-2:amd64\t2.41.5-0+deb13u1\nlibldap2:amd64\t2.6.10+dfsg-1\nliblsan0:amd64\t14.2.0-19\nliblz4-1:amd64\t1.10.0-4\nliblzma5:amd64\t5.8.1-1+deb13u2\nlibmd0:amd64\t1.1.0-2+b1\nlibmount1:amd64\t2.41.5-0+deb13u1\nlibmpc3:amd64\t1.3.1-1+b3\nlibmpfr6:amd64\t4.2.2-1\nlibncursesw6:amd64\t6.5+20250216-2\nlibnettle8t64:amd64\t3.10.1-1\nlibnghttp2-14:amd64\t1.64.0-1.1+deb13u1\nlibnghttp3-9:amd64\t1.8.0-1\nlibngtcp2-16:amd64\t1.11.0-1+deb13u1\nlibngtcp2-crypto-gnutls8:amd64\t1.11.0-1+deb13u1\nlibp11-kit0:amd64\t0.25.5-3\nlibpam-modules:amd64\t1.7.0-5\nlibpam-modules-bin\t1.7.0-5\nlibpam-runtime\t1.7.0-5\nlibpam0g:amd64\t1.7.0-5\nlibpcre2-8-0:amd64\t10.46-1~deb13u3\nlibperl5.40:amd64\t5.40.1-6+deb13u1\nlibpsl5t64:amd64\t0.21.2-1.1+b1\nlibquadmath0:amd64\t14.2.0-19\nlibreadline8t64:amd64\t8.2-6\nlibrtmp1:amd64\t2.4+20151223.gitfa8646d.1-2+b5\nlibsasl2-2:amd64\t2.1.28+dfsg1-9\nlibsasl2-modules-db:amd64\t2.1.28+dfsg1-9\nlibseccomp2:amd64\t2.6.0-2\nlibselinux1:amd64\t3.8.1-1\nlibsemanage-common\t3.8.1-1\nlibsemanage2:amd64\t3.8.1-1\nlibsepol2:amd64\t3.8.1-1\nlibsframe1:amd64\t2.44-3\nlibsmartcols1:amd64\t2.41.5-0+deb13u1\nlibsqlite3-0:amd64\t3.46.1-7+deb13u2\nlibssh2-1t64:amd64\t1.11.1-1+deb13u2\nlibssl3t64:amd64\t3.5.7-1~deb13u3\nlibstdc++-14-dev:amd64\t14.2.0-19\nlibstdc++6:amd64\t14.2.0-19\nlibsystemd0:amd64\t257.13-1~deb13u1\nlibtasn1-6:amd64\t4.20.0-2+deb13u1\nlibtinfo6:amd64\t6.5+20250216-2\nlibtsan2:amd64\t14.2.0-19\nlibubsan1:amd64\t14.2.0-19\nlibudev1:amd64\t257.13-1~deb13u1\nlibunistring5:amd64\t1.3-2\nlibuuid1:amd64\t2.41.5-0+deb13u1\nlibxxhash0:amd64\t0.8.3-2\nlibzstd1:amd64\t1.5.7+dfsg-1\nlinux-libc-dev\t6.12.107-1\nlogin\t1:4.16.0-2+really2.41.5-0+deb13u1\nlogin.defs\t1:4.17.4-2\nmake\t4.4.1-2\nmawk\t1.3.4.20250131-1\nmount\t2.41.5-0+deb13u1\nncurses-base\t6.5+20250216-2\nncurses-bin\t6.5+20250216-2\nnetbase\t6.5\nopenssl\t3.5.7-1~deb13u3\nopenssl-provider-legacy\t3.5.7-1~deb13u3\npasswd\t1:4.17.4-2\nperl\t5.40.1-6+deb13u1\nperl-base\t5.40.1-6+deb13u1\nperl-modules-5.40\t5.40.1-6+deb13u1\nreadline-common\t8.2-6\nrpcsvc-proto\t1.4.3-1\nsed\t4.9-2+deb13u1\nsqv\t1.3.0-3+b2\nsysvinit-utils\t3.14-4\ntar\t1.35+dfsg-3.1\ntzdata\t2026f-0+deb13u1\nutil-linux\t2.41.5-0+deb13u1\nzlib1g:amd64\t1:1.3.dfsg+really1.3.1-1+b1\n",
+        "python": "3.12.16",
+        "system": "Linux",
+        "tools": {
+          "g++": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+          },
+          "gcc": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+          },
+          "git": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "git version 2.47.3\n"
+          },
+          "python3": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "Python 3.12.16\n"
+          },
+          "readelf": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "GNU readelf (GNU Binutils for Debian) 2.44\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+          }
+        }
+      },
+      "error": null,
+      "evidence": [
+        "builds/base/sanitized/measurement.json"
+      ],
+      "file_type": "ELF",
+      "flags": [
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined"
+      ],
+      "hardening": {
+        "bind_now_indicator": true,
+        "extraction_complete": true,
+        "fortify_symbols": [],
+        "gnu_relro_segment": true,
+        "gnu_stack_header": "GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10",
+        "instrumentation": {
+          "asan": true,
+          "msan": false,
+          "symbols": [
+            "__asan_init",
+            "__ubsan_handle_mul_overflow",
+            "__ubsan_handle_nonnull_arg",
+            "__ubsan_handle_pointer_overflow",
+            "__ubsan_handle_type_mismatch_v1"
+          ],
+          "tsan": false,
+          "ubsan": true
+        },
+        "interpretation": "unknown",
+        "nx_indicator": "non_executable_stack",
+        "pie_flag": true,
+        "pie_indicator": "DYN",
+        "raw": "builds/base/sanitized/elf/stdout.bin",
+        "relro_indicator": "full",
+        "stack_canary_note": "symbol presence is an indicator; absence does not establish missing protection",
+        "stack_canary_symbols": [
+          "__stack_chk_fail@GLIBC_2.4"
+        ],
+        "tool_version": "GNU readelf (GNU Binutils for Debian) 2.44\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+      },
+      "id": "base-sanitized",
+      "result": "success",
+      "schema_version": "1.0",
+      "source": {
+        "archive": "sources/base.tar",
+        "archive_sha256": "7c1f9c3b11d9fcb175533a99dee410a61ae96f8cec8c3563b52598ec574469ce",
+        "commit": "0fcf9cebb03caf68838c27743cc426ad3f1bd7c4",
+        "dirty": false,
+        "manifest": "sources/base.manifest.json",
+        "path": "sources/base",
+        "requested_ref": "base"
+      },
+      "stderr": "builds/base/sanitized/stderr.bin",
+      "stdout": "builds/base/sanitized/stdout.bin",
+      "version": "base"
+    },
+    {
+      "architecture": "x86_64",
+      "binary": "builds/candidate/release/program.elf",
+      "binary_sha256": "77ea74b38a9eafaaf22975e23c3228f3c19759d95e386a20c75dc2e70f5c1443",
+      "build_type": "release",
+      "command": [
+        "g++",
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O2",
+        "main.cpp",
+        "-o",
+        "program"
+      ],
+      "commit": "33ae3023c736ffd7fdc5c90febddec34c35be42e",
+      "compiler": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+      },
+      "environment": {
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "machine": "x86_64",
+        "orchestrator": {
+          "platform": "darwin",
+          "python": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]"
+        },
+        "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.7\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+        "packages": "adduser\t3.152\napt\t3.0.4\nbase-files\t13.8+deb13u7\nbase-passwd\t3.6.7\nbash\t5.2.37-2+b10\nbinutils\t2.44-3\nbinutils-common:amd64\t2.44-3\nbinutils-x86-64-linux-gnu\t2.44-3\nbsdutils\t1:2.41.5-0+deb13u1\nca-certificates\t20250419+deb13u1\ncoreutils\t9.7-3\ncpp\t4:14.2.0-1\ncpp-14\t14.2.0-19\ncpp-14-x86-64-linux-gnu\t14.2.0-19\ncpp-x86-64-linux-gnu\t4:14.2.0-1\ndash\t0.5.12-12\ndebconf\t1.5.91\ndebian-archive-keyring\t2025.1\ndebianutils\t5.23.2\ndiffutils\t1:3.10-4\ndpkg\t1.22.22\nfindutils\t4.10.0-3\ng++\t4:14.2.0-1\ng++-14\t14.2.0-19\ng++-14-x86-64-linux-gnu\t14.2.0-19\ng++-x86-64-linux-gnu\t4:14.2.0-1\ngcc\t4:14.2.0-1\ngcc-14\t14.2.0-19\ngcc-14-base:amd64\t14.2.0-19\ngcc-14-x86-64-linux-gnu\t14.2.0-19\ngcc-x86-64-linux-gnu\t4:14.2.0-1\ngit\t1:2.47.3-0+deb13u1\ngit-man\t1:2.47.3-0+deb13u1\ngrep\t3.11-4\ngzip\t1.13-1+deb13u1\nhostname\t3.25\ninit-system-helpers\t1.69~deb13u1\nlibacl1:amd64\t2.3.2-2+b1\nlibapt-pkg7.0:amd64\t3.0.4\nlibasan8:amd64\t14.2.0-19\nlibatomic1:amd64\t14.2.0-19\nlibattr1:amd64\t1:2.5.2-3\nlibaudit-common\t1:4.0.2-2+deb13u1\nlibaudit1:amd64\t1:4.0.2-2+deb13u1\nlibbinutils:amd64\t2.44-3\nlibblkid1:amd64\t2.41.5-0+deb13u1\nlibbrotli1:amd64\t1.1.0-2+b7\nlibbsd0:amd64\t0.12.2-2\nlibbz2-1.0:amd64\t1.0.8-6\nlibc-bin\t2.41-12+deb13u4\nlibc-dev-bin\t2.41-12+deb13u4\nlibc6:amd64\t2.41-12+deb13u4\nlibc6-dev:amd64\t2.41-12+deb13u4\nlibcap-ng0:amd64\t0.8.5-4+b1\nlibcap2:amd64\t1:2.75-10+deb13u1+b3\nlibcc1-0:amd64\t14.2.0-19\nlibcom-err2:amd64\t1.47.2-3+b12\nlibcrypt-dev:amd64\t1:4.4.38-1\nlibcrypt1:amd64\t1:4.4.38-1\nlibctf-nobfd0:amd64\t2.44-3\nlibctf0:amd64\t2.44-3\nlibcurl3t64-gnutls:amd64\t8.14.1-2+deb13u5\nlibdb5.3t64:amd64\t5.3.28+dfsg2-9\nlibdebconfclient0:amd64\t0.280\nliberror-perl\t0.17030-1\nlibexpat1:amd64\t2.8.3-1~deb13u1\nlibffi8:amd64\t3.4.8-2\nlibgcc-14-dev:amd64\t14.2.0-19\nlibgcc-s1:amd64\t14.2.0-19\nlibgdbm-compat4t64:amd64\t1.24-2\nlibgdbm6t64:amd64\t1.24-2\nlibgmp10:amd64\t2:6.3.0+dfsg-3\nlibgnutls30t64:amd64\t3.8.9-3+deb13u4\nlibgomp1:amd64\t14.2.0-19\nlibgprofng0:amd64\t2.44-3\nlibgssapi-krb5-2:amd64\t1.21.3-5+deb13u1\nlibhogweed6t64:amd64\t3.10.1-1\nlibhwasan0:amd64\t14.2.0-19\nlibidn2-0:amd64\t2.3.8-2\nlibisl23:amd64\t0.27-1\nlibitm1:amd64\t14.2.0-19\nlibjansson4:amd64\t2.14-2+b3\nlibk5crypto3:amd64\t1.21.3-5+deb13u1\nlibkeyutils1:amd64\t1.6.3-6\nlibkrb5-3:amd64\t1.21.3-5+deb13u1\nlibkrb5support0:amd64\t1.21.3-5+deb13u1\nliblastlog2-2:amd64\t2.41.5-0+deb13u1\nlibldap2:amd64\t2.6.10+dfsg-1\nliblsan0:amd64\t14.2.0-19\nliblz4-1:amd64\t1.10.0-4\nliblzma5:amd64\t5.8.1-1+deb13u2\nlibmd0:amd64\t1.1.0-2+b1\nlibmount1:amd64\t2.41.5-0+deb13u1\nlibmpc3:amd64\t1.3.1-1+b3\nlibmpfr6:amd64\t4.2.2-1\nlibncursesw6:amd64\t6.5+20250216-2\nlibnettle8t64:amd64\t3.10.1-1\nlibnghttp2-14:amd64\t1.64.0-1.1+deb13u1\nlibnghttp3-9:amd64\t1.8.0-1\nlibngtcp2-16:amd64\t1.11.0-1+deb13u1\nlibngtcp2-crypto-gnutls8:amd64\t1.11.0-1+deb13u1\nlibp11-kit0:amd64\t0.25.5-3\nlibpam-modules:amd64\t1.7.0-5\nlibpam-modules-bin\t1.7.0-5\nlibpam-runtime\t1.7.0-5\nlibpam0g:amd64\t1.7.0-5\nlibpcre2-8-0:amd64\t10.46-1~deb13u3\nlibperl5.40:amd64\t5.40.1-6+deb13u1\nlibpsl5t64:amd64\t0.21.2-1.1+b1\nlibquadmath0:amd64\t14.2.0-19\nlibreadline8t64:amd64\t8.2-6\nlibrtmp1:amd64\t2.4+20151223.gitfa8646d.1-2+b5\nlibsasl2-2:amd64\t2.1.28+dfsg1-9\nlibsasl2-modules-db:amd64\t2.1.28+dfsg1-9\nlibseccomp2:amd64\t2.6.0-2\nlibselinux1:amd64\t3.8.1-1\nlibsemanage-common\t3.8.1-1\nlibsemanage2:amd64\t3.8.1-1\nlibsepol2:amd64\t3.8.1-1\nlibsframe1:amd64\t2.44-3\nlibsmartcols1:amd64\t2.41.5-0+deb13u1\nlibsqlite3-0:amd64\t3.46.1-7+deb13u2\nlibssh2-1t64:amd64\t1.11.1-1+deb13u2\nlibssl3t64:amd64\t3.5.7-1~deb13u3\nlibstdc++-14-dev:amd64\t14.2.0-19\nlibstdc++6:amd64\t14.2.0-19\nlibsystemd0:amd64\t257.13-1~deb13u1\nlibtasn1-6:amd64\t4.20.0-2+deb13u1\nlibtinfo6:amd64\t6.5+20250216-2\nlibtsan2:amd64\t14.2.0-19\nlibubsan1:amd64\t14.2.0-19\nlibudev1:amd64\t257.13-1~deb13u1\nlibunistring5:amd64\t1.3-2\nlibuuid1:amd64\t2.41.5-0+deb13u1\nlibxxhash0:amd64\t0.8.3-2\nlibzstd1:amd64\t1.5.7+dfsg-1\nlinux-libc-dev\t6.12.107-1\nlogin\t1:4.16.0-2+really2.41.5-0+deb13u1\nlogin.defs\t1:4.17.4-2\nmake\t4.4.1-2\nmawk\t1.3.4.20250131-1\nmount\t2.41.5-0+deb13u1\nncurses-base\t6.5+20250216-2\nncurses-bin\t6.5+20250216-2\nnetbase\t6.5\nopenssl\t3.5.7-1~deb13u3\nopenssl-provider-legacy\t3.5.7-1~deb13u3\npasswd\t1:4.17.4-2\nperl\t5.40.1-6+deb13u1\nperl-base\t5.40.1-6+deb13u1\nperl-modules-5.40\t5.40.1-6+deb13u1\nreadline-common\t8.2-6\nrpcsvc-proto\t1.4.3-1\nsed\t4.9-2+deb13u1\nsqv\t1.3.0-3+b2\nsysvinit-utils\t3.14-4\ntar\t1.35+dfsg-3.1\ntzdata\t2026f-0+deb13u1\nutil-linux\t2.41.5-0+deb13u1\nzlib1g:amd64\t1:1.3.dfsg+really1.3.1-1+b1\n",
+        "python": "3.12.16",
+        "system": "Linux",
+        "tools": {
+          "g++": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+          },
+          "gcc": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+          },
+          "git": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "git version 2.47.3\n"
+          },
+          "python3": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "Python 3.12.16\n"
+          },
+          "readelf": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "GNU readelf (GNU Binutils for Debian) 2.44\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+          }
+        }
+      },
+      "error": null,
+      "evidence": [
+        "builds/candidate/release/measurement.json"
+      ],
+      "file_type": "ELF",
+      "flags": [
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O2"
+      ],
+      "hardening": {
+        "bind_now_indicator": true,
+        "extraction_complete": true,
+        "fortify_symbols": [],
+        "gnu_relro_segment": true,
+        "gnu_stack_header": "GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10",
+        "interpretation": "unknown",
+        "nx_indicator": "non_executable_stack",
+        "pie_flag": true,
+        "pie_indicator": "DYN",
+        "raw": "builds/candidate/release/elf/stdout.bin",
+        "relro_indicator": "full",
+        "stack_canary_note": "symbol presence is an indicator; absence does not establish missing protection",
+        "stack_canary_symbols": [
+          "__stack_chk_fail@GLIBC_2.4"
+        ],
+        "tool_version": "GNU readelf (GNU Binutils for Debian) 2.44\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+      },
+      "id": "candidate-release",
+      "result": "success",
+      "schema_version": "1.0",
+      "source": {
+        "archive": "sources/candidate.tar",
+        "archive_sha256": "980941c67b5fff80b4d2d42e969223456699eb434f97035f2de35c167af88854",
+        "commit": "33ae3023c736ffd7fdc5c90febddec34c35be42e",
+        "dirty": false,
+        "manifest": "sources/candidate.manifest.json",
+        "path": "sources/candidate",
+        "requested_ref": "candidate"
+      },
+      "stderr": "builds/candidate/release/stderr.bin",
+      "stdout": "builds/candidate/release/stdout.bin",
+      "version": "candidate"
+    },
+    {
+      "architecture": "x86_64",
+      "binary": "builds/candidate/sanitized/program.elf",
+      "binary_sha256": "7840cdca7634803a4fe0b26b8ddf29a1f6543ab344cb08fc39341cf8bd6c307e",
+      "build_type": "sanitized",
+      "command": [
+        "g++",
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined",
+        "main.cpp",
+        "-o",
+        "program"
+      ],
+      "commit": "33ae3023c736ffd7fdc5c90febddec34c35be42e",
+      "compiler": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+      },
+      "environment": {
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "machine": "x86_64",
+        "orchestrator": {
+          "platform": "darwin",
+          "python": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]"
+        },
+        "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.7\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+        "packages": "adduser\t3.152\napt\t3.0.4\nbase-files\t13.8+deb13u7\nbase-passwd\t3.6.7\nbash\t5.2.37-2+b10\nbinutils\t2.44-3\nbinutils-common:amd64\t2.44-3\nbinutils-x86-64-linux-gnu\t2.44-3\nbsdutils\t1:2.41.5-0+deb13u1\nca-certificates\t20250419+deb13u1\ncoreutils\t9.7-3\ncpp\t4:14.2.0-1\ncpp-14\t14.2.0-19\ncpp-14-x86-64-linux-gnu\t14.2.0-19\ncpp-x86-64-linux-gnu\t4:14.2.0-1\ndash\t0.5.12-12\ndebconf\t1.5.91\ndebian-archive-keyring\t2025.1\ndebianutils\t5.23.2\ndiffutils\t1:3.10-4\ndpkg\t1.22.22\nfindutils\t4.10.0-3\ng++\t4:14.2.0-1\ng++-14\t14.2.0-19\ng++-14-x86-64-linux-gnu\t14.2.0-19\ng++-x86-64-linux-gnu\t4:14.2.0-1\ngcc\t4:14.2.0-1\ngcc-14\t14.2.0-19\ngcc-14-base:amd64\t14.2.0-19\ngcc-14-x86-64-linux-gnu\t14.2.0-19\ngcc-x86-64-linux-gnu\t4:14.2.0-1\ngit\t1:2.47.3-0+deb13u1\ngit-man\t1:2.47.3-0+deb13u1\ngrep\t3.11-4\ngzip\t1.13-1+deb13u1\nhostname\t3.25\ninit-system-helpers\t1.69~deb13u1\nlibacl1:amd64\t2.3.2-2+b1\nlibapt-pkg7.0:amd64\t3.0.4\nlibasan8:amd64\t14.2.0-19\nlibatomic1:amd64\t14.2.0-19\nlibattr1:amd64\t1:2.5.2-3\nlibaudit-common\t1:4.0.2-2+deb13u1\nlibaudit1:amd64\t1:4.0.2-2+deb13u1\nlibbinutils:amd64\t2.44-3\nlibblkid1:amd64\t2.41.5-0+deb13u1\nlibbrotli1:amd64\t1.1.0-2+b7\nlibbsd0:amd64\t0.12.2-2\nlibbz2-1.0:amd64\t1.0.8-6\nlibc-bin\t2.41-12+deb13u4\nlibc-dev-bin\t2.41-12+deb13u4\nlibc6:amd64\t2.41-12+deb13u4\nlibc6-dev:amd64\t2.41-12+deb13u4\nlibcap-ng0:amd64\t0.8.5-4+b1\nlibcap2:amd64\t1:2.75-10+deb13u1+b3\nlibcc1-0:amd64\t14.2.0-19\nlibcom-err2:amd64\t1.47.2-3+b12\nlibcrypt-dev:amd64\t1:4.4.38-1\nlibcrypt1:amd64\t1:4.4.38-1\nlibctf-nobfd0:amd64\t2.44-3\nlibctf0:amd64\t2.44-3\nlibcurl3t64-gnutls:amd64\t8.14.1-2+deb13u5\nlibdb5.3t64:amd64\t5.3.28+dfsg2-9\nlibdebconfclient0:amd64\t0.280\nliberror-perl\t0.17030-1\nlibexpat1:amd64\t2.8.3-1~deb13u1\nlibffi8:amd64\t3.4.8-2\nlibgcc-14-dev:amd64\t14.2.0-19\nlibgcc-s1:amd64\t14.2.0-19\nlibgdbm-compat4t64:amd64\t1.24-2\nlibgdbm6t64:amd64\t1.24-2\nlibgmp10:amd64\t2:6.3.0+dfsg-3\nlibgnutls30t64:amd64\t3.8.9-3+deb13u4\nlibgomp1:amd64\t14.2.0-19\nlibgprofng0:amd64\t2.44-3\nlibgssapi-krb5-2:amd64\t1.21.3-5+deb13u1\nlibhogweed6t64:amd64\t3.10.1-1\nlibhwasan0:amd64\t14.2.0-19\nlibidn2-0:amd64\t2.3.8-2\nlibisl23:amd64\t0.27-1\nlibitm1:amd64\t14.2.0-19\nlibjansson4:amd64\t2.14-2+b3\nlibk5crypto3:amd64\t1.21.3-5+deb13u1\nlibkeyutils1:amd64\t1.6.3-6\nlibkrb5-3:amd64\t1.21.3-5+deb13u1\nlibkrb5support0:amd64\t1.21.3-5+deb13u1\nliblastlog2-2:amd64\t2.41.5-0+deb13u1\nlibldap2:amd64\t2.6.10+dfsg-1\nliblsan0:amd64\t14.2.0-19\nliblz4-1:amd64\t1.10.0-4\nliblzma5:amd64\t5.8.1-1+deb13u2\nlibmd0:amd64\t1.1.0-2+b1\nlibmount1:amd64\t2.41.5-0+deb13u1\nlibmpc3:amd64\t1.3.1-1+b3\nlibmpfr6:amd64\t4.2.2-1\nlibncursesw6:amd64\t6.5+20250216-2\nlibnettle8t64:amd64\t3.10.1-1\nlibnghttp2-14:amd64\t1.64.0-1.1+deb13u1\nlibnghttp3-9:amd64\t1.8.0-1\nlibngtcp2-16:amd64\t1.11.0-1+deb13u1\nlibngtcp2-crypto-gnutls8:amd64\t1.11.0-1+deb13u1\nlibp11-kit0:amd64\t0.25.5-3\nlibpam-modules:amd64\t1.7.0-5\nlibpam-modules-bin\t1.7.0-5\nlibpam-runtime\t1.7.0-5\nlibpam0g:amd64\t1.7.0-5\nlibpcre2-8-0:amd64\t10.46-1~deb13u3\nlibperl5.40:amd64\t5.40.1-6+deb13u1\nlibpsl5t64:amd64\t0.21.2-1.1+b1\nlibquadmath0:amd64\t14.2.0-19\nlibreadline8t64:amd64\t8.2-6\nlibrtmp1:amd64\t2.4+20151223.gitfa8646d.1-2+b5\nlibsasl2-2:amd64\t2.1.28+dfsg1-9\nlibsasl2-modules-db:amd64\t2.1.28+dfsg1-9\nlibseccomp2:amd64\t2.6.0-2\nlibselinux1:amd64\t3.8.1-1\nlibsemanage-common\t3.8.1-1\nlibsemanage2:amd64\t3.8.1-1\nlibsepol2:amd64\t3.8.1-1\nlibsframe1:amd64\t2.44-3\nlibsmartcols1:amd64\t2.41.5-0+deb13u1\nlibsqlite3-0:amd64\t3.46.1-7+deb13u2\nlibssh2-1t64:amd64\t1.11.1-1+deb13u2\nlibssl3t64:amd64\t3.5.7-1~deb13u3\nlibstdc++-14-dev:amd64\t14.2.0-19\nlibstdc++6:amd64\t14.2.0-19\nlibsystemd0:amd64\t257.13-1~deb13u1\nlibtasn1-6:amd64\t4.20.0-2+deb13u1\nlibtinfo6:amd64\t6.5+20250216-2\nlibtsan2:amd64\t14.2.0-19\nlibubsan1:amd64\t14.2.0-19\nlibudev1:amd64\t257.13-1~deb13u1\nlibunistring5:amd64\t1.3-2\nlibuuid1:amd64\t2.41.5-0+deb13u1\nlibxxhash0:amd64\t0.8.3-2\nlibzstd1:amd64\t1.5.7+dfsg-1\nlinux-libc-dev\t6.12.107-1\nlogin\t1:4.16.0-2+really2.41.5-0+deb13u1\nlogin.defs\t1:4.17.4-2\nmake\t4.4.1-2\nmawk\t1.3.4.20250131-1\nmount\t2.41.5-0+deb13u1\nncurses-base\t6.5+20250216-2\nncurses-bin\t6.5+20250216-2\nnetbase\t6.5\nopenssl\t3.5.7-1~deb13u3\nopenssl-provider-legacy\t3.5.7-1~deb13u3\npasswd\t1:4.17.4-2\nperl\t5.40.1-6+deb13u1\nperl-base\t5.40.1-6+deb13u1\nperl-modules-5.40\t5.40.1-6+deb13u1\nreadline-common\t8.2-6\nrpcsvc-proto\t1.4.3-1\nsed\t4.9-2+deb13u1\nsqv\t1.3.0-3+b2\nsysvinit-utils\t3.14-4\ntar\t1.35+dfsg-3.1\ntzdata\t2026f-0+deb13u1\nutil-linux\t2.41.5-0+deb13u1\nzlib1g:amd64\t1:1.3.dfsg+really1.3.1-1+b1\n",
+        "python": "3.12.16",
+        "system": "Linux",
+        "tools": {
+          "g++": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+          },
+          "gcc": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+          },
+          "git": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "git version 2.47.3\n"
+          },
+          "python3": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "Python 3.12.16\n"
+          },
+          "readelf": {
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "GNU readelf (GNU Binutils for Debian) 2.44\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+          }
+        }
+      },
+      "error": null,
+      "evidence": [
+        "builds/candidate/sanitized/measurement.json"
+      ],
+      "file_type": "ELF",
+      "flags": [
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined"
+      ],
+      "hardening": {
+        "bind_now_indicator": true,
+        "extraction_complete": true,
+        "fortify_symbols": [],
+        "gnu_relro_segment": true,
+        "gnu_stack_header": "GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10",
+        "instrumentation": {
+          "asan": true,
+          "msan": false,
+          "symbols": [
+            "__asan_init",
+            "__ubsan_handle_mul_overflow",
+            "__ubsan_handle_nonnull_arg",
+            "__ubsan_handle_pointer_overflow",
+            "__ubsan_handle_type_mismatch_v1"
+          ],
+          "tsan": false,
+          "ubsan": true
+        },
+        "interpretation": "unknown",
+        "nx_indicator": "non_executable_stack",
+        "pie_flag": true,
+        "pie_indicator": "DYN",
+        "raw": "builds/candidate/sanitized/elf/stdout.bin",
+        "relro_indicator": "full",
+        "stack_canary_note": "symbol presence is an indicator; absence does not establish missing protection",
+        "stack_canary_symbols": [
+          "__stack_chk_fail@GLIBC_2.4"
+        ],
+        "tool_version": "GNU readelf (GNU Binutils for Debian) 2.44\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+      },
+      "id": "candidate-sanitized",
+      "result": "success",
+      "schema_version": "1.0",
+      "source": {
+        "archive": "sources/candidate.tar",
+        "archive_sha256": "980941c67b5fff80b4d2d42e969223456699eb434f97035f2de35c167af88854",
+        "commit": "33ae3023c736ffd7fdc5c90febddec34c35be42e",
+        "dirty": false,
+        "manifest": "sources/candidate.manifest.json",
+        "path": "sources/candidate",
+        "requested_ref": "candidate"
+      },
+      "stderr": "builds/candidate/sanitized/stderr.bin",
+      "stdout": "builds/candidate/sanitized/stdout.bin",
+      "version": "candidate"
+    }
+  ],
+  "bundles": [],
+  "config": "config.json",
+  "diff": {
+    "files": [
+      "main.cpp"
+    ],
+    "hunks": [
+      {
+        "added": [
+          12
+        ],
+        "after": {
+          "count": 7,
+          "start": 9
+        },
+        "before": {
+          "count": 7,
+          "start": 9
+        },
+        "context": "int main(int argc, char **argv) {",
+        "define_lines": {
+          "base": [],
+          "candidate": []
+        },
+        "defines": [],
+        "file": "main.cpp",
+        "functions": [
+          {
+            "end": 16,
+            "file": "main.cpp",
+            "function": "main",
+            "short": "main",
+            "start": 6,
+            "version": "base"
+          },
+          {
+            "end": 16,
+            "file": "main.cpp",
+            "function": "main",
+            "short": "main",
+            "start": 6,
+            "version": "candidate"
+          }
+        ],
+        "id": "h1",
+        "old_file": "main.cpp",
+        "removed": [
+          12
+        ],
+        "unmapped": false,
+        "unmapped_lines": {
+          "base": [],
+          "candidate": []
+        }
+      }
+    ],
+    "path": "sources/versions.patch",
+    "sha256": "3aba7a269acaf65db7a1b28085a89db8e8aefbccd4bb3f533909d406c06ccf6f",
+    "snapshot_bundle": "sources/snapshots.bundle",
+    "source_map": {
+      "base": {
+        "callers": {
+          "main": []
+        },
+        "macro_users": {}
+      },
+      "candidate": {
+        "callers": {
+          "main": []
+        },
+        "macro_users": {}
+      }
+    },
+    "tool_version": "git version 2.50.1 (Apple Git-155)"
+  },
+  "environment": {
+    "image": {
+      "architecture": "amd64",
+      "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+      "os": "linux",
+      "repo_digests": [],
+      "requested": "patchcheck-framework:1.0"
+    },
+    "machine": "x86_64",
+    "orchestrator": {
+      "platform": "darwin",
+      "python": "3.14.5 (main, May 10 2026, 10:21:34) [Clang 21.0.0 (clang-2100.0.123.102)]"
+    },
+    "os_release": "PRETTY_NAME=\"Debian GNU/Linux 13 (trixie)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"13\"\nVERSION=\"13 (trixie)\"\nVERSION_CODENAME=trixie\nDEBIAN_VERSION_FULL=13.7\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+    "packages": "adduser\t3.152\napt\t3.0.4\nbase-files\t13.8+deb13u7\nbase-passwd\t3.6.7\nbash\t5.2.37-2+b10\nbinutils\t2.44-3\nbinutils-common:amd64\t2.44-3\nbinutils-x86-64-linux-gnu\t2.44-3\nbsdutils\t1:2.41.5-0+deb13u1\nca-certificates\t20250419+deb13u1\ncoreutils\t9.7-3\ncpp\t4:14.2.0-1\ncpp-14\t14.2.0-19\ncpp-14-x86-64-linux-gnu\t14.2.0-19\ncpp-x86-64-linux-gnu\t4:14.2.0-1\ndash\t0.5.12-12\ndebconf\t1.5.91\ndebian-archive-keyring\t2025.1\ndebianutils\t5.23.2\ndiffutils\t1:3.10-4\ndpkg\t1.22.22\nfindutils\t4.10.0-3\ng++\t4:14.2.0-1\ng++-14\t14.2.0-19\ng++-14-x86-64-linux-gnu\t14.2.0-19\ng++-x86-64-linux-gnu\t4:14.2.0-1\ngcc\t4:14.2.0-1\ngcc-14\t14.2.0-19\ngcc-14-base:amd64\t14.2.0-19\ngcc-14-x86-64-linux-gnu\t14.2.0-19\ngcc-x86-64-linux-gnu\t4:14.2.0-1\ngit\t1:2.47.3-0+deb13u1\ngit-man\t1:2.47.3-0+deb13u1\ngrep\t3.11-4\ngzip\t1.13-1+deb13u1\nhostname\t3.25\ninit-system-helpers\t1.69~deb13u1\nlibacl1:amd64\t2.3.2-2+b1\nlibapt-pkg7.0:amd64\t3.0.4\nlibasan8:amd64\t14.2.0-19\nlibatomic1:amd64\t14.2.0-19\nlibattr1:amd64\t1:2.5.2-3\nlibaudit-common\t1:4.0.2-2+deb13u1\nlibaudit1:amd64\t1:4.0.2-2+deb13u1\nlibbinutils:amd64\t2.44-3\nlibblkid1:amd64\t2.41.5-0+deb13u1\nlibbrotli1:amd64\t1.1.0-2+b7\nlibbsd0:amd64\t0.12.2-2\nlibbz2-1.0:amd64\t1.0.8-6\nlibc-bin\t2.41-12+deb13u4\nlibc-dev-bin\t2.41-12+deb13u4\nlibc6:amd64\t2.41-12+deb13u4\nlibc6-dev:amd64\t2.41-12+deb13u4\nlibcap-ng0:amd64\t0.8.5-4+b1\nlibcap2:amd64\t1:2.75-10+deb13u1+b3\nlibcc1-0:amd64\t14.2.0-19\nlibcom-err2:amd64\t1.47.2-3+b12\nlibcrypt-dev:amd64\t1:4.4.38-1\nlibcrypt1:amd64\t1:4.4.38-1\nlibctf-nobfd0:amd64\t2.44-3\nlibctf0:amd64\t2.44-3\nlibcurl3t64-gnutls:amd64\t8.14.1-2+deb13u5\nlibdb5.3t64:amd64\t5.3.28+dfsg2-9\nlibdebconfclient0:amd64\t0.280\nliberror-perl\t0.17030-1\nlibexpat1:amd64\t2.8.3-1~deb13u1\nlibffi8:amd64\t3.4.8-2\nlibgcc-14-dev:amd64\t14.2.0-19\nlibgcc-s1:amd64\t14.2.0-19\nlibgdbm-compat4t64:amd64\t1.24-2\nlibgdbm6t64:amd64\t1.24-2\nlibgmp10:amd64\t2:6.3.0+dfsg-3\nlibgnutls30t64:amd64\t3.8.9-3+deb13u4\nlibgomp1:amd64\t14.2.0-19\nlibgprofng0:amd64\t2.44-3\nlibgssapi-krb5-2:amd64\t1.21.3-5+deb13u1\nlibhogweed6t64:amd64\t3.10.1-1\nlibhwasan0:amd64\t14.2.0-19\nlibidn2-0:amd64\t2.3.8-2\nlibisl23:amd64\t0.27-1\nlibitm1:amd64\t14.2.0-19\nlibjansson4:amd64\t2.14-2+b3\nlibk5crypto3:amd64\t1.21.3-5+deb13u1\nlibkeyutils1:amd64\t1.6.3-6\nlibkrb5-3:amd64\t1.21.3-5+deb13u1\nlibkrb5support0:amd64\t1.21.3-5+deb13u1\nliblastlog2-2:amd64\t2.41.5-0+deb13u1\nlibldap2:amd64\t2.6.10+dfsg-1\nliblsan0:amd64\t14.2.0-19\nliblz4-1:amd64\t1.10.0-4\nliblzma5:amd64\t5.8.1-1+deb13u2\nlibmd0:amd64\t1.1.0-2+b1\nlibmount1:amd64\t2.41.5-0+deb13u1\nlibmpc3:amd64\t1.3.1-1+b3\nlibmpfr6:amd64\t4.2.2-1\nlibncursesw6:amd64\t6.5+20250216-2\nlibnettle8t64:amd64\t3.10.1-1\nlibnghttp2-14:amd64\t1.64.0-1.1+deb13u1\nlibnghttp3-9:amd64\t1.8.0-1\nlibngtcp2-16:amd64\t1.11.0-1+deb13u1\nlibngtcp2-crypto-gnutls8:amd64\t1.11.0-1+deb13u1\nlibp11-kit0:amd64\t0.25.5-3\nlibpam-modules:amd64\t1.7.0-5\nlibpam-modules-bin\t1.7.0-5\nlibpam-runtime\t1.7.0-5\nlibpam0g:amd64\t1.7.0-5\nlibpcre2-8-0:amd64\t10.46-1~deb13u3\nlibperl5.40:amd64\t5.40.1-6+deb13u1\nlibpsl5t64:amd64\t0.21.2-1.1+b1\nlibquadmath0:amd64\t14.2.0-19\nlibreadline8t64:amd64\t8.2-6\nlibrtmp1:amd64\t2.4+20151223.gitfa8646d.1-2+b5\nlibsasl2-2:amd64\t2.1.28+dfsg1-9\nlibsasl2-modules-db:amd64\t2.1.28+dfsg1-9\nlibseccomp2:amd64\t2.6.0-2\nlibselinux1:amd64\t3.8.1-1\nlibsemanage-common\t3.8.1-1\nlibsemanage2:amd64\t3.8.1-1\nlibsepol2:amd64\t3.8.1-1\nlibsframe1:amd64\t2.44-3\nlibsmartcols1:amd64\t2.41.5-0+deb13u1\nlibsqlite3-0:amd64\t3.46.1-7+deb13u2\nlibssh2-1t64:amd64\t1.11.1-1+deb13u2\nlibssl3t64:amd64\t3.5.7-1~deb13u3\nlibstdc++-14-dev:amd64\t14.2.0-19\nlibstdc++6:amd64\t14.2.0-19\nlibsystemd0:amd64\t257.13-1~deb13u1\nlibtasn1-6:amd64\t4.20.0-2+deb13u1\nlibtinfo6:amd64\t6.5+20250216-2\nlibtsan2:amd64\t14.2.0-19\nlibubsan1:amd64\t14.2.0-19\nlibudev1:amd64\t257.13-1~deb13u1\nlibunistring5:amd64\t1.3-2\nlibuuid1:amd64\t2.41.5-0+deb13u1\nlibxxhash0:amd64\t0.8.3-2\nlibzstd1:amd64\t1.5.7+dfsg-1\nlinux-libc-dev\t6.12.107-1\nlogin\t1:4.16.0-2+really2.41.5-0+deb13u1\nlogin.defs\t1:4.17.4-2\nmake\t4.4.1-2\nmawk\t1.3.4.20250131-1\nmount\t2.41.5-0+deb13u1\nncurses-base\t6.5+20250216-2\nncurses-bin\t6.5+20250216-2\nnetbase\t6.5\nopenssl\t3.5.7-1~deb13u3\nopenssl-provider-legacy\t3.5.7-1~deb13u3\npasswd\t1:4.17.4-2\nperl\t5.40.1-6+deb13u1\nperl-base\t5.40.1-6+deb13u1\nperl-modules-5.40\t5.40.1-6+deb13u1\nreadline-common\t8.2-6\nrpcsvc-proto\t1.4.3-1\nsed\t4.9-2+deb13u1\nsqv\t1.3.0-3+b2\nsysvinit-utils\t3.14-4\ntar\t1.35+dfsg-3.1\ntzdata\t2026f-0+deb13u1\nutil-linux\t2.41.5-0+deb13u1\nzlib1g:amd64\t1:1.3.dfsg+really1.3.1-1+b1\n",
+    "python": "3.12.16",
+    "system": "Linux",
+    "tools": {
+      "g++": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+      },
+      "gcc": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "gcc (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+      },
+      "git": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "git version 2.47.3\n"
+      },
+      "python3": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "Python 3.12.16\n"
+      },
+      "readelf": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "GNU readelf (GNU Binutils for Debian) 2.44\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis program is free software; you may redistribute it under the terms of\nthe GNU General Public License version 3 or (at your option) any later version.\nThis program has absolutely no warranty.\n"
+      }
+    }
+  },
+  "evidence_index": {
+    "builds.json": "40d0d017e1b3dfeb2d7787927045672aa8d5e6d8afe615f7fed3c5a918068df1",
+    "builds/base/release/build.json": "44eb761d1502c7ce18442b1240e033956ee3e30dc90e0bcee4c7166e5680cd59",
+    "builds/base/release/elf/measurement.json": "ae66b547d585e450c3517723d3ccab4633a7fc05fcdc527ba7873eb8f388119b",
+    "builds/base/release/elf/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "builds/base/release/elf/stdout.bin": "1536773cd1ead70aeee3d3cb7ba9c0f9d208aaba0b3bbca571a086c3e162195e",
+    "builds/base/release/measurement.json": "5027e37bf17e32cad16f70591e732fe35f85f735e129a47715780bfefd2fd923",
+    "builds/base/release/program.elf": "06efd057352c8b9a6c689c47428513b1394a8c0d11fa575e579a967502596ecd",
+    "builds/base/release/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "builds/base/release/stdout.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "builds/base/release/work/main.cpp": "d22b15ca7bb1863c1a8a54ef7d3f37f400fb5c58a1bf7e5005ac7b8c1583ab8b",
+    "builds/base/release/work/program": "06efd057352c8b9a6c689c47428513b1394a8c0d11fa575e579a967502596ecd",
+    "builds/base/sanitized/build.json": "8c63346e3174032c8bf38f630fb74d55967f4055b93ed4bdccb11d8ead1e587a",
+    "builds/base/sanitized/elf/measurement.json": "9fcc4e9a05609782fdb73599a0467cba127cbdaa718636104258d61fc40fe5f7",
+    "builds/base/sanitized/elf/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "builds/base/sanitized/elf/stdout.bin": "f480c747c65b440d6f92df32a047317872506c71c82c8d8526dabe57a92a9019",
+    "builds/base/sanitized/measurement.json": "6480b78ad94c53308a53fd35038d21cdb46bb05ecb969c478d60de53205d6528",
+    "builds/base/sanitized/program.elf": "d21e83def98a24916bda2527b2da0e64497a3e92b4b73ffa204cfac0e29d39d3",
+    "builds/base/sanitized/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "builds/base/sanitized/stdout.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "builds/base/sanitized/work/main.cpp": "d22b15ca7bb1863c1a8a54ef7d3f37f400fb5c58a1bf7e5005ac7b8c1583ab8b",
+    "builds/base/sanitized/work/program": "d21e83def98a24916bda2527b2da0e64497a3e92b4b73ffa204cfac0e29d39d3",
+    "builds/candidate/release/build.json": "825f5ee50c785eedb4d901ebbbc756d23ec1c1205fe01807496f07a86a6ef8e3",
+    "builds/candidate/release/elf/measurement.json": "d5ccd9617fddf27d30aa48990e1dfd2760ec723f22fc81803900b929af43dd5c",
+    "builds/candidate/release/elf/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "builds/candidate/release/elf/stdout.bin": "12b01c5a6686d197b442bc3da50ea946a1a88fad5758b176045b5f53765a6a7f",
+    "builds/candidate/release/measurement.json": "e565ee12585354c1e6e524a2e0368d9ed18155face85e0152774da7bc43499f7",
+    "builds/candidate/release/program.elf": "77ea74b38a9eafaaf22975e23c3228f3c19759d95e386a20c75dc2e70f5c1443",
+    "builds/candidate/release/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "builds/candidate/release/stdout.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "builds/candidate/release/work/main.cpp": "c9a4b1ddd3d60a62e8e9bbb46490223d90c1e50fe010386f55d40a5cb5442ffb",
+    "builds/candidate/release/work/program": "77ea74b38a9eafaaf22975e23c3228f3c19759d95e386a20c75dc2e70f5c1443",
+    "builds/candidate/sanitized/build.json": "896856cca34d4bfb9bbf501a01ab4c80c56548b01dc2045a4e4159da6366f2e2",
+    "builds/candidate/sanitized/elf/measurement.json": "a5fd2b948b98836c1ae4ab30f1d31a77db2c840a22b048c9b7fd3316044f136d",
+    "builds/candidate/sanitized/elf/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "builds/candidate/sanitized/elf/stdout.bin": "d9d8cd9b5add199e16db660119f664a44b82a8eb3ac18cc365fee68059587a3f",
+    "builds/candidate/sanitized/measurement.json": "bf8ae98dbeedd1c93b63f538bab15e455269c618e08fc4d866c79ed6853c6540",
+    "builds/candidate/sanitized/program.elf": "7840cdca7634803a4fe0b26b8ddf29a1f6543ab344cb08fc39341cf8bd6c307e",
+    "builds/candidate/sanitized/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "builds/candidate/sanitized/stdout.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "builds/candidate/sanitized/work/main.cpp": "c9a4b1ddd3d60a62e8e9bbb46490223d90c1e50fe010386f55d40a5cb5442ffb",
+    "builds/candidate/sanitized/work/program": "7840cdca7634803a4fe0b26b8ddf29a1f6543ab344cb08fc39341cf8bd6c307e",
+    "config.json": "60019001dc7f63a1c14aa7a4e6ff48ccf2fa9fcf01877b353ace12b36ea1edfd",
+    "environment/environment.json": "fdaa10ae1e5e8ca0291192f8356aa7fc46dd5f78e604db60772f1ab592d0b333",
+    "environment/measurement.json": "d39d553890e3c69777ed683d80aa9c421cf364b32295becd0e6152aa095e556e",
+    "environment/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "environment/stdout.bin": "3839b484fc8ed87be050b03561ca46f55f90daa8e5a3503077c1ef2e6cad5c0a",
+    "inputs/invalid/oracle.json": "bcd3b173ac3fee27533a84d64a5dee53eec1e6206cb76f1b50a457ef37d17076",
+    "inputs/invalid/original.bin": "2f05d4b689d270cafb02285f35f44866f7dc8a2d368a3f9d1124373eeab31fb1",
+    "inputs/invalid/test.json": "02c15cd5d4b4b35c3875bf3d5d60bd57a9650411098c94e9e8f3490df23a130a",
+    "inputs/low/oracle.json": "c5b5e227040664aefb543aa768e02f979ddaf1403e3e9f95def5a4e69d6b279c",
+    "inputs/low/original.bin": "b96b3036632771349308fbbe5d7a3f3f762c9e8f3eedd5785b13ff322e05fd9d",
+    "inputs/low/test.json": "8d508f87649c7469b54a2b9cb3107f5ed7e5acb4814a8d4dda1c5b7393522103",
+    "inputs/plus/oracle.json": "ea535e35276ec791309541001d852d59c06298308c43653561277ef2ec463712",
+    "inputs/plus/original.bin": "72b9fdd468dd3502e9de26691450d5d18b503eb0cd8fcdc4c3b300f2a8f2e549",
+    "inputs/plus/test.json": "15889a014607062ccfc673409fbd5e96032f6ba80c428e82b8721b300ef83df5",
+    "inputs/seven/oracle.json": "ea535e35276ec791309541001d852d59c06298308c43653561277ef2ec463712",
+    "inputs/seven/original.bin": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451",
+    "inputs/seven/test.json": "e3538c86f2bc3c42e61f65d32eb8f9a6961e599d60e75e5061dfcbd0f365b37e",
+    "runs/invalid-base-release-34a2c0995b09/measurement.json": "bc23c9adfbfef57a0959faf38e3a2b8c820972ad6c954af9e84795cae055c6f1",
+    "runs/invalid-base-release-34a2c0995b09/run.json": "e997367588a47ce9afe25ac4e94566f82eb1783d9562b75eaac98a6b3a316d69",
+    "runs/invalid-base-release-34a2c0995b09/stderr.bin": "28fca28ef02d08bd61931c03999b7a5b822392132867682e88b2db492ee9f087",
+    "runs/invalid-base-release-34a2c0995b09/stdout.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/invalid-base-sanitized-4be6934aa13a/measurement.json": "5f842e7b29af10ec9d2d51fdf095134a17c0e60753df9c29dcbcc0d8ed2fce8b",
+    "runs/invalid-base-sanitized-4be6934aa13a/run.json": "7040d388b232dfa595e03a74aa5ae5617c5ed714ba19c1dfaf6299c01d066af1",
+    "runs/invalid-base-sanitized-4be6934aa13a/stderr.bin": "28fca28ef02d08bd61931c03999b7a5b822392132867682e88b2db492ee9f087",
+    "runs/invalid-base-sanitized-4be6934aa13a/stdout.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/invalid-candidate-release-cd0f442382f4/measurement.json": "d059726c4a887caf3135937544daa8765651943b304bff5c36e565fc41ccb1c7",
+    "runs/invalid-candidate-release-cd0f442382f4/run.json": "bf2d4ba9d3376884673e6234a7cb99ba972259492cc79720ccd6b8212b622b72",
+    "runs/invalid-candidate-release-cd0f442382f4/stderr.bin": "28fca28ef02d08bd61931c03999b7a5b822392132867682e88b2db492ee9f087",
+    "runs/invalid-candidate-release-cd0f442382f4/stdout.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/invalid-candidate-sanitized-95df88ae93e6/measurement.json": "ed9ccd908f0d395a243794bf68ad7ecc7973a172f79d626813e18a4e49e4ffd6",
+    "runs/invalid-candidate-sanitized-95df88ae93e6/run.json": "71560bd259f1444974e7385bce33a3c2aefdccc10f24b60238296cea59fc9508",
+    "runs/invalid-candidate-sanitized-95df88ae93e6/stderr.bin": "28fca28ef02d08bd61931c03999b7a5b822392132867682e88b2db492ee9f087",
+    "runs/invalid-candidate-sanitized-95df88ae93e6/stdout.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/low-base-release-cc40843ad9d8/measurement.json": "376c077a7bec167091ffd038637be0c3a7af47e3614dd8d2a201004a1c4bb2d7",
+    "runs/low-base-release-cc40843ad9d8/run.json": "06a1899f298b1820db9aaa2e704b1ab2d2daa382475e5e6d5a9f4e23177e2fab",
+    "runs/low-base-release-cc40843ad9d8/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/low-base-release-cc40843ad9d8/stdout.bin": "876e13f4e07bb39705302c01f445ffd2d2c3b180a207e4d959d6b671c67da09b",
+    "runs/low-base-sanitized-b39b459cc06e/measurement.json": "9d475c2156e951df944a2f427ec1458a8ff1df57b4bf46583f92c699fd28f224",
+    "runs/low-base-sanitized-b39b459cc06e/run.json": "47a5a75f70e784bd657fa853eba04561ac79bac6667509cec8603ba8ecbf0825",
+    "runs/low-base-sanitized-b39b459cc06e/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/low-base-sanitized-b39b459cc06e/stdout.bin": "876e13f4e07bb39705302c01f445ffd2d2c3b180a207e4d959d6b671c67da09b",
+    "runs/low-candidate-release-f68cde9c1c9d/measurement.json": "04e5eee2cf18f173d62cfc4cf7e4b69bd753d7d8c2813c8e727c673ea9147e68",
+    "runs/low-candidate-release-f68cde9c1c9d/run.json": "8bc9f2d028ac1eaea2343268be93bd37893269b4bb155b807f40fefc237f3305",
+    "runs/low-candidate-release-f68cde9c1c9d/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/low-candidate-release-f68cde9c1c9d/stdout.bin": "876e13f4e07bb39705302c01f445ffd2d2c3b180a207e4d959d6b671c67da09b",
+    "runs/low-candidate-sanitized-55a0fbb839d3/measurement.json": "c1b97a0a7145c35cac6d77dca8ffaea0794b10b2ed7237734880d55c975d7eb6",
+    "runs/low-candidate-sanitized-55a0fbb839d3/run.json": "227e523c1b4eef65a8d84c480c4ea6f429aa5aa8d9cbc1deb642e28aa7fb99e2",
+    "runs/low-candidate-sanitized-55a0fbb839d3/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/low-candidate-sanitized-55a0fbb839d3/stdout.bin": "876e13f4e07bb39705302c01f445ffd2d2c3b180a207e4d959d6b671c67da09b",
+    "runs/plus-base-release-e7c2c0ca8555/measurement.json": "afcad7cfc1ed179bdde4987264167510360b64017423802cd798c78c5a40502b",
+    "runs/plus-base-release-e7c2c0ca8555/run.json": "c5923fdc79cf7a231b268657b7f174425758d1278426044531ed4a1422301dda",
+    "runs/plus-base-release-e7c2c0ca8555/stderr.bin": "28fca28ef02d08bd61931c03999b7a5b822392132867682e88b2db492ee9f087",
+    "runs/plus-base-release-e7c2c0ca8555/stdout.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/plus-base-sanitized-3c43e4169d58/measurement.json": "4bd3ef873a001af37e677600062f80534dfa04969baf61828cad22e21cecb3c5",
+    "runs/plus-base-sanitized-3c43e4169d58/run.json": "f323bab9d609733256c37d2840fdde96680bda58517a319748f1d3d5bed49991",
+    "runs/plus-base-sanitized-3c43e4169d58/stderr.bin": "28fca28ef02d08bd61931c03999b7a5b822392132867682e88b2db492ee9f087",
+    "runs/plus-base-sanitized-3c43e4169d58/stdout.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/plus-candidate-release-cfbb16a42c28/measurement.json": "7f0bb314aebd762593d73237bf49f712e4a49f4d8c4417ab9c0127c0193029e0",
+    "runs/plus-candidate-release-cfbb16a42c28/run.json": "15eeacf07b304214da8c6453b67a626b0e44656e02190ccbaf01c6a0d38c0512",
+    "runs/plus-candidate-release-cfbb16a42c28/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/plus-candidate-release-cfbb16a42c28/stdout.bin": "6169555d9248be7e184f52250129b0d66c9932af74f4ac7bc716c20013fca362",
+    "runs/plus-candidate-sanitized-140f87a1dd84/measurement.json": "c0b0027be66f1dac7f0ab29850733240dd945acf38b506bfd38f124bc5a92e0f",
+    "runs/plus-candidate-sanitized-140f87a1dd84/run.json": "e193434066d0e4330036e4cfc26d50589a3d33d6d67b3c8abd3c63045ca29477",
+    "runs/plus-candidate-sanitized-140f87a1dd84/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/plus-candidate-sanitized-140f87a1dd84/stdout.bin": "6169555d9248be7e184f52250129b0d66c9932af74f4ac7bc716c20013fca362",
+    "runs/seven-base-release-5757ba2a106a/measurement.json": "1051bc728abb05061fde0ef23ad88b9fb79db6f20b11dcfe1b9d998db1dbdcca",
+    "runs/seven-base-release-5757ba2a106a/run.json": "adceb08ddfa3d2029d5ebdd2ea7e1dfec4709e33c9b2cac572f63c49467a513f",
+    "runs/seven-base-release-5757ba2a106a/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/seven-base-release-5757ba2a106a/stdout.bin": "6169555d9248be7e184f52250129b0d66c9932af74f4ac7bc716c20013fca362",
+    "runs/seven-base-sanitized-482c3e0dac96/measurement.json": "1f524752507e84f4d2d90f67ae1d507b46777d3cb96c593ea280b9a210401bd1",
+    "runs/seven-base-sanitized-482c3e0dac96/run.json": "d251e7e52ce0ce9dfa865707e41d813fd15a66db5edec53fd591247fa66f5748",
+    "runs/seven-base-sanitized-482c3e0dac96/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/seven-base-sanitized-482c3e0dac96/stdout.bin": "6169555d9248be7e184f52250129b0d66c9932af74f4ac7bc716c20013fca362",
+    "runs/seven-candidate-release-1d816421321d/measurement.json": "40b5b9d7203e9f95cad591e3c8517a914893a76ebd94b3e88a2ac464b0fceafd",
+    "runs/seven-candidate-release-1d816421321d/run.json": "92450c5552a5ff6ce0e7bba3c25193a983284d845912688c6cf9071e9711cc74",
+    "runs/seven-candidate-release-1d816421321d/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/seven-candidate-release-1d816421321d/stdout.bin": "6169555d9248be7e184f52250129b0d66c9932af74f4ac7bc716c20013fca362",
+    "runs/seven-candidate-sanitized-fc8d39f96b2d/measurement.json": "999daeb1ecc09f988686d5f7d157edf3825d2d83156a5fb16663ef1d3782e72e",
+    "runs/seven-candidate-sanitized-fc8d39f96b2d/run.json": "636b2f7035a43c6ba2c758b0ea3e9279cbfd2b15a502b0c7fd100aaddc3e8f12",
+    "runs/seven-candidate-sanitized-fc8d39f96b2d/stderr.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/seven-candidate-sanitized-fc8d39f96b2d/stdout.bin": "6169555d9248be7e184f52250129b0d66c9932af74f4ac7bc716c20013fca362",
+    "sources/base.manifest.json": "8c3d6c333524fadf0de90b925b87c0997174f3e55930523b59cca195e74be0e1",
+    "sources/base.tar": "7c1f9c3b11d9fcb175533a99dee410a61ae96f8cec8c3563b52598ec574469ce",
+    "sources/base/main.cpp": "d22b15ca7bb1863c1a8a54ef7d3f37f400fb5c58a1bf7e5005ac7b8c1583ab8b",
+    "sources/candidate.manifest.json": "60eabd92c94ec4e303bedb9c249726b2b108ff93e15f4ab7c0eea6296f081a7a",
+    "sources/candidate.tar": "980941c67b5fff80b4d2d42e969223456699eb434f97035f2de35c167af88854",
+    "sources/candidate/main.cpp": "c9a4b1ddd3d60a62e8e9bbb46490223d90c1e50fe010386f55d40a5cb5442ffb",
+    "sources/snapshots.bundle": "d5dbc2dd04e4320a3fa052a1ead2d1321db98bbfb7d10857a22818a838dae3dc",
+    "sources/versions.json": "32d00ad7d596868ff9f6f0f3295a4077a652f5e947c8988034a3ff7a9b75f050",
+    "sources/versions.patch": "3aba7a269acaf65db7a1b28085a89db8e8aefbccd4bb3f533909d406c06ccf6f"
+  },
+  "exit_code": 40,
+  "findings": [],
+  "fixture": true,
+  "hardening": {
+    "base": {
+      "fortify_source": "not-observed",
+      "nx": "enabled",
+      "pie": "enabled",
+      "relro": "full",
+      "stack_canary": "present"
+    },
+    "candidate": {
+      "fortify_source": "not-observed",
+      "nx": "enabled",
+      "pie": "enabled",
+      "relro": "full",
+      "stack_canary": "present"
+    },
+    "changes": {
+      "fortify_source": "same",
+      "nx": "same",
+      "pie": "same",
+      "relro": "same",
+      "stack_canary": "same"
+    },
+    "comparison": "compared",
+    "degraded": [],
+    "evidence": [
+      "builds/base/release/elf/stdout.bin",
+      "builds/candidate/release/elf/stdout.bin"
+    ],
+    "flags_equal": true,
+    "interpretation": "complete",
+    "policy": "NX/PIE/RELRO degradation prevents PASS (exit 40); canary/FORTIFY symbol loss is a warning",
+    "unknown": [],
+    "warnings": []
+  },
+  "id": "9334c4ba2e094ad0b6a58c2f05380425",
+  "minimization_scope": [],
+  "minimized": [],
+  "patch_relations": [],
+  "replays": [],
+  "runs": [
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 0"
+      },
+      "build_id": "base-release",
+      "build_type": "release",
+      "command": [
+        "/binary",
+        "argv",
+        "7"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.016178208999974686,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 0,
+      "id": "seven-base-release-5757ba2a106a",
+      "input": "inputs/seven/original.bin",
+      "input_sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#seven",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 0,
+        "max_rss_kb": 20920,
+        "minor_faults": 1188,
+        "system_seconds": 0.002796,
+        "user_seconds": 0.010254
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-30e3c12befbf4a09a784c5b8434a4a33",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:17.499245844Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:16.803775844Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/seven-base-release-5757ba2a106a/stderr.bin",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "runs/seven-base-release-5757ba2a106a/stdout.bin",
+      "stdout_sha256": "6169555d9248be7e184f52250129b0d66c9932af74f4ac7bc716c20013fca362",
+      "test_id": "seven",
+      "timeout": false,
+      "trace": [],
+      "version": "base"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 0"
+      },
+      "build_id": "base-sanitized",
+      "build_type": "sanitized",
+      "command": [
+        "/binary",
+        "argv",
+        "7"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.11965108300000793,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 0,
+      "id": "seven-base-sanitized-482c3e0dac96",
+      "input": "inputs/seven/original.bin",
+      "input_sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#seven",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 1,
+        "max_rss_kb": 20920,
+        "minor_faults": 1844,
+        "system_seconds": 0.001959,
+        "user_seconds": 0.038202
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-f2a0f3e8727e4d4694e9e8261cd15aeb",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:18.565104594Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:17.733035552Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/seven-base-sanitized-482c3e0dac96/stderr.bin",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "runs/seven-base-sanitized-482c3e0dac96/stdout.bin",
+      "stdout_sha256": "6169555d9248be7e184f52250129b0d66c9932af74f4ac7bc716c20013fca362",
+      "test_id": "seven",
+      "timeout": false,
+      "trace": [],
+      "version": "base"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 0"
+      },
+      "build_id": "candidate-release",
+      "build_type": "release",
+      "command": [
+        "/binary",
+        "argv",
+        "7"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.016085750000002008,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 0,
+      "id": "seven-candidate-release-1d816421321d",
+      "input": "inputs/seven/original.bin",
+      "input_sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#seven",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 0,
+        "max_rss_kb": 20920,
+        "minor_faults": 1189,
+        "system_seconds": 0.003264,
+        "user_seconds": 0.009793999999999999
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-31cbdcb7c13b41eba07b124e20d32a87",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:19.577730303Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:18.82188772Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/seven-candidate-release-1d816421321d/stderr.bin",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "runs/seven-candidate-release-1d816421321d/stdout.bin",
+      "stdout_sha256": "6169555d9248be7e184f52250129b0d66c9932af74f4ac7bc716c20013fca362",
+      "test_id": "seven",
+      "timeout": false,
+      "trace": [],
+      "version": "candidate"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 0"
+      },
+      "build_id": "candidate-sanitized",
+      "build_type": "sanitized",
+      "command": [
+        "/binary",
+        "argv",
+        "7"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.05759562499997628,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 0,
+      "id": "seven-candidate-sanitized-fc8d39f96b2d",
+      "input": "inputs/seven/original.bin",
+      "input_sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#seven",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 1,
+        "max_rss_kb": 20920,
+        "minor_faults": 1843,
+        "system_seconds": 0.002944,
+        "user_seconds": 0.025519
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-db0a290ca5f846218d8e6504d86118ca",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:20.540046095Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:19.794308303Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/seven-candidate-sanitized-fc8d39f96b2d/stderr.bin",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "runs/seven-candidate-sanitized-fc8d39f96b2d/stdout.bin",
+      "stdout_sha256": "6169555d9248be7e184f52250129b0d66c9932af74f4ac7bc716c20013fca362",
+      "test_id": "seven",
+      "timeout": false,
+      "trace": [],
+      "version": "candidate"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 2"
+      },
+      "build_id": "base-release",
+      "build_type": "release",
+      "command": [
+        "/binary",
+        "argv",
+        "+7"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.06935475000000224,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 2,
+      "id": "plus-base-release-e7c2c0ca8555",
+      "input": "inputs/plus/original.bin",
+      "input_sha256": "72b9fdd468dd3502e9de26691450d5d18b503eb0cd8fcdc4c3b300f2a8f2e549",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": false,
+          "stderr": false,
+          "stdout": false
+        },
+        "source": "oracles/lineparse/SPEC.md#seven",
+        "status": "fail"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 0,
+        "max_rss_kb": 20920,
+        "minor_faults": 1169,
+        "system_seconds": 0.003297,
+        "user_seconds": 0.008792
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-bd25ff27da8347a8893e5a8d9ba4932a",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:21.331125012Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:20.733654846Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/plus-base-release-e7c2c0ca8555/stderr.bin",
+      "stderr_sha256": "28fca28ef02d08bd61931c03999b7a5b822392132867682e88b2db492ee9f087",
+      "stdout": "runs/plus-base-release-e7c2c0ca8555/stdout.bin",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_id": "plus",
+      "timeout": false,
+      "trace": [],
+      "version": "base"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 2"
+      },
+      "build_id": "base-sanitized",
+      "build_type": "sanitized",
+      "command": [
+        "/binary",
+        "argv",
+        "+7"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.0330164999999738,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 2,
+      "id": "plus-base-sanitized-3c43e4169d58",
+      "input": "inputs/plus/original.bin",
+      "input_sha256": "72b9fdd468dd3502e9de26691450d5d18b503eb0cd8fcdc4c3b300f2a8f2e549",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": false,
+          "stderr": false,
+          "stdout": false
+        },
+        "source": "oracles/lineparse/SPEC.md#seven",
+        "status": "fail"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 1,
+        "max_rss_kb": 20920,
+        "minor_faults": 1824,
+        "system_seconds": 0.004898,
+        "user_seconds": 0.024489999999999998
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-6fcc59c534d34dab994f4e4836c676a8",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:22.486836805Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:21.805743554Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/plus-base-sanitized-3c43e4169d58/stderr.bin",
+      "stderr_sha256": "28fca28ef02d08bd61931c03999b7a5b822392132867682e88b2db492ee9f087",
+      "stdout": "runs/plus-base-sanitized-3c43e4169d58/stdout.bin",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_id": "plus",
+      "timeout": false,
+      "trace": [],
+      "version": "base"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 0"
+      },
+      "build_id": "candidate-release",
+      "build_type": "release",
+      "command": [
+        "/binary",
+        "argv",
+        "+7"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.01726962499998308,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 0,
+      "id": "plus-candidate-release-cfbb16a42c28",
+      "input": "inputs/plus/original.bin",
+      "input_sha256": "72b9fdd468dd3502e9de26691450d5d18b503eb0cd8fcdc4c3b300f2a8f2e549",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#seven",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 0,
+        "max_rss_kb": 20920,
+        "minor_faults": 1186,
+        "system_seconds": 0.003129,
+        "user_seconds": 0.010432
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-bfac1006923a4105b2c1d5869b9acdf1",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:23.387087055Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:22.761790346Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/plus-candidate-release-cfbb16a42c28/stderr.bin",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "runs/plus-candidate-release-cfbb16a42c28/stdout.bin",
+      "stdout_sha256": "6169555d9248be7e184f52250129b0d66c9932af74f4ac7bc716c20013fca362",
+      "test_id": "plus",
+      "timeout": false,
+      "trace": [],
+      "version": "candidate"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 0"
+      },
+      "build_id": "candidate-sanitized",
+      "build_type": "sanitized",
+      "command": [
+        "/binary",
+        "argv",
+        "+7"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.10439204099998278,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 0,
+      "id": "plus-candidate-sanitized-140f87a1dd84",
+      "input": "inputs/plus/original.bin",
+      "input_sha256": "72b9fdd468dd3502e9de26691450d5d18b503eb0cd8fcdc4c3b300f2a8f2e549",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#seven",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 1,
+        "max_rss_kb": 20920,
+        "minor_faults": 1843,
+        "system_seconds": 0.000991,
+        "user_seconds": 0.026768999999999998
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-52ae50f98bfb4bcfa462bea278d99ca4",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:24.225008875Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:23.59884668Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/plus-candidate-sanitized-140f87a1dd84/stderr.bin",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "runs/plus-candidate-sanitized-140f87a1dd84/stdout.bin",
+      "stdout_sha256": "6169555d9248be7e184f52250129b0d66c9932af74f4ac7bc716c20013fca362",
+      "test_id": "plus",
+      "timeout": false,
+      "trace": [],
+      "version": "candidate"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 0"
+      },
+      "build_id": "base-release",
+      "build_type": "release",
+      "command": [
+        "/binary",
+        "argv",
+        "-100"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.013761166999984198,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 0,
+      "id": "low-base-release-cc40843ad9d8",
+      "input": "inputs/low/original.bin",
+      "input_sha256": "b96b3036632771349308fbbe5d7a3f3f762c9e8f3eedd5785b13ff322e05fd9d",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#boundary",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 0,
+        "max_rss_kb": 20848,
+        "minor_faults": 1194,
+        "system_seconds": 0.001095,
+        "user_seconds": 0.009857999999999999
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-78537884f2c64712b7a6172001b19b32",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:25.064910542Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:24.387573541Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/low-base-release-cc40843ad9d8/stderr.bin",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "runs/low-base-release-cc40843ad9d8/stdout.bin",
+      "stdout_sha256": "876e13f4e07bb39705302c01f445ffd2d2c3b180a207e4d959d6b671c67da09b",
+      "test_id": "low",
+      "timeout": false,
+      "trace": [],
+      "version": "base"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 0"
+      },
+      "build_id": "base-sanitized",
+      "build_type": "sanitized",
+      "command": [
+        "/binary",
+        "argv",
+        "-100"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.09891333399997393,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 0,
+      "id": "low-base-sanitized-b39b459cc06e",
+      "input": "inputs/low/original.bin",
+      "input_sha256": "b96b3036632771349308fbbe5d7a3f3f762c9e8f3eedd5785b13ff322e05fd9d",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#boundary",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 1,
+        "max_rss_kb": 20848,
+        "minor_faults": 1841,
+        "system_seconds": 0.003903,
+        "user_seconds": 0.023423
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-926d67548f6e47c49aa75cfed002cec1",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:25.920202625Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:25.322003042Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/low-base-sanitized-b39b459cc06e/stderr.bin",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "runs/low-base-sanitized-b39b459cc06e/stdout.bin",
+      "stdout_sha256": "876e13f4e07bb39705302c01f445ffd2d2c3b180a207e4d959d6b671c67da09b",
+      "test_id": "low",
+      "timeout": false,
+      "trace": [],
+      "version": "base"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 0"
+      },
+      "build_id": "candidate-release",
+      "build_type": "release",
+      "command": [
+        "/binary",
+        "argv",
+        "-100"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.06295562500002916,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 0,
+      "id": "low-candidate-release-f68cde9c1c9d",
+      "input": "inputs/low/original.bin",
+      "input_sha256": "b96b3036632771349308fbbe5d7a3f3f762c9e8f3eedd5785b13ff322e05fd9d",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#boundary",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 0,
+        "max_rss_kb": 20848,
+        "minor_faults": 1185,
+        "system_seconds": 0.001956,
+        "user_seconds": 0.009779999999999999
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-eb0f31b2271547849e649c3221d838bb",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:26.669212417Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:26.114563959Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/low-candidate-release-f68cde9c1c9d/stderr.bin",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "runs/low-candidate-release-f68cde9c1c9d/stdout.bin",
+      "stdout_sha256": "876e13f4e07bb39705302c01f445ffd2d2c3b180a207e4d959d6b671c67da09b",
+      "test_id": "low",
+      "timeout": false,
+      "trace": [],
+      "version": "candidate"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 0"
+      },
+      "build_id": "candidate-sanitized",
+      "build_type": "sanitized",
+      "command": [
+        "/binary",
+        "argv",
+        "-100"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.08213691700001391,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 0,
+      "id": "low-candidate-sanitized-55a0fbb839d3",
+      "input": "inputs/low/original.bin",
+      "input_sha256": "b96b3036632771349308fbbe5d7a3f3f762c9e8f3eedd5785b13ff322e05fd9d",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#boundary",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 1,
+        "max_rss_kb": 20848,
+        "minor_faults": 1847,
+        "system_seconds": 0.004026,
+        "user_seconds": 0.024156999999999998
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-f8f258b69a924bbbb75cdcc3a6ac56c2",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:27.454479209Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:26.852784584Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/low-candidate-sanitized-55a0fbb839d3/stderr.bin",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "runs/low-candidate-sanitized-55a0fbb839d3/stdout.bin",
+      "stdout_sha256": "876e13f4e07bb39705302c01f445ffd2d2c3b180a207e4d959d6b671c67da09b",
+      "test_id": "low",
+      "timeout": false,
+      "trace": [],
+      "version": "candidate"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 2"
+      },
+      "build_id": "base-release",
+      "build_type": "release",
+      "command": [
+        "/binary",
+        "argv",
+        "bad"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.08708762500003786,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 2,
+      "id": "invalid-base-release-34a2c0995b09",
+      "input": "inputs/invalid/original.bin",
+      "input_sha256": "2f05d4b689d270cafb02285f35f44866f7dc8a2d368a3f9d1124373eeab31fb1",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#invalid",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 0,
+        "max_rss_kb": 20848,
+        "minor_faults": 1175,
+        "system_seconds": 0.0038079999999999998,
+        "user_seconds": 0.008569
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-d695437ef13440aca2fd7aef2f3e9382",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:28.523471793Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:27.671298335Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/invalid-base-release-34a2c0995b09/stderr.bin",
+      "stderr_sha256": "28fca28ef02d08bd61931c03999b7a5b822392132867682e88b2db492ee9f087",
+      "stdout": "runs/invalid-base-release-34a2c0995b09/stdout.bin",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_id": "invalid",
+      "timeout": false,
+      "trace": [],
+      "version": "base"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 2"
+      },
+      "build_id": "base-sanitized",
+      "build_type": "sanitized",
+      "command": [
+        "/binary",
+        "argv",
+        "bad"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.10627087500000698,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 2,
+      "id": "invalid-base-sanitized-4be6934aa13a",
+      "input": "inputs/invalid/original.bin",
+      "input_sha256": "2f05d4b689d270cafb02285f35f44866f7dc8a2d368a3f9d1124373eeab31fb1",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#invalid",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 1,
+        "max_rss_kb": 20848,
+        "minor_faults": 1831,
+        "system_seconds": 0.007908,
+        "user_seconds": 0.02076
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-5dc103a331354f778a21a666bfa0919d",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:29.41241196Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:28.705916793Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/invalid-base-sanitized-4be6934aa13a/stderr.bin",
+      "stderr_sha256": "28fca28ef02d08bd61931c03999b7a5b822392132867682e88b2db492ee9f087",
+      "stdout": "runs/invalid-base-sanitized-4be6934aa13a/stdout.bin",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_id": "invalid",
+      "timeout": false,
+      "trace": [],
+      "version": "base"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 2"
+      },
+      "build_id": "candidate-release",
+      "build_type": "release",
+      "command": [
+        "/binary",
+        "argv",
+        "bad"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.01411608400002251,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 2,
+      "id": "invalid-candidate-release-cd0f442382f4",
+      "input": "inputs/invalid/original.bin",
+      "input_sha256": "2f05d4b689d270cafb02285f35f44866f7dc8a2d368a3f9d1124373eeab31fb1",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#invalid",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 0,
+        "max_rss_kb": 20848,
+        "minor_faults": 1173,
+        "system_seconds": 0.001977,
+        "user_seconds": 0.008898
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-c348422d9d204019b2f7a2f57a303564",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:30.139250586Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:29.57376871Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/invalid-candidate-release-cd0f442382f4/stderr.bin",
+      "stderr_sha256": "28fca28ef02d08bd61931c03999b7a5b822392132867682e88b2db492ee9f087",
+      "stdout": "runs/invalid-candidate-release-cd0f442382f4/stdout.bin",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_id": "invalid",
+      "timeout": false,
+      "trace": [],
+      "version": "candidate"
+    },
+    {
+      "analysis": {
+        "complete": true,
+        "observations": [],
+        "reason": "normal termination with exit code 2"
+      },
+      "build_id": "candidate-sanitized",
+      "build_type": "sanitized",
+      "command": [
+        "/binary",
+        "argv",
+        "bad"
+      ],
+      "cwd": "/work",
+      "diagnostics": [],
+      "duration_seconds": 0.05208804199997985,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+        "HOME": "/tmp",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/local/bin:/usr/bin:/bin",
+        "TZ": "UTC",
+        "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+      },
+      "exit_code": 2,
+      "id": "invalid-candidate-sanitized-95df88ae93e6",
+      "input": "inputs/invalid/original.bin",
+      "input_sha256": "2f05d4b689d270cafb02285f35f44866f7dc8a2d368a3f9d1124373eeab31fb1",
+      "limits": {
+        "build_wall_seconds": 90,
+        "cpu_seconds": 2,
+        "file_bytes": 16777216,
+        "memory_mb": 384,
+        "output_bytes": 1048576,
+        "pids": 32,
+        "wall_seconds": 3
+      },
+      "oracle": {
+        "checks": {
+          "exit_code": true,
+          "stderr": true,
+          "stdout": true
+        },
+        "source": "oracles/lineparse/SPEC.md#invalid",
+        "status": "pass"
+      },
+      "output_truncated": false,
+      "replay_of": null,
+      "resource_status": "ok",
+      "runner_error": null,
+      "rusage": {
+        "major_faults": 1,
+        "max_rss_kb": 20848,
+        "minor_faults": 1828,
+        "system_seconds": 0.001942,
+        "user_seconds": 0.024281
+      },
+      "sandbox": {
+        "host_config": {
+          "CapAdd": [
+            "CAP_SETGID",
+            "CAP_SETUID"
+          ],
+          "CapDrop": [
+            "ALL"
+          ],
+          "Memory": 402653184,
+          "MemorySwap": 402653184,
+          "NanoCpus": 500000000,
+          "NetworkMode": "none",
+          "PidsLimit": 32,
+          "ReadonlyRootfs": true,
+          "SecurityOpt": [
+            "no-new-privileges:true"
+          ]
+        },
+        "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+        "image": {
+          "architecture": "amd64",
+          "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+          "os": "linux",
+          "repo_digests": [],
+          "requested": "patchcheck-framework:1.0"
+        },
+        "name": "patchcheck-da421240e4834d258078c4f0e7e1f65d",
+        "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+        "state": {
+          "Dead": false,
+          "Error": "",
+          "ExitCode": 0,
+          "FinishedAt": "2026-11-16T22:00:30.932187878Z",
+          "OOMKilled": false,
+          "Paused": false,
+          "Pid": 0,
+          "Restarting": false,
+          "Running": false,
+          "StartedAt": "2026-11-16T22:00:30.329003086Z",
+          "Status": "exited"
+        },
+        "target_uid": 65534
+      },
+      "schema_version": "1.0",
+      "signal": null,
+      "stderr": "runs/invalid-candidate-sanitized-95df88ae93e6/stderr.bin",
+      "stderr_sha256": "28fca28ef02d08bd61931c03999b7a5b822392132867682e88b2db492ee9f087",
+      "stdout": "runs/invalid-candidate-sanitized-95df88ae93e6/stdout.bin",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "test_id": "invalid",
+      "timeout": false,
+      "trace": [],
+      "version": "candidate"
+    }
+  ],
+  "schema_version": "1.0",
+  "stage": 2,
+  "target": "lineparse",
+  "technical_errors": [],
+  "tests": [
+    {
+      "category": "valid",
+      "id": "seven",
+      "input": "inputs/seven/original.bin",
+      "input_mode": "argv",
+      "oracle": {
+        "exit_code": 0,
+        "provenance": {
+          "independent": true,
+          "source": "oracles/lineparse/SPEC.md#seven"
+        },
+        "schema_version": "1.0",
+        "stderr": {
+          "base64": "",
+          "mode": "exact"
+        },
+        "stdout": {
+          "base64": "NDkK",
+          "mode": "exact"
+        }
+      },
+      "origin": "configured",
+      "regression": null,
+      "schema_version": "1.0",
+      "sha256": "7902699be42c8a8e46fbbb4501726517e86b22c56a189f7625a6da49081b2451",
+      "signature": null,
+      "size": 1,
+      "target": "lineparse"
+    },
+    {
+      "category": "valid",
+      "id": "plus",
+      "input": "inputs/plus/original.bin",
+      "input_mode": "argv",
+      "oracle": {
+        "exit_code": 0,
+        "provenance": {
+          "independent": true,
+          "source": "oracles/lineparse/SPEC.md#seven"
+        },
+        "schema_version": "1.0",
+        "stderr": {
+          "base64": "",
+          "mode": "exact"
+        },
+        "stdout": {
+          "base64": "NDkK",
+          "mode": "exact"
+        }
+      },
+      "origin": "configured",
+      "regression": null,
+      "schema_version": "1.0",
+      "sha256": "72b9fdd468dd3502e9de26691450d5d18b503eb0cd8fcdc4c3b300f2a8f2e549",
+      "signature": null,
+      "size": 2,
+      "target": "lineparse"
+    },
+    {
+      "category": "boundary",
+      "id": "low",
+      "input": "inputs/low/original.bin",
+      "input_mode": "argv",
+      "oracle": {
+        "exit_code": 0,
+        "provenance": {
+          "independent": true,
+          "source": "oracles/lineparse/SPEC.md#boundary"
+        },
+        "schema_version": "1.0",
+        "stderr": {
+          "base64": "",
+          "mode": "exact"
+        },
+        "stdout": {
+          "base64": "MTAwMDAK",
+          "mode": "exact"
+        }
+      },
+      "origin": "configured",
+      "regression": null,
+      "schema_version": "1.0",
+      "sha256": "b96b3036632771349308fbbe5d7a3f3f762c9e8f3eedd5785b13ff322e05fd9d",
+      "signature": null,
+      "size": 4,
+      "target": "lineparse"
+    },
+    {
+      "category": "invalid",
+      "id": "invalid",
+      "input": "inputs/invalid/original.bin",
+      "input_mode": "argv",
+      "oracle": {
+        "exit_code": 2,
+        "provenance": {
+          "independent": true,
+          "source": "oracles/lineparse/SPEC.md#invalid"
+        },
+        "schema_version": "1.0",
+        "stderr": {
+          "base64": "aW52YWxpZAo=",
+          "mode": "exact"
+        },
+        "stdout": {
+          "base64": "",
+          "mode": "exact"
+        }
+      },
+      "origin": "configured",
+      "regression": null,
+      "schema_version": "1.0",
+      "sha256": "2f05d4b689d270cafb02285f35f44866f7dc8a2d368a3f9d1124373eeab31fb1",
+      "signature": null,
+      "size": 3,
+      "target": "lineparse"
+    }
+  ],
+  "unknowns": [
+    "Patch correlation uses static stacks and a lexical source map; code that returned before a crash is not on its stack, and release builds have no stack.",
+    "Hardening uses readelf indicators; missing canary/FORTIFY symbols are not proof that the protection is off."
+  ],
+  "unstable": [],
+  "versions": {
+    "base": {
+      "archive": "sources/base.tar",
+      "archive_sha256": "7c1f9c3b11d9fcb175533a99dee410a61ae96f8cec8c3563b52598ec574469ce",
+      "commit": "0fcf9cebb03caf68838c27743cc426ad3f1bd7c4",
+      "dirty": false,
+      "manifest": "sources/base.manifest.json",
+      "path": "sources/base",
+      "requested_ref": "base"
+    },
+    "candidate": {
+      "archive": "sources/candidate.tar",
+      "archive_sha256": "980941c67b5fff80b4d2d42e969223456699eb434f97035f2de35c167af88854",
+      "commit": "33ae3023c736ffd7fdc5c90febddec34c35be42e",
+      "dirty": false,
+      "manifest": "sources/candidate.manifest.json",
+      "path": "sources/candidate",
+      "requested_ref": "candidate"
+    }
+  }
+}

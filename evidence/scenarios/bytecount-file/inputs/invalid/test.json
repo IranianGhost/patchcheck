@@ -1,0 +1,29 @@
+{
+  "category": "invalid",
+  "id": "invalid",
+  "input": "inputs/invalid/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 2,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/bytecount/SPEC.md#invalid"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "aW52YWxpZAo=",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "592534c8be30f54776713ee54a9e769a2403328bdc71815e75b4d3016bc1c3e7",
+  "signature": null,
+  "size": 4,
+  "target": "bytecount"
+}

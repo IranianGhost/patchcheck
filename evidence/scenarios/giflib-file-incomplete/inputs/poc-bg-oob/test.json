@@ -1,0 +1,33 @@
+{
+  "category": "original",
+  "id": "poc-bg-oob",
+  "input": "inputs/poc-bg-oob/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 1,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/giflib/SPEC.md#Security property"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "QmFja2dyb3VuZCBjb2xvciBvdXQgb2YgcmFuZ2UgZm9yIGNvbG9ybWFwCg==",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "f277902e97e8a227bbca304e4b847d4beca896d292378df0a88b988bb3e672a2",
+  "signature": {
+    "error_type": "heap-buffer-overflow",
+    "key": "READ",
+    "location": "util/gif2rgb.c:DumpScreen2RGB"
+  },
+  "size": 44,
+  "target": "giflib"
+}

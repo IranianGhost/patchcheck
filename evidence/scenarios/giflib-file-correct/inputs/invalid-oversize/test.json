@@ -1,0 +1,29 @@
+{
+  "category": "invalid",
+  "id": "invalid-oversize",
+  "input": "inputs/invalid-oversize/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 1,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/giflib/SPEC.md#Errors"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "SW1hZ2UgMSBpcyBub3QgY29uZmluZWQgdG8gc2NyZWVuIGRpbWVuc2lvbiwgYWJvcnRlZC4K",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "805ec2e1acce938d6805a4626d4000078df7f52c1031c02024427a44a1db3fdb",
+  "signature": null,
+  "size": 42,
+  "target": "giflib"
+}

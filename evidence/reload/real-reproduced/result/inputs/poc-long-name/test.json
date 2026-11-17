@@ -1,0 +1,33 @@
+{
+  "category": "original",
+  "id": "poc-long-name",
+  "input": "inputs/poc-long-name/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 2,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/tlvparse/SPEC.md#Security property"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "ZXJyb3I6IHZhbHVlIHRvbyBsb25nCg==",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": {},
+  "schema_version": "1.0",
+  "sha256": "7f528ec571347f324d7179d984bcf04b20348d8d249f0e282e82a633a4cd6e1a",
+  "signature": {
+    "error_type": "heap-buffer-overflow",
+    "key": "WRITE",
+    "location": "tlvparse.c:copy_value"
+  },
+  "size": 206,
+  "target": "tlvparse"
+}

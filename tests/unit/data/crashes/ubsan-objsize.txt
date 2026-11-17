@@ -1,0 +1,10 @@
+crashzoo.c:12:120: runtime error: store to address 0x7ffffc500028 with insufficient space for an object of type 'volatile char'
+0x7ffffc500028: note: pointer points here
+ 41 41 41 41  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  00 80 4f fc ff 7f 00 00  00 00 00 00
+              ^ 
+    #0 0x5555555573fe in stack_overflow /work/crashzoo.c:12
+    #1 0x555555557d2d in main /work/crashzoo.c:25
+    #2 0x7ffffe91eca7  (/lib/x86_64-linux-gnu/libc.so.6+0x29ca7) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)
+    #3 0x7ffffe91ed64 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29d64) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)
+    #4 0x5555555571e0 in _start (/work/san+0x31e0) (BuildId: 6e752b1aa23e33ef1ee75651bff9e993b076e348)
+

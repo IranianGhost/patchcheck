@@ -1,0 +1,113 @@
+{
+  "analysis": {
+    "complete": true,
+    "observations": [],
+    "reason": "normal termination with exit code 1"
+  },
+  "build_id": "base-release",
+  "build_type": "release",
+  "command": [
+    "/binary",
+    "-1",
+    "/case-input"
+  ],
+  "cwd": "/work",
+  "diagnostics": [],
+  "duration_seconds": 0.06748400000014954,
+  "environment": {
+    "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+    "HOME": "/tmp",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "TZ": "UTC",
+    "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+  },
+  "exit_code": 1,
+  "id": "invalid-zero-dim-base-release-2ebe2b413da2",
+  "input": "inputs/invalid-zero-dim/original.bin",
+  "input_sha256": "5f39420e3bd68fdbc5258a1b7a48d39698c28e00e44c20e0f64008c5aa5dea60",
+  "limits": {
+    "build_wall_seconds": 180,
+    "cpu_seconds": 4,
+    "file_bytes": 16777216,
+    "memory_mb": 512,
+    "output_bytes": 4194304,
+    "pids": 32,
+    "wall_seconds": 5
+  },
+  "oracle": {
+    "checks": {
+      "exit_code": true,
+      "stderr": true,
+      "stdout": true
+    },
+    "source": "oracles/giflib/SPEC.md#Errors",
+    "status": "pass"
+  },
+  "output_truncated": false,
+  "replay_of": null,
+  "resource_status": "ok",
+  "runner_error": null,
+  "rusage": {
+    "major_faults": 1,
+    "max_rss_kb": 20956,
+    "minor_faults": 1181,
+    "system_seconds": 0.0010299999999999999,
+    "user_seconds": 0.011335
+  },
+  "sandbox": {
+    "host_config": {
+      "CapAdd": [
+        "CAP_SETGID",
+        "CAP_SETUID"
+      ],
+      "CapDrop": [
+        "ALL"
+      ],
+      "Memory": 536870912,
+      "MemorySwap": 536870912,
+      "NanoCpus": 500000000,
+      "NetworkMode": "none",
+      "PidsLimit": 32,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges:true"
+      ]
+    },
+    "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "image": {
+      "architecture": "amd64",
+      "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+      "os": "linux",
+      "repo_digests": [],
+      "requested": "patchcheck-framework:1.0"
+    },
+    "name": "patchcheck-e8f64a79fede400a9477fbee71ea2057",
+    "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+    "state": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 0,
+      "FinishedAt": "2026-11-17T00:49:46.126155209Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "2026-11-17T00:49:45.7066945Z",
+      "Status": "exited"
+    },
+    "target_uid": 65534
+  },
+  "schema_version": "1.0",
+  "signal": null,
+  "stderr": "runs/invalid-zero-dim-base-release-2ebe2b413da2/stderr.bin",
+  "stderr_sha256": "56bf26a458fff5b1ac10a96f7ddf78e2175aafcb2ed766febef6d907f747abea",
+  "stdout": "runs/invalid-zero-dim-base-release-2ebe2b413da2/stdout.bin",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "test_id": "invalid-zero-dim",
+  "timeout": false,
+  "trace": [],
+  "version": "base"
+}

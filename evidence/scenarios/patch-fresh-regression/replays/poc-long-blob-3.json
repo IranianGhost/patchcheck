@@ -1,0 +1,350 @@
+{
+  "additional_count_per_cell": 3,
+  "finding_ids": [
+    "finding-security-poc-long-blob-release",
+    "finding-security-poc-long-blob-sanitized"
+  ],
+  "groups": [
+    {
+      "build_id": "base-release",
+      "compared": [
+        {
+          "crashes": [
+            {
+              "access": null,
+              "detection_method": "fortify-source",
+              "error_type": "buffer-overflow",
+              "signature": null
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": null,
+              "detection_method": "fortify-source",
+              "error_type": "buffer-overflow",
+              "signature": null
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": null,
+              "detection_method": "fortify-source",
+              "error_type": "buffer-overflow",
+              "signature": null
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": null,
+              "detection_method": "fortify-source",
+              "error_type": "buffer-overflow",
+              "signature": null
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "poc-long-blob-base-release-f475cf201295",
+      "run_ids": [
+        "poc-long-blob-base-release-007ae7f530a1",
+        "poc-long-blob-base-release-0cf41d39bef2",
+        "poc-long-blob-base-release-00951a546210"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    },
+    {
+      "build_id": "base-sanitized",
+      "compared": [
+        {
+          "crashes": [
+            {
+              "access": "WRITE",
+              "detection_method": "asan",
+              "error_type": "heap-buffer-overflow",
+              "signature": {
+                "error_type": "heap-buffer-overflow",
+                "key": "WRITE",
+                "location": "tlvparse.c:copy_value"
+              }
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": "WRITE",
+              "detection_method": "asan",
+              "error_type": "heap-buffer-overflow",
+              "signature": {
+                "error_type": "heap-buffer-overflow",
+                "key": "WRITE",
+                "location": "tlvparse.c:copy_value"
+              }
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": "WRITE",
+              "detection_method": "asan",
+              "error_type": "heap-buffer-overflow",
+              "signature": {
+                "error_type": "heap-buffer-overflow",
+                "key": "WRITE",
+                "location": "tlvparse.c:copy_value"
+              }
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "crashes": [
+            {
+              "access": "WRITE",
+              "detection_method": "asan",
+              "error_type": "heap-buffer-overflow",
+              "signature": {
+                "error_type": "heap-buffer-overflow",
+                "key": "WRITE",
+                "location": "tlvparse.c:copy_value"
+              }
+            }
+          ],
+          "exit_code": null,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": 6,
+          "signature": null,
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "poc-long-blob-base-sanitized-f82efbb73c93",
+      "run_ids": [
+        "poc-long-blob-base-sanitized-9c225832e544",
+        "poc-long-blob-base-sanitized-7ecab23b1abb",
+        "poc-long-blob-base-sanitized-bc6b0c3860f0"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    },
+    {
+      "build_id": "candidate-release",
+      "compared": [
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "poc-long-blob-candidate-release-eff5e30c2730",
+      "run_ids": [
+        "poc-long-blob-candidate-release-d0e07f7df29e",
+        "poc-long-blob-candidate-release-c5a32135d765",
+        "poc-long-blob-candidate-release-c57f14e4f2bc"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    },
+    {
+      "build_id": "candidate-sanitized",
+      "compared": [
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        },
+        {
+          "exit_code": 2,
+          "output_truncated": false,
+          "resource_status": "ok",
+          "runner_error": null,
+          "signal": null,
+          "signature": null,
+          "stderr_sha256": "a8161a86b0d1829565b3582f6de3ae64abd57cea186debc22416d7dc065dc40c",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeout": false
+        }
+      ],
+      "complete": true,
+      "ignored_fields": [
+        "duration_seconds",
+        "rusage",
+        "sandbox.name"
+      ],
+      "original_run_id": "poc-long-blob-candidate-sanitized-4c0fd7809344",
+      "run_ids": [
+        "poc-long-blob-candidate-sanitized-23683c37d881",
+        "poc-long-blob-candidate-sanitized-f91e93438166",
+        "poc-long-blob-candidate-sanitized-e4c9e668dc51"
+      ],
+      "stability_required": true,
+      "status": "stable"
+    }
+  ],
+  "input_sha256": "dcd0fc0955dfdf0c2be061dcda611c341da8f79ffe958daf58cde43e2fabc798",
+  "run_ids": [
+    "poc-long-blob-base-release-007ae7f530a1",
+    "poc-long-blob-base-release-0cf41d39bef2",
+    "poc-long-blob-base-release-00951a546210",
+    "poc-long-blob-base-sanitized-9c225832e544",
+    "poc-long-blob-base-sanitized-7ecab23b1abb",
+    "poc-long-blob-base-sanitized-bc6b0c3860f0",
+    "poc-long-blob-candidate-release-d0e07f7df29e",
+    "poc-long-blob-candidate-release-c5a32135d765",
+    "poc-long-blob-candidate-release-c57f14e4f2bc",
+    "poc-long-blob-candidate-sanitized-23683c37d881",
+    "poc-long-blob-candidate-sanitized-f91e93438166",
+    "poc-long-blob-candidate-sanitized-e4c9e668dc51"
+  ],
+  "status": "stable",
+  "test_id": "poc-long-blob"
+}

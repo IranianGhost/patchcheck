@@ -1,0 +1,238 @@
+{
+  "analysis": {
+    "complete": true,
+    "observations": [
+      {
+        "access": {
+          "kind": "READ",
+          "size": 1
+        },
+        "complete_evidence": true,
+        "confirmation": "confirmed",
+        "detection_method": "asan",
+        "detector": "AddressSanitizer",
+        "error_type": "heap-buffer-overflow",
+        "frames": [
+          {
+            "file": "util/gif2rgb.c",
+            "function": "DumpScreen2RGB",
+            "index": 0,
+            "line": 294,
+            "module": null,
+            "project_file": "util/gif2rgb.c"
+          },
+          {
+            "file": "util/gif2rgb.c",
+            "function": "GIF2RGB",
+            "index": 1,
+            "line": 474,
+            "module": null,
+            "project_file": "util/gif2rgb.c"
+          },
+          {
+            "file": "util/gif2rgb.c",
+            "function": "main",
+            "index": 2,
+            "line": 525,
+            "module": null,
+            "project_file": "util/gif2rgb.c"
+          },
+          {
+            "file": null,
+            "function": null,
+            "index": 3,
+            "line": null,
+            "module": "/lib/x86_64-linux-gnu/libc.so.6+0x29ca7",
+            "project_file": null
+          },
+          {
+            "file": null,
+            "function": "__libc_start_main",
+            "index": 4,
+            "line": null,
+            "module": "/lib/x86_64-linux-gnu/libc.so.6+0x29d64",
+            "project_file": null
+          },
+          {
+            "file": null,
+            "function": "_start",
+            "index": 5,
+            "line": null,
+            "module": "/binary+0x48430",
+            "project_file": null
+          }
+        ],
+        "location": {
+          "file": "util/gif2rgb.c",
+          "function": "DumpScreen2RGB",
+          "line": 294
+        },
+        "message": "==7==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50200000009f at pc 0x5555555bfd4b bp 0x7ffffffc7760 sp 0x7ffffffc7758",
+        "related_stacks": [
+          {
+            "frames": [
+              {
+                "file": "../../../../src/libsanitizer/asan/asan_malloc_linux.cpp",
+                "function": "malloc",
+                "index": 0,
+                "line": 69,
+                "module": null,
+                "project_file": null
+              },
+              {
+                "file": "util/gif2rgb.c",
+                "function": "GIF2RGB",
+                "index": 1,
+                "line": 392,
+                "module": null,
+                "project_file": "util/gif2rgb.c"
+              },
+              {
+                "file": "util/gif2rgb.c",
+                "function": "main",
+                "index": 2,
+                "line": 525,
+                "module": null,
+                "project_file": "util/gif2rgb.c"
+              },
+              {
+                "file": null,
+                "function": null,
+                "index": 3,
+                "line": null,
+                "module": "/lib/x86_64-linux-gnu/libc.so.6+0x29ca7",
+                "project_file": null
+              }
+            ],
+            "label": "allocated by thread T0 here"
+          }
+        ],
+        "root_cause": null,
+        "run_id": "poc-bg-far-base-sanitized-765ec9524245",
+        "signature": {
+          "error_type": "heap-buffer-overflow",
+          "key": "READ",
+          "location": "util/gif2rgb.c:DumpScreen2RGB"
+        },
+        "termination": {
+          "exit_code": null,
+          "kind": "signal",
+          "output_truncated": false,
+          "resource_status": "ok",
+          "signal": 6,
+          "signal_name": "SIGABRT",
+          "timeout": false
+        }
+      }
+    ],
+    "reason": "heap-buffer-overflow detected by asan (util/gif2rgb.c:DumpScreen2RGB)"
+  },
+  "build_id": "base-sanitized",
+  "build_type": "sanitized",
+  "command": [
+    "/binary",
+    "-1",
+    "/case-input"
+  ],
+  "cwd": "/work",
+  "diagnostics": [
+    "runs/poc-bg-far-base-sanitized-765ec9524245/stderr.bin"
+  ],
+  "duration_seconds": 0.11001912500000799,
+  "environment": {
+    "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+    "HOME": "/tmp",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "TZ": "UTC",
+    "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+  },
+  "exit_code": null,
+  "id": "poc-bg-far-base-sanitized-765ec9524245",
+  "input": "inputs/poc-bg-far/original.bin",
+  "input_sha256": "ee96e5d7f00689998519ef0703272f7840765d920e1a9c7bba893e933596b1f3",
+  "limits": {
+    "build_wall_seconds": 180,
+    "cpu_seconds": 4,
+    "file_bytes": 16777216,
+    "memory_mb": 512,
+    "output_bytes": 4194304,
+    "pids": 32,
+    "wall_seconds": 5
+  },
+  "oracle": {
+    "checks": {
+      "exit_code": false,
+      "stderr": false,
+      "stdout": true
+    },
+    "source": "oracles/giflib/SPEC.md#Security property",
+    "status": "fail"
+  },
+  "output_truncated": false,
+  "replay_of": null,
+  "resource_status": "ok",
+  "runner_error": null,
+  "rusage": {
+    "major_faults": 7,
+    "max_rss_kb": 25892,
+    "minor_faults": 3319,
+    "system_seconds": 0.004945,
+    "user_seconds": 0.055389999999999995
+  },
+  "sandbox": {
+    "host_config": {
+      "CapAdd": [
+        "CAP_SETGID",
+        "CAP_SETUID"
+      ],
+      "CapDrop": [
+        "ALL"
+      ],
+      "Memory": 536870912,
+      "MemorySwap": 536870912,
+      "NanoCpus": 500000000,
+      "NetworkMode": "none",
+      "PidsLimit": 32,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges:true"
+      ]
+    },
+    "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "image": {
+      "architecture": "amd64",
+      "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+      "os": "linux",
+      "repo_digests": [],
+      "requested": "patchcheck-framework:1.0"
+    },
+    "name": "patchcheck-89ed835801c7439a9aac730ca5ac6094",
+    "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+    "state": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 0,
+      "FinishedAt": "2026-11-16T22:33:21.024795211Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "2026-11-16T22:33:20.223449586Z",
+      "Status": "exited"
+    },
+    "target_uid": 65534
+  },
+  "schema_version": "1.0",
+  "signal": 6,
+  "stderr": "runs/poc-bg-far-base-sanitized-765ec9524245/stderr.bin",
+  "stderr_sha256": "44dda63f0c9b58f8517d1c210382e9a8a6c4878bb7d7d9c072c4a263986526f1",
+  "stdout": "runs/poc-bg-far-base-sanitized-765ec9524245/stdout.bin",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "test_id": "poc-bg-far",
+  "timeout": false,
+  "trace": [],
+  "version": "base"
+}

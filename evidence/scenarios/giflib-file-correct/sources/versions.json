@@ -1,0 +1,206 @@
+{
+  "base": {
+    "archive": "sources/base.tar",
+    "archive_sha256": "4b9a4ff577d241a9bc2020dcef7440ec18d1ced087835cdc6be81124748e2f6f",
+    "commit": "d25b2aa287ca1eb30c9ad899e826da20bd42ee28",
+    "dirty": false,
+    "manifest": "sources/base.manifest.json",
+    "path": "sources/base",
+    "requested_ref": "base"
+  },
+  "candidate": {
+    "archive": "sources/candidate.tar",
+    "archive_sha256": "3e24fd5a60af150e37a06937385d65dd17d520a63370d77451999e47f1a93df7",
+    "commit": "da3cacdc9878dd0df5997d313ed965bb24189cd0",
+    "dirty": false,
+    "manifest": "sources/candidate.manifest.json",
+    "path": "sources/candidate",
+    "requested_ref": "correct"
+  },
+  "diff": {
+    "files": [
+      "lib/dgif_lib.c",
+      "lib/egif_lib.c",
+      "lib/gif_err.c",
+      "lib/gif_hash.c",
+      "lib/gif_hash.h",
+      "lib/gif_lib.h",
+      "lib/gif_lib_private.h",
+      "lib/gifalloc.c",
+      "lib/openbsd-reallocarray.c",
+      "lib/quantize.c",
+      "util/getarg.c",
+      "util/getarg.h",
+      "util/gif2rgb.c",
+      "util/qprintf.c"
+    ],
+    "hunks": [
+      {
+        "added": [],
+        "after": {
+          "count": 11,
+          "start": 289
+        },
+        "before": {
+          "count": 6,
+          "start": 289
+        },
+        "context": "DGifGetScreenDesc(GifFileType *GifFile)",
+        "define_lines": {
+          "base": [],
+          "candidate": []
+        },
+        "defines": [],
+        "file": "lib/dgif_lib.c",
+        "functions": [],
+        "id": "h1",
+        "old_file": "lib/dgif_lib.c",
+        "removed": [],
+        "unmapped": false,
+        "unmapped_lines": {
+          "base": [],
+          "candidate": []
+        }
+      },
+      {
+        "added": [
+          18
+        ],
+        "after": {
+          "count": 7,
+          "start": 15
+        },
+        "before": {
+          "count": 7,
+          "start": 15
+        },
+        "context": "Toshio Kuratomi had written this in a comment about the rgb2gif code:",
+        "define_lines": {
+          "base": [],
+          "candidate": []
+        },
+        "defines": [],
+        "file": "util/gif2rgb.c",
+        "functions": [],
+        "id": "h2",
+        "old_file": "util/gif2rgb.c",
+        "removed": [
+          18
+        ],
+        "unmapped": true,
+        "unmapped_lines": {
+          "base": [
+            18
+          ],
+          "candidate": [
+            18
+          ]
+        }
+      },
+      {
+        "added": [],
+        "after": {
+          "count": 7,
+          "start": 461
+        },
+        "before": {
+          "count": 7,
+          "start": 461
+        },
+        "context": "static void GIF2RGB(int NumFiles, char *FileName,",
+        "define_lines": {
+          "base": [],
+          "candidate": []
+        },
+        "defines": [],
+        "file": "util/gif2rgb.c",
+        "functions": [],
+        "id": "h3",
+        "old_file": "util/gif2rgb.c",
+        "removed": [],
+        "unmapped": false,
+        "unmapped_lines": {
+          "base": [],
+          "candidate": []
+        }
+      },
+      {
+        "added": [
+          475,
+          476,
+          477,
+          478
+        ],
+        "after": {
+          "count": 12,
+          "start": 471
+        },
+        "before": {
+          "count": 6,
+          "start": 471
+        },
+        "context": "static void GIF2RGB(int NumFiles, char *FileName,",
+        "define_lines": {
+          "base": [],
+          "candidate": []
+        },
+        "defines": [],
+        "file": "util/gif2rgb.c",
+        "functions": [
+          {
+            "end": 492,
+            "file": "util/gif2rgb.c",
+            "function": "GIF2RGB",
+            "short": "GIF2RGB",
+            "start": 338,
+            "version": "candidate"
+          },
+          {
+            "end": 486,
+            "file": "util/gif2rgb.c",
+            "function": "GIF2RGB",
+            "short": "GIF2RGB",
+            "start": 338,
+            "version": "base"
+          }
+        ],
+        "id": "h4",
+        "old_file": "util/gif2rgb.c",
+        "removed": [],
+        "unmapped": false,
+        "unmapped_lines": {
+          "base": [],
+          "candidate": []
+        }
+      }
+    ],
+    "path": "sources/versions.patch",
+    "sha256": "c5972f275c28eea2ca3d3e9d0fbfa23e5350b5c4f363f5c3aad9c62940ad02b3",
+    "snapshot_bundle": "sources/snapshots.bundle",
+    "source_map": {
+      "base": {
+        "callers": {
+          "GIF2RGB": [
+            {
+              "file": "util/gif2rgb.c",
+              "function": "main"
+            }
+          ]
+        },
+        "macro_users": {}
+      },
+      "candidate": {
+        "callers": {
+          "GIF2RGB": [
+            {
+              "file": "util/gif2rgb.c",
+              "function": "main"
+            }
+          ]
+        },
+        "macro_users": {}
+      }
+    },
+    "tool_version": "git version 2.50.1 (Apple Git-155)"
+  }
+}

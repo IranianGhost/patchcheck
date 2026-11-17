@@ -1,0 +1,43 @@
+=================================================================
+==28==ERROR: AddressSanitizer: global-buffer-overflow on address 0x55555555bcf0 at pc 0x555555557911 bp 0x7ffffffc78e0 sp 0x7ffffffc78d8
+READ of size 4 at 0x55555555bcf0 thread T0
+    #0 0x555555557910 in global_overflow /work/crashzoo.c:18
+    #1 0x555555557eb2 in main /work/crashzoo.c:31
+    #2 0x7ffffe91eca7  (/lib/x86_64-linux-gnu/libc.so.6+0x29ca7) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)
+    #3 0x7ffffe91ed64 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29d64) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)
+    #4 0x5555555571e0 in _start (/work/san+0x31e0) (BuildId: 6e752b1aa23e33ef1ee75651bff9e993b076e348)
+
+0x55555555bcf0 is located 0 bytes after global variable 'global_buf' defined in 'crashzoo.c:8:5' (0x55555555bce0) of size 16
+SUMMARY: AddressSanitizer: global-buffer-overflow /work/crashzoo.c:18 in global_overflow
+Shadow bytes around the buggy address:
+  0x55555555ba00: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+  0x55555555ba80: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+  0x55555555bb00: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+  0x55555555bb80: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+  0x55555555bc00: f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9 f9
+=>0x55555555bc80: 00 00 00 00 00 f9 f9 f9 f9 f9 f9 f9 00 00[f9]f9
+  0x55555555bd00: f9 f9 f9 f9 00 00 00 00 00 00 00 00 00 00 00 00
+  0x55555555bd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x55555555be00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x55555555be80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x55555555bf00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==28==ABORTING

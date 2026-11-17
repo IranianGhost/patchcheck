@@ -1,0 +1,269 @@
+{
+  "analysis": {
+    "complete": true,
+    "observations": [
+      {
+        "access": {
+          "kind": "WRITE",
+          "size": 200
+        },
+        "complete_evidence": true,
+        "confirmation": "confirmed",
+        "detection_method": "asan",
+        "detector": "AddressSanitizer",
+        "error_type": "heap-buffer-overflow",
+        "frames": [
+          {
+            "file": "../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc",
+            "function": "memcpy",
+            "index": 0,
+            "line": 115,
+            "module": null,
+            "project_file": null
+          },
+          {
+            "file": "/work/tlvparse.c",
+            "function": "copy_value",
+            "index": 1,
+            "line": 31,
+            "module": null,
+            "project_file": "tlvparse.c"
+          },
+          {
+            "file": "/work/tlvparse.c",
+            "function": "load_name",
+            "index": 2,
+            "line": 37,
+            "module": null,
+            "project_file": "tlvparse.c"
+          },
+          {
+            "file": "/work/tlvparse.c",
+            "function": "parse",
+            "index": 3,
+            "line": 68,
+            "module": null,
+            "project_file": "tlvparse.c"
+          },
+          {
+            "file": "/work/tlvparse.c",
+            "function": "main",
+            "index": 4,
+            "line": 117,
+            "module": null,
+            "project_file": "tlvparse.c"
+          },
+          {
+            "file": null,
+            "function": null,
+            "index": 5,
+            "line": null,
+            "module": "/lib/x86_64-linux-gnu/libc.so.6+0x29ca7",
+            "project_file": null
+          },
+          {
+            "file": null,
+            "function": "__libc_start_main",
+            "index": 6,
+            "line": null,
+            "module": "/lib/x86_64-linux-gnu/libc.so.6+0x29d64",
+            "project_file": null
+          },
+          {
+            "file": null,
+            "function": "_start",
+            "index": 7,
+            "line": null,
+            "module": "/binary+0x4230",
+            "project_file": null
+          }
+        ],
+        "location": {
+          "file": "tlvparse.c",
+          "function": "copy_value",
+          "line": 31
+        },
+        "message": "==7==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x503000000060 at pc 0x7fffff1ee7ef bp 0x7ffffffc7820 sp 0x7ffffffc6fe0",
+        "related_stacks": [
+          {
+            "frames": [
+              {
+                "file": "../../../../src/libsanitizer/asan/asan_malloc_linux.cpp",
+                "function": "malloc",
+                "index": 0,
+                "line": 69,
+                "module": null,
+                "project_file": null
+              },
+              {
+                "file": "/work/tlvparse.c",
+                "function": "copy_value",
+                "index": 1,
+                "line": 28,
+                "module": null,
+                "project_file": "tlvparse.c"
+              },
+              {
+                "file": "/work/tlvparse.c",
+                "function": "load_name",
+                "index": 2,
+                "line": 37,
+                "module": null,
+                "project_file": "tlvparse.c"
+              },
+              {
+                "file": "/work/tlvparse.c",
+                "function": "parse",
+                "index": 3,
+                "line": 68,
+                "module": null,
+                "project_file": "tlvparse.c"
+              },
+              {
+                "file": "/work/tlvparse.c",
+                "function": "main",
+                "index": 4,
+                "line": 117,
+                "module": null,
+                "project_file": "tlvparse.c"
+              },
+              {
+                "file": null,
+                "function": null,
+                "index": 5,
+                "line": null,
+                "module": "/lib/x86_64-linux-gnu/libc.so.6+0x29ca7",
+                "project_file": null
+              }
+            ],
+            "label": "allocated by thread T0 here"
+          }
+        ],
+        "root_cause": null,
+        "run_id": "poc-long-name-base-sanitized-bc54e879c14b",
+        "signature": {
+          "error_type": "heap-buffer-overflow",
+          "key": "WRITE",
+          "location": "tlvparse.c:copy_value"
+        },
+        "termination": {
+          "exit_code": null,
+          "kind": "signal",
+          "output_truncated": false,
+          "resource_status": "ok",
+          "signal": 6,
+          "signal_name": "SIGABRT",
+          "timeout": false
+        }
+      }
+    ],
+    "reason": "heap-buffer-overflow detected by asan (tlvparse.c:copy_value)"
+  },
+  "build_id": "base-sanitized",
+  "build_type": "sanitized",
+  "command": [
+    "/binary",
+    "/case-input"
+  ],
+  "cwd": "/work",
+  "diagnostics": [
+    "runs/poc-long-name-base-sanitized-bc54e879c14b/stderr.bin"
+  ],
+  "duration_seconds": 0.12715275000005022,
+  "environment": {
+    "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+    "HOME": "/tmp",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "TZ": "UTC",
+    "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+  },
+  "exit_code": null,
+  "id": "poc-long-name-base-sanitized-bc54e879c14b",
+  "input": "inputs/poc-long-name/original.bin",
+  "input_sha256": "7f528ec571347f324d7179d984bcf04b20348d8d249f0e282e82a633a4cd6e1a",
+  "limits": {
+    "build_wall_seconds": 90,
+    "cpu_seconds": 2,
+    "file_bytes": 16777216,
+    "memory_mb": 384,
+    "output_bytes": 1048576,
+    "pids": 32,
+    "wall_seconds": 3
+  },
+  "oracle": {
+    "checks": {
+      "exit_code": false,
+      "stderr": false,
+      "stdout": true
+    },
+    "source": "oracles/tlvparse/SPEC.md#Security property",
+    "status": "fail"
+  },
+  "output_truncated": false,
+  "replay_of": "poc-long-name-base-sanitized-8a6080821ffe",
+  "resource_status": "ok",
+  "runner_error": null,
+  "rusage": {
+    "major_faults": 2,
+    "max_rss_kb": 21016,
+    "minor_faults": 3160,
+    "system_seconds": 0.0009839999999999998,
+    "user_seconds": 0.041344
+  },
+  "sandbox": {
+    "host_config": {
+      "CapAdd": [
+        "CAP_SETGID",
+        "CAP_SETUID"
+      ],
+      "CapDrop": [
+        "ALL"
+      ],
+      "Memory": 402653184,
+      "MemorySwap": 402653184,
+      "NanoCpus": 500000000,
+      "NetworkMode": "none",
+      "PidsLimit": 32,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges:true"
+      ]
+    },
+    "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "image": {
+      "architecture": "amd64",
+      "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+      "os": "linux",
+      "repo_digests": [],
+      "requested": "patchcheck-framework:1.0"
+    },
+    "name": "patchcheck-df487601835543008e77b565ce7a1f3e",
+    "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+    "state": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 0,
+      "FinishedAt": "2026-11-16T22:27:39.75765272Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "2026-11-16T22:27:39.266879345Z",
+      "Status": "exited"
+    },
+    "target_uid": 65534
+  },
+  "schema_version": "1.0",
+  "signal": 6,
+  "stderr": "runs/poc-long-name-base-sanitized-bc54e879c14b/stderr.bin",
+  "stderr_sha256": "666b28a1f9630cbf290547a8b85efe048feeb026905920e12ec3f336846671c8",
+  "stdout": "runs/poc-long-name-base-sanitized-bc54e879c14b/stdout.bin",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "test_id": "poc-long-name",
+  "timeout": false,
+  "trace": [],
+  "version": "base"
+}

@@ -1,0 +1,112 @@
+{
+  "analysis": {
+    "complete": true,
+    "observations": [],
+    "reason": "normal termination with exit code 2"
+  },
+  "build_id": "base-sanitized",
+  "build_type": "sanitized",
+  "command": [
+    "/binary",
+    "/case-input"
+  ],
+  "cwd": "/work",
+  "diagnostics": [],
+  "duration_seconds": 0.07323825000003126,
+  "environment": {
+    "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+    "HOME": "/tmp",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "TZ": "UTC",
+    "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+  },
+  "exit_code": 2,
+  "id": "poc-long-blob-base-sanitized-220807929786",
+  "input": "minimization/475784649a83/attempts/0053.bin",
+  "input_sha256": "dad05e73210b21020ead429f0f63ddde08c2a8b967f4ef56688a9d3117626ff8",
+  "limits": {
+    "build_wall_seconds": 90,
+    "cpu_seconds": 2,
+    "file_bytes": 16777216,
+    "memory_mb": 384,
+    "output_bytes": 1048576,
+    "pids": 32,
+    "wall_seconds": 3
+  },
+  "oracle": {
+    "checks": {
+      "exit_code": true,
+      "stderr": false,
+      "stdout": true
+    },
+    "source": "oracles/tlvparse/SPEC.md#Security property",
+    "status": "fail"
+  },
+  "output_truncated": false,
+  "replay_of": "minimization:poc-long-blob",
+  "resource_status": "ok",
+  "runner_error": null,
+  "rusage": {
+    "major_faults": 1,
+    "max_rss_kb": 20848,
+    "minor_faults": 1883,
+    "system_seconds": 0.001039,
+    "user_seconds": 0.025981999999999998
+  },
+  "sandbox": {
+    "host_config": {
+      "CapAdd": [
+        "CAP_SETGID",
+        "CAP_SETUID"
+      ],
+      "CapDrop": [
+        "ALL"
+      ],
+      "Memory": 402653184,
+      "MemorySwap": 402653184,
+      "NanoCpus": 500000000,
+      "NetworkMode": "none",
+      "PidsLimit": 32,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges:true"
+      ]
+    },
+    "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "image": {
+      "architecture": "amd64",
+      "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+      "os": "linux",
+      "repo_digests": [],
+      "requested": "patchcheck-framework:1.0"
+    },
+    "name": "patchcheck-f1db8381f1d34b6ab3b6de7b290fe4b0",
+    "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+    "state": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 0,
+      "FinishedAt": "2026-11-16T22:39:56.419560547Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "2026-11-16T22:39:55.851717588Z",
+      "Status": "exited"
+    },
+    "target_uid": 65534
+  },
+  "schema_version": "1.0",
+  "signal": null,
+  "stderr": "runs/poc-long-blob-base-sanitized-220807929786/stderr.bin",
+  "stderr_sha256": "2866f959326b223991216176a34dfe8eb95dab87ccf17ae636336c1c53caf1aa",
+  "stdout": "runs/poc-long-blob-base-sanitized-220807929786/stdout.bin",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "test_id": "poc-long-blob",
+  "timeout": false,
+  "trace": [],
+  "version": "base"
+}

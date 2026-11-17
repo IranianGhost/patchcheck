@@ -1,0 +1,95 @@
+{
+  "base": {
+    "archive": "sources/base.tar",
+    "archive_sha256": "c716a0e7cc95a608b94594e71e8c80da52ad067081d4d91a124921756454135f",
+    "commit": "bd80e421dd60d0b1d5cdfd4163c3931d5003d070",
+    "dirty": false,
+    "manifest": "sources/base.manifest.json",
+    "path": "sources/base",
+    "requested_ref": "base"
+  },
+  "candidate": {
+    "archive": "sources/candidate.tar",
+    "archive_sha256": "163be286634cc070cb0bfc3eb92d21277862dd26ad63127e16d957317e179d81",
+    "commit": "6b98a8e8f12106275ddc280ab88b163ab5c98e08",
+    "dirty": false,
+    "manifest": "sources/candidate.manifest.json",
+    "path": "sources/candidate",
+    "requested_ref": "candidate"
+  },
+  "diff": {
+    "files": [
+      "main.c"
+    ],
+    "hunks": [
+      {
+        "added": [],
+        "after": {
+          "count": 5,
+          "start": 22
+        },
+        "before": {
+          "count": 10,
+          "start": 22
+        },
+        "context": "int main(int argc, char **argv) {",
+        "define_lines": {
+          "base": [],
+          "candidate": []
+        },
+        "defines": [],
+        "file": "main.c",
+        "functions": [
+          {
+            "end": 31,
+            "file": "main.c",
+            "function": "main",
+            "short": "main",
+            "start": 5,
+            "version": "base"
+          },
+          {
+            "end": 26,
+            "file": "main.c",
+            "function": "main",
+            "short": "main",
+            "start": 5,
+            "version": "candidate"
+          }
+        ],
+        "id": "h1",
+        "old_file": "main.c",
+        "removed": [
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "unmapped": false,
+        "unmapped_lines": {
+          "base": [],
+          "candidate": []
+        }
+      }
+    ],
+    "path": "sources/versions.patch",
+    "sha256": "a2504bcd05ef8581b96722cd53ec33101e94f9aacb9a9233c4ceaa44fbca5080",
+    "snapshot_bundle": "sources/snapshots.bundle",
+    "source_map": {
+      "base": {
+        "callers": {
+          "main": []
+        },
+        "macro_users": {}
+      },
+      "candidate": {
+        "callers": {
+          "main": []
+        },
+        "macro_users": {}
+      }
+    },
+    "tool_version": "git version 2.50.1 (Apple Git-155)"
+  }
+}

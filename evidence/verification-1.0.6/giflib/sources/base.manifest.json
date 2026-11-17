@@ -1,0 +1,58 @@
+{
+  "lib/dgif_lib.c": {
+    "executable": false,
+    "sha256": "bd768d038d7078cc629dfce00133a9030e0daddf1e36f22428dda742bd103683"
+  },
+  "lib/egif_lib.c": {
+    "executable": false,
+    "sha256": "1c6a987237e693c0cbe99de394c5817f5e49e6d31fb81eb1626140d634edcc50"
+  },
+  "lib/gif_err.c": {
+    "executable": false,
+    "sha256": "89fd62e65394132b8a0ad108bd0b8b6e903b8d65d509a7e334802547c56671fd"
+  },
+  "lib/gif_hash.c": {
+    "executable": false,
+    "sha256": "f5f05e5229297047f4a73c48c2364f30d898ab2d43ac035d5919ef09324cc829"
+  },
+  "lib/gif_hash.h": {
+    "executable": false,
+    "sha256": "eec99ee749cbf63e1bfc6da2ff1f409ea08182000acf61f24e059b340df8b7be"
+  },
+  "lib/gif_lib.h": {
+    "executable": false,
+    "sha256": "04c20ba1c8445a5e301f699ca11004033ab0f22910ac416d629e208749003965"
+  },
+  "lib/gif_lib_private.h": {
+    "executable": false,
+    "sha256": "b0353e12e5e136a97ae9b251fb72fe148cabf24822d833edb4efa8a19f48c0cd"
+  },
+  "lib/gifalloc.c": {
+    "executable": false,
+    "sha256": "b2f8d362cba38c4fa38091741859cccc73e6030a5a3350b5108197d61c73b2c0"
+  },
+  "lib/openbsd-reallocarray.c": {
+    "executable": false,
+    "sha256": "06f64a28f72a4c127cca2cb73265334cb4e726fe7cc915bc49b5e0932492cef3"
+  },
+  "lib/quantize.c": {
+    "executable": false,
+    "sha256": "bf38558a281afaa5c928b03db004c995c8ef09074a4ffd8a28072f4a32f79730"
+  },
+  "util/getarg.c": {
+    "executable": false,
+    "sha256": "2d91cb40b923ebea7835a65902f50ad66761e139bbee1d6bd4035e8b994ad48b"
+  },
+  "util/getarg.h": {
+    "executable": false,
+    "sha256": "6cc31b3f9fa9ef5f7d62d65dd66add6006e7b26629a5e7a208a9937f94c93a7d"
+  },
+  "util/gif2rgb.c": {
+    "executable": false,
+    "sha256": "fbd73b9602c7d2c4336ce706b8c0c88f1e6dde1f7f24dc9e703f8b43f9dea75c"
+  },
+  "util/qprintf.c": {
+    "executable": false,
+    "sha256": "24e613070566fa3ba01acef967069cebd9af8aa74bcbc93a3b1b40122653571b"
+  }
+}

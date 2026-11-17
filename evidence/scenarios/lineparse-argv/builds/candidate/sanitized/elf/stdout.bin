@@ -1,0 +1,199 @@
+ELF Header:
+  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF64
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              DYN (Position-Independent Executable file)
+  Machine:                           Advanced Micro Devices X86-64
+  Version:                           0x1
+  Entry point address:               0x21b0
+  Start of program headers:          64 (bytes into file)
+  Start of section headers:          38912 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               64 (bytes)
+  Size of program headers:           56 (bytes)
+  Number of program headers:         14
+  Size of section headers:           64 (bytes)
+  Number of section headers:         38
+  Section header string table index: 37
+
+Program Headers:
+  Type           Offset   VirtAddr           PhysAddr           FileSiz  MemSiz   Flg Align
+  PHDR           0x000040 0x0000000000000040 0x0000000000000040 0x000310 0x000310 R   0x8
+  INTERP         0x000394 0x0000000000000394 0x0000000000000394 0x00001c 0x00001c R   0x1
+      [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
+  LOAD           0x000000 0x0000000000000000 0x0000000000000000 0x0015d8 0x0015d8 R   0x1000
+  LOAD           0x002000 0x0000000000002000 0x0000000000002000 0x0008f5 0x0008f5 R E 0x1000
+  LOAD           0x003000 0x0000000000003000 0x0000000000003000 0x0003bc 0x0003bc R   0x1000
+  LOAD           0x003c80 0x0000000000004c80 0x0000000000004c80 0x000da0 0x000db0 RW  0x1000
+  DYNAMIC        0x003ca8 0x0000000000004ca8 0x0000000000004ca8 0x000260 0x000260 RW  0x8
+  NOTE           0x000350 0x0000000000000350 0x0000000000000350 0x000020 0x000020 R   0x8
+  NOTE           0x000370 0x0000000000000370 0x0000000000000370 0x000024 0x000024 R   0x4
+  NOTE           0x00339c 0x000000000000339c 0x000000000000339c 0x000020 0x000020 R   0x4
+  GNU_PROPERTY   0x000350 0x0000000000000350 0x0000000000000350 0x000020 0x000020 R   0x8
+  GNU_EH_FRAME   0x003264 0x0000000000003264 0x0000000000003264 0x00003c 0x00003c R   0x4
+  GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10
+  GNU_RELRO      0x003c80 0x0000000000004c80 0x0000000000004c80 0x000380 0x000380 R   0x1
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     
+   01     .interp 
+   02     .note.gnu.property .note.gnu.build-id .interp .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt 
+   03     .init .plt .plt.got .text .fini 
+   04     .rodata .eh_frame_hdr .eh_frame .note.ABI-tag 
+   05     .preinit_array .init_array .fini_array .dynamic .got .data .bss 
+   06     .dynamic 
+   07     .note.gnu.property 
+   08     .note.gnu.build-id 
+   09     .note.ABI-tag 
+   10     .note.gnu.property 
+   11     .eh_frame_hdr 
+   12     
+   13     .preinit_array .init_array .fini_array .dynamic .got 
+
+Dynamic section at offset 0x3ca8 contains 34 entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]
+ 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]
+ 0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]
+ 0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]
+ 0x000000000000000c (INIT)               0x2000
+ 0x000000000000000d (FINI)               0x28ec
+ 0x0000000000000020 (PREINIT_ARRAY)      0x4c80
+ 0x0000000000000021 (PREINIT_ARRAYSZ)    8 (bytes)
+ 0x0000000000000019 (INIT_ARRAY)         0x4c88
+ 0x000000000000001b (INIT_ARRAYSZ)       16 (bytes)
+ 0x000000000000001a (FINI_ARRAY)         0x4c98
+ 0x000000000000001c (FINI_ARRAYSZ)       16 (bytes)
+ 0x000000006ffffef5 (GNU_HASH)           0x3b0
+ 0x0000000000000005 (STRTAB)             0x710
+ 0x0000000000000006 (SYMTAB)             0x3e0
+ 0x000000000000000a (STRSZ)              793 (bytes)
+ 0x000000000000000b (SYMENT)             24 (bytes)
+ 0x0000000000000015 (DEBUG)              0x0
+ 0x0000000000000003 (PLTGOT)             0x4f08
+ 0x0000000000000002 (PLTRELSZ)           552 (bytes)
+ 0x0000000000000014 (PLTREL)             RELA
+ 0x0000000000000017 (JMPREL)             0x13b0
+ 0x0000000000000007 (RELA)               0xab0
+ 0x0000000000000008 (RELASZ)             2304 (bytes)
+ 0x0000000000000009 (RELAENT)            24 (bytes)
+ 0x000000000000001e (FLAGS)              BIND_NOW
+ 0x000000006ffffffb (FLAGS_1)            Flags: NOW PIE
+ 0x000000006ffffffe (VERNEED)            0xa70
+ 0x000000006fffffff (VERNEEDNUM)         1
+ 0x000000006ffffff0 (VERSYM)             0xa2a
+ 0x000000006ffffff9 (RELACOUNT)          88
+ 0x0000000000000000 (NULL)               0x0
+
+Symbol table '.dynsym' contains 34 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_store4
+     2: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __errno_location@GLIBC_2.2.5 (2)
+     3: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strlen
+     4: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND printf
+     5: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_register_globals
+     6: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_load4
+     7: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __isoc23_strtol
+     8: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strcmp
+     9: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_pointer_overflow
+    10: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.34 (3)
+    11: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __sanitizer_internal_memmove
+    12: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_mul_overflow
+    13: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strcpy
+    14: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND fwrite
+    15: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_store8
+    16: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_unregister_globals
+    17: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@GLIBC_2.4 (4)
+    18: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_init
+    19: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_load1
+    20: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __sanitizer_internal_memcpy
+    21: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __sanitizer_internal_memset
+    22: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_load8
+    23: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_stack_malloc_2
+    24: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_type_mismatch_v1
+    25: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_version_mismatch_check_v8
+    26: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_nonnull_arg
+    27: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTable
+    28: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_store_n
+    29: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    30: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable
+    31: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND __cxa_finalize@GLIBC_2.2.5 (2)
+    32: 0000000000005a28     4 OBJECT  GLOBAL DEFAULT   26 __asan_option_detect_stack_use_after_return
+    33: 0000000000005a20     8 OBJECT  GLOBAL DEFAULT   26 stderr@GLIBC_2.2.5 (2)
+
+Symbol table '.symtab' contains 67 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS Scrt1.o
+     2: 000000000000339c    32 OBJECT  LOCAL  DEFAULT   19 __abi_tag
+     3: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crtstuff.c
+     4: 00000000000021e0     0 FUNC    LOCAL  DEFAULT   14 deregister_tm_clones
+     5: 0000000000002210     0 FUNC    LOCAL  DEFAULT   14 register_tm_clones
+     6: 0000000000002250     0 FUNC    LOCAL  DEFAULT   14 __do_global_dtors_aux
+     7: 0000000000005a2c     1 OBJECT  LOCAL  DEFAULT   26 completed.0
+     8: 0000000000004ca0     0 OBJECT  LOCAL  DEFAULT   22 __do_global_dtors_aux_fini_array_entry
+     9: 0000000000002290     0 FUNC    LOCAL  DEFAULT   14 frame_dummy
+    10: 0000000000004c90     0 OBJECT  LOCAL  DEFAULT   21 __frame_dummy_init_array_entry
+    11: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS asan_preinit.cpp
+    12: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS main.cpp
+    13: 00000000000028b1    23 FUNC    LOCAL  DEFAULT   14 _sub_D_00099_0
+    14: 00000000000028c8    33 FUNC    LOCAL  DEFAULT   14 _sub_I_00099_1
+    15: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crtstuff.c
+    16: 0000000000003398     0 OBJECT  LOCAL  DEFAULT   18 __FRAME_END__
+    17: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS 
+    18: 0000000000003264     0 NOTYPE  LOCAL  DEFAULT   17 __GNU_EH_FRAME_HDR
+    19: 0000000000004ca8     0 OBJECT  LOCAL  DEFAULT   23 _DYNAMIC
+    20: 0000000000004f08     0 OBJECT  LOCAL  DEFAULT   24 _GLOBAL_OFFSET_TABLE_
+    21: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_store4
+    22: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __errno_location@GLIBC_2.2.5
+    23: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strlen
+    24: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND printf
+    25: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_register_globals
+    26: 0000000000005a20     0 NOTYPE  GLOBAL DEFAULT   25 _edata
+    27: 0000000000005000     0 NOTYPE  WEAK   DEFAULT   25 data_start
+    28: 0000000000003000     4 OBJECT  GLOBAL DEFAULT   16 _IO_stdin_used
+    29: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND __cxa_finalize@GLIBC_2.2.5
+    30: 0000000000002299  1560 FUNC    GLOBAL DEFAULT   14 main
+    31: 0000000000005008     0 OBJECT  GLOBAL HIDDEN    25 __dso_handle
+    32: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_load4
+    33: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __isoc23_strtol
+    34: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strcmp
+    35: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_pointer_overflow
+    36: 00000000000028ec     0 FUNC    GLOBAL HIDDEN    15 _fini
+    37: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.34
+    38: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __sanitizer_internal_memmove
+    39: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_mul_overflow
+    40: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strcpy
+    41: 0000000000004c80     8 OBJECT  GLOBAL HIDDEN    20 __local_asan_preinit
+    42: 00000000000021b0    34 FUNC    GLOBAL DEFAULT   14 _start
+    43: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND fwrite
+    44: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_store8
+    45: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_unregister_globals
+    46: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@GLIBC_2.4
+    47: 0000000000002000     0 FUNC    GLOBAL HIDDEN    11 _init
+    48: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_init
+    49: 0000000000005a20     0 OBJECT  GLOBAL HIDDEN    25 __TMC_END__
+    50: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_load1
+    51: 0000000000005a20     8 OBJECT  GLOBAL DEFAULT   26 stderr@GLIBC_2.2.5
+    52: 0000000000005000     0 NOTYPE  GLOBAL DEFAULT   25 __data_start
+    53: 0000000000005a30     0 NOTYPE  GLOBAL DEFAULT   26 _end
+    54: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __sanitizer_internal_memcpy
+    55: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __sanitizer_internal_memset
+    56: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_load8
+    57: 0000000000005a20     0 NOTYPE  GLOBAL DEFAULT   26 __bss_start
+    58: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_stack_malloc_2
+    59: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_type_mismatch_v1
+    60: 0000000000005a28     4 OBJECT  GLOBAL DEFAULT   26 __asan_option_detect_stack_use_after_return
+    61: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_version_mismatch_check_v8
+    62: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __ubsan_handle_nonnull_arg
+    63: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTable
+    64: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __asan_report_store_n
+    65: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    66: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable

@@ -1,0 +1,137 @@
+{
+  "analysis": {
+    "complete": false,
+    "observations": [
+      {
+        "access": null,
+        "complete_evidence": false,
+        "confirmation": "confirmed",
+        "detection_method": "fortify-source",
+        "detector": "__chk_fail",
+        "error_type": "buffer-overflow",
+        "frames": [],
+        "location": null,
+        "message": "*** buffer overflow detected ***: terminated",
+        "related_stacks": [],
+        "root_cause": null,
+        "run_id": "poc-long-blob-base-release-56ef34793068",
+        "signature": null,
+        "termination": {
+          "exit_code": null,
+          "kind": "signal",
+          "output_truncated": false,
+          "resource_status": "ok",
+          "signal": 6,
+          "signal_name": "SIGABRT",
+          "timeout": false
+        }
+      }
+    ],
+    "reason": "buffer-overflow detected by fortify-source (no in-program location)"
+  },
+  "build_id": "base-release",
+  "build_type": "release",
+  "command": [
+    "/binary",
+    "/case-input"
+  ],
+  "cwd": "/work",
+  "diagnostics": [],
+  "duration_seconds": 0.06266329100003531,
+  "environment": {
+    "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+    "HOME": "/tmp",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "TZ": "UTC",
+    "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+  },
+  "exit_code": null,
+  "id": "poc-long-blob-base-release-56ef34793068",
+  "input": "inputs/poc-long-blob/original.bin",
+  "input_sha256": "dcd0fc0955dfdf0c2be061dcda611c341da8f79ffe958daf58cde43e2fabc798",
+  "limits": {
+    "build_wall_seconds": 90,
+    "cpu_seconds": 2,
+    "file_bytes": 16777216,
+    "memory_mb": 384,
+    "output_bytes": 1048576,
+    "pids": 32,
+    "wall_seconds": 3
+  },
+  "oracle": {
+    "checks": {
+      "exit_code": false,
+      "stderr": false,
+      "stdout": true
+    },
+    "source": "oracles/tlvparse/SPEC.md#Security property",
+    "status": "fail"
+  },
+  "output_truncated": false,
+  "replay_of": "poc-long-blob-base-release-779233b0f84c",
+  "resource_status": "ok",
+  "runner_error": null,
+  "rusage": {
+    "major_faults": 0,
+    "max_rss_kb": 20848,
+    "minor_faults": 1208,
+    "system_seconds": 0.0019249999999999998,
+    "user_seconds": 0.009626
+  },
+  "sandbox": {
+    "host_config": {
+      "CapAdd": [
+        "CAP_SETGID",
+        "CAP_SETUID"
+      ],
+      "CapDrop": [
+        "ALL"
+      ],
+      "Memory": 402653184,
+      "MemorySwap": 402653184,
+      "NanoCpus": 500000000,
+      "NetworkMode": "none",
+      "PidsLimit": 32,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges:true"
+      ]
+    },
+    "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "image": {
+      "architecture": "amd64",
+      "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+      "os": "linux",
+      "repo_digests": [],
+      "requested": "patchcheck-framework:1.0"
+    },
+    "name": "patchcheck-a52da3b9dc2647839d89f4942d15c702",
+    "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+    "state": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 0,
+      "FinishedAt": "2026-11-16T22:01:35.896481963Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "2026-11-16T22:01:35.429929213Z",
+      "Status": "exited"
+    },
+    "target_uid": 65534
+  },
+  "schema_version": "1.0",
+  "signal": 6,
+  "stderr": "runs/poc-long-blob-base-release-56ef34793068/stderr.bin",
+  "stderr_sha256": "1685c6ad2a9cb6a93e44269cb43a98b3040bf4b42fc27ec236f5aba85233f3ca",
+  "stdout": "runs/poc-long-blob-base-release-56ef34793068/stdout.bin",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "test_id": "poc-long-blob",
+  "timeout": false,
+  "trace": [],
+  "version": "base"
+}

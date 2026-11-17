@@ -1,0 +1,208 @@
+        -:    0:Source:tlvparse.c
+        -:    0:Graph:tlvparse.gcno
+        -:    0:Data:tlvparse.gcda
+        -:    0:Runs:1
+        -:    1:/*
+        -:    2: * tlvparse: read a TLV (type-length-value) record file and print one summary
+        -:    3: * line per record. Behaviour is specified in oracles/tlvparse/SPEC.md.
+        -:    4: *
+        -:    5: * File format: 4-byte magic "TLV1", then records of
+        -:    6: *   [type: 1 byte][length: 1 byte][value: length bytes]
+        -:    7: * Types: 1 = name (text), 2 = number (int32 little-endian), 3 = blob (bytes).
+        -:    8: */
+        -:    9:#include <stdint.h>
+        -:   10:#include <stdio.h>
+        -:   11:#include <stdlib.h>
+        -:   12:#include <string.h>
+        -:   13:
+        -:   14:#define MAX_VALUE 32
+        -:   15:#define MAX_RECORDS 16
+        -:   16:#define MAX_INPUT 65536
+        -:   17:
+        -:   18:enum { T_NAME = 1, T_NUMBER = 2, T_BLOB = 3 };
+        -:   19:
+        -:   20:struct record {
+        -:   21:    uint8_t type;
+        -:   22:    size_t len;
+        -:   23:    uint8_t *value;
+        -:   24:};
+        -:   25:
+        -:   26:/* Copy one record value into its fixed-size heap buffer. */
+function copy_value called 1 returned 100% blocks executed 50%
+        1:   27:static const char *copy_value(struct record *r, const uint8_t *src, size_t len) {
+        1:   28:    if (len >= MAX_VALUE)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        1:   29:        return "value too long";
+    #####:   30:    r->value = malloc(MAX_VALUE);
+    #####:   31:    if (!r->value)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   32:        return "out of memory";
+    #####:   33:    memcpy(r->value, src, len);
+    #####:   34:    r->len = len;
+    #####:   35:    return NULL;
+        -:   36:}
+        -:   37:
+function load_name called 1 returned 100% blocks executed 100%
+        1:   38:static const char *load_name(struct record *r, const uint8_t *src, size_t len) {
+        1:   39:    return copy_value(r, src, len);
+call    0 returned 1
+        -:   40:}
+        -:   41:
+function load_number called 0 returned 0% blocks executed 0%
+    #####:   42:static const char *load_number(struct record *r, const uint8_t *src, size_t len) {
+    #####:   43:    if (len != 4)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   44:        return "bad number length";
+    #####:   45:    return copy_value(r, src, len);
+call    0 never executed
+        -:   46:}
+        -:   47:
+function load_blob called 0 returned 0% blocks executed 0%
+    #####:   48:static const char *load_blob(struct record *r, const uint8_t *src, size_t len) {
+    #####:   49:    return copy_value(r, src, len);
+call    0 never executed
+        -:   50:}
+        -:   51:
+function parse called 1 returned 100% blocks executed 57%
+        1:   52:static const char *parse(const uint8_t *data, size_t size, struct record *recs, int *count) {
+        1:   53:    if (size < 4 || memcmp(data, "TLV1", 4) != 0)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+branch  2 taken 0 (fallthrough)
+branch  3 taken 1
+    #####:   54:        return "bad magic";
+        1:   55:    size_t pos = 4;
+        1:   56:    while (pos < size) {
+branch  0 taken 1
+branch  1 taken 0 (fallthrough)
+        1:   57:        if (size - pos < 2)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:   58:            return "truncated record";
+        1:   59:        uint8_t type = data[pos];
+        1:   60:        size_t len = data[pos + 1];
+        1:   61:        pos += 2;
+        1:   62:        if (size - pos < len)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:   63:            return "truncated record";
+        1:   64:        if (*count == MAX_RECORDS)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:   65:            return "too many records";
+        1:   66:        struct record *r = &recs[*count];
+        1:   67:        r->type = type;
+        -:   68:        const char *err;
+        1:   69:        switch (type) {
+branch  0 taken 1
+branch  1 taken 0
+branch  2 taken 0
+branch  3 taken 0
+        1:   70:        case T_NAME: err = load_name(r, data + pos, len); break;
+call    0 returned 1
+    #####:   71:        case T_NUMBER: err = load_number(r, data + pos, len); break;
+call    0 never executed
+    #####:   72:        case T_BLOB: err = load_blob(r, data + pos, len); break;
+call    0 never executed
+    #####:   73:        default: err = "unknown record type"; break;
+        -:   74:        }
+        1:   75:        if (r->value)
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:   76:            (*count)++;
+        1:   77:        if (err)
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        1:   78:            return err;
+    #####:   79:        pos += len;
+        -:   80:    }
+    #####:   81:    return NULL;
+        -:   82:}
+        -:   83:
+function print_record called 0 returned 0% blocks executed 0%
+    #####:   84:static void print_record(const struct record *r) {
+    #####:   85:    if (r->type == T_NAME) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:   86:        printf("name: %.*s\n", (int)r->len, (const char *)r->value);
+call    0 never executed
+    #####:   87:    } else if (r->type == T_NUMBER) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+        -:   88:        int32_t n;
+    #####:   89:        memcpy(&n, r->value, sizeof n);
+    #####:   90:        printf("number: %d\n", n);
+call    0 never executed
+        -:   91:    } else {
+    #####:   92:        unsigned sum = 0;
+    #####:   93:        for (size_t i = 0; i < r->len; i++)
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:   94:            sum += r->value[i];
+    #####:   95:        printf("blob: %zu bytes, sum=%u\n", r->len, sum);
+call    0 never executed
+        -:   96:    }
+    #####:   97:}
+        -:   98:
+function main called 1 returned 100% blocks executed 54%
+        1:   99:int main(int argc, char **argv) {
+        1:  100:    if (argc != 2) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:  101:        fputs("usage: tlvparse FILE\n", stderr);
+call    0 never executed
+    #####:  102:        return 3;
+        -:  103:    }
+        1:  104:    FILE *f = fopen(argv[1], "rb");
+call    0 returned 1
+        1:  105:    if (!f) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:  106:        fputs("error: cannot open input\n", stderr);
+call    0 never executed
+    #####:  107:        return 3;
+        -:  108:    }
+        -:  109:    static uint8_t data[MAX_INPUT + 1];
+        1:  110:    size_t size = fread(data, 1, sizeof data, f);
+call    0 returned 1
+        1:  111:    fclose(f);
+call    0 returned 1
+        1:  112:    if (size > MAX_INPUT) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:  113:        fputs("error: input too large\n", stderr);
+call    0 never executed
+    #####:  114:        return 2;
+        -:  115:    }
+        -:  116:
+        1:  117:    struct record recs[MAX_RECORDS] = {0};
+        1:  118:    int count = 0;
+        1:  119:    const char *err = parse(data, size, recs, &count);
+call    0 returned 1
+        1:  120:    if (!err) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:  121:        for (int i = 0; i < count; i++)
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  122:            print_record(&recs[i]);
+call    0 never executed
+    #####:  123:        printf("records: %d\n", count);
+call    0 never executed
+        -:  124:    }
+       1*:  125:    for (int i = 0; i < count; i++)
+branch  0 taken 0
+branch  1 taken 1 (fallthrough)
+    #####:  126:        free(recs[i].value);
+        1:  127:    if (err) {
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        1:  128:        fprintf(stderr, "error: %s\n", err);
+call    0 returned 1
+        1:  129:        return 2;
+        -:  130:    }
+    #####:  131:    return 0;
+        -:  132:}

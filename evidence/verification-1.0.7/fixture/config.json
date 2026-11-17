@@ -1,0 +1,131 @@
+{
+  "analyzers": [
+    "fixture-marker"
+  ],
+  "builds": {
+    "release": {
+      "binary": "program",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "main.c",
+        "-o",
+        "program"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O2"
+      ]
+    },
+    "sanitized": {
+      "binary": "program",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "main.c",
+        "-o",
+        "program"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined"
+      ],
+      "instrumentation": [
+        "__asan_init"
+      ]
+    }
+  },
+  "corpus_dir": "/private/tmp/patchcheck-107.QB05x6j3/grade/harmless-corpus",
+  "environment": {
+    "image": "patchcheck-framework:1.0",
+    "variables": {
+      "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+      "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+    }
+  },
+  "fixture": true,
+  "input": {
+    "argv": [
+      "{binary}",
+      "stdin"
+    ],
+    "cwd": ".",
+    "mode": "stdin"
+  },
+  "limits": {
+    "build_wall_seconds": 90,
+    "cpu_seconds": 2,
+    "file_bytes": 16777216,
+    "memory_mb": 384,
+    "output_bytes": 1048576,
+    "pids": 32,
+    "wall_seconds": 3
+  },
+  "minimization": {
+    "max_attempts": 100,
+    "wall_seconds": 180
+  },
+  "schema_version": "1.0",
+  "source": {
+    "base": "base",
+    "candidate": "candidate",
+    "repo": "/private/tmp/patchcheck-107.QB05x6j3/.fixture-repos/bytecount"
+  },
+  "target": "bytecount",
+  "tests": [
+    {
+      "category": "valid",
+      "id": "binary",
+      "input": "/private/tmp/patchcheck-107.QB05x6j3/corpus/bytecount/inputs/binary.bin",
+      "oracle": "/private/tmp/patchcheck-107.QB05x6j3/oracles/bytecount/accepted.json",
+      "signature": null
+    },
+    {
+      "category": "boundary",
+      "id": "empty",
+      "input": "/private/tmp/patchcheck-107.QB05x6j3/corpus/bytecount/inputs/empty.bin",
+      "oracle": "/private/tmp/patchcheck-107.QB05x6j3/oracles/bytecount/accepted.json",
+      "signature": null
+    },
+    {
+      "category": "invalid",
+      "id": "invalid",
+      "input": "/private/tmp/patchcheck-107.QB05x6j3/corpus/bytecount/inputs/invalid.bin",
+      "oracle": "/private/tmp/patchcheck-107.QB05x6j3/oracles/bytecount/invalid.json",
+      "signature": null
+    },
+    {
+      "category": "original",
+      "id": "marker",
+      "input": "/private/tmp/patchcheck-107.QB05x6j3/corpus/bytecount/inputs/marker.bin",
+      "oracle": "/private/tmp/patchcheck-107.QB05x6j3/oracles/bytecount/accepted.json",
+      "signature": {
+        "error_type": "fixture-marker",
+        "key": "MARK",
+        "location": "marker-check"
+      }
+    }
+  ],
+  "tools": {
+    "g++": "g\\+\\+ .*",
+    "gcc": "gcc .*",
+    "git": "git version .*",
+    "python3": "Python 3\\..*",
+    "readelf": "GNU readelf .*"
+  }
+}

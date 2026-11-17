@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:patchcheck:RunRecord",
+  "$ref": "#/$defs/RunRecord",
+  "$defs": {
+    "Limits": {
+      "type": "object",
+      "properties": {
+        "wall_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 120
+        },
+        "cpu_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "memory_mb": {
+          "type": "integer",
+          "minimum": 32,
+          "maximum": 2048
+        },
+        "pids": {
+          "type": "integer",
+          "minimum": 4,
+          "maximum": 128
+        },
+        "output_bytes": {
+          "type": "integer",
+          "minimum": 128,
+          "maximum": 16777216
+        },
+        "file_bytes": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 67108864
+        },
+        "build_wall_seconds": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 300
+        }
+      },
+      "required": [
+        "wall_seconds",
+        "cpu_seconds",
+        "memory_mb",
+        "pids",
+        "output_bytes",
+        "file_bytes",
+        "build_wall_seconds"
+      ],
+      "additionalProperties": false
+    },
+    "OracleEvaluation": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "checks": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "RunRecord": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,159}$"
+        },
+        "version": {
+          "enum": [
+            "base",
+            "candidate"
+          ]
+        },
+        "build_type": {
+          "enum": [
+            "release",
+            "sanitized"
+          ]
+        },
+        "build_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,159}$"
+        },
+        "test_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "input": {
+          "type": "string"
+        },
+        "input_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cwd": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "object"
+        },
+        "limits": {
+          "$ref": "#/$defs/Limits"
+        },
+        "duration_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "exit_code": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 255
+        },
+        "signal": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "timeout": {
+          "type": "boolean"
+        },
+        "resource_status": {
+          "enum": [
+            "ok",
+            "cpu_limit",
+            "memory_limit",
+            "file_limit",
+            "output_limit",
+            "unknown"
+          ]
+        },
+        "output_truncated": {
+          "type": "boolean"
+        },
+        "runner_error": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stdout": {
+          "type": "string"
+        },
+        "stderr": {
+          "type": "string"
+        },
+        "stdout_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "stderr_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rusage": {
+          "type": "object"
+        },
+        "sandbox": {
+          "type": "object"
+        },
+        "oracle": {
+          "$ref": "#/$defs/OracleEvaluation"
+        },
+        "analysis": {
+          "type": "object",
+          "properties": {
+            "complete": {
+              "type": "boolean"
+            },
+            "observations": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "reason": {
+              "type": "string"
+            },
+            "fixture_observation": {
+              "type": [
+                "object",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "complete",
+            "observations",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        "replay_of": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "version",
+        "build_type",
+        "build_id",
+        "test_id",
+        "input",
+        "input_sha256",
+        "command",
+        "cwd",
+        "environment",
+        "limits",
+        "duration_seconds",
+        "exit_code",
+        "signal",
+        "timeout",
+        "resource_status",
+        "output_truncated",
+        "runner_error",
+        "stdout",
+        "stderr",
+        "stdout_sha256",
+        "stderr_sha256",
+        "diagnostics",
+        "trace",
+        "rusage",
+        "sandbox",
+        "oracle",
+        "analysis",
+        "replay_of"
+      ],
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "properties": {
+            "exit_code": {
+              "type": "integer"
+            },
+            "signal": {
+              "type": "null"
+            }
+          }
+        },
+        {
+          "properties": {
+            "exit_code": {
+              "type": "null"
+            },
+            "signal": {
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "properties": {
+            "exit_code": {
+              "type": "null"
+            },
+            "signal": {
+              "type": "null"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

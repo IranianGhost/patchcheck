@@ -1,0 +1,2 @@
+deletion: exit 20, both relationships confirmed, verified gcov sides ['base']
+replacement: exit 20, both relationships confirmed, verified gcov sides ['base', 'candidate']

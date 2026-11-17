@@ -1,0 +1,29 @@
+{
+  "category": "boundary",
+  "id": "boundary-16records",
+  "input": "inputs/boundary-16records/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 0,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/tlvparse/SPEC.md#Input format"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "bnVtYmVyOiAxCm51bWJlcjogMgpudW1iZXI6IDMKbnVtYmVyOiA0Cm51bWJlcjogNQpudW1iZXI6IDYKbnVtYmVyOiA3Cm51bWJlcjogOApudW1iZXI6IDkKbnVtYmVyOiAxMApudW1iZXI6IDExCm51bWJlcjogMTIKbnVtYmVyOiAxMwpudW1iZXI6IDE0Cm51bWJlcjogMTUKbnVtYmVyOiAxNgpyZWNvcmRzOiAxNgo=",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "22e7bea5a0a1ca25f2dfc6cbc0a53e88487abf795be5fe00896f6a16c20885f9",
+  "signature": null,
+  "size": 100,
+  "target": "tlvparse"
+}

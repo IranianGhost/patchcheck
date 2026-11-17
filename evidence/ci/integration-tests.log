@@ -1,0 +1,36 @@
+test_new_candidate_ref_real_regression_both_wrong_and_missing_oracle (test_pipeline.PipelineTests.test_new_candidate_ref_real_regression_both_wrong_and_missing_oracle) ... Note: switching to '4fcf0ba260a0f2669de60253eb6f199548e76e02'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+ok
+test_real_build_failure_produces_report_30 (test_pipeline.PipelineTests.test_real_build_failure_produces_report_30) ... ok
+test_three_input_modes_four_build_cells_and_independent_oracles (test_pipeline.PipelineTests.test_three_input_modes_four_build_cells_and_independent_oracles) ... ok
+test_archive_traversal_and_links_are_rejected_before_extracting (test_reproduction.BundleSafetyTests.test_archive_traversal_and_links_are_rejected_before_extracting) ... ok
+test_minimized_regression_reloads_and_bundle_rebuilds_portably (test_reproduction.ReproductionTests.test_minimized_regression_reloads_and_bundle_rebuilds_portably) ... ok
+test_binary_stdout_and_stderr_and_nonzero (test_sandbox.SandboxTests.test_binary_stdout_and_stderr_and_nonzero) ... ok
+test_container_is_nonroot_no_network_and_memory_is_bounded (test_sandbox.SandboxTests.test_container_is_nonroot_no_network_and_memory_is_bounded) ... ok
+test_cpu_limit_is_applied (test_sandbox.SandboxTests.test_cpu_limit_is_applied) ... ok
+test_ignored_soft_cpu_signal_still_reports_hard_resource_limit (test_sandbox.SandboxTests.test_ignored_soft_cpu_signal_still_reports_hard_resource_limit) ... ok
+test_missing_executable_is_runner_error (test_sandbox.SandboxTests.test_missing_executable_is_runner_error) ... ok
+test_pids_and_file_size_caps_are_applied_and_children_are_cleaned (test_sandbox.SandboxTests.test_pids_and_file_size_caps_are_applied_and_children_are_cleaned) ... ok
+test_real_flaky_output_is_unstable (test_sandbox.SandboxTests.test_real_flaky_output_is_unstable) ... ok
+test_signal_is_native_not_128_plus_signal (test_sandbox.SandboxTests.test_signal_is_native_not_128_plus_signal) ... ok
+test_timeout_and_output_limit_are_distinct (test_sandbox.SandboxTests.test_timeout_and_output_limit_are_distinct) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 376.156s
+
+OK

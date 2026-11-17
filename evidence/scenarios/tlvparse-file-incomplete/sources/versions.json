@@ -1,0 +1,102 @@
+{
+  "base": {
+    "archive": "sources/base.tar",
+    "archive_sha256": "0c91a8f507b8d634a93b85134a0a2607043143c73f896059bded2b9c7d451992",
+    "commit": "e9f37539fbac0026e7006bf973f6f5bf83089c9e",
+    "dirty": false,
+    "manifest": "sources/base.manifest.json",
+    "path": "sources/base",
+    "requested_ref": "base"
+  },
+  "candidate": {
+    "archive": "sources/candidate.tar",
+    "archive_sha256": "128825f845022b7f3a308c5211a1f1a89266b5b4659c0d002e7995c13d2db7d9",
+    "commit": "2e845e88c9c2157ae3f70ef6fef8c731eee1bc01",
+    "dirty": false,
+    "manifest": "sources/candidate.manifest.json",
+    "path": "sources/candidate",
+    "requested_ref": "incomplete"
+  },
+  "diff": {
+    "files": [
+      "tlvparse.c"
+    ],
+    "hunks": [
+      {
+        "added": [
+          37,
+          38
+        ],
+        "after": {
+          "count": 8,
+          "start": 34
+        },
+        "before": {
+          "count": 6,
+          "start": 34
+        },
+        "context": "static const char *copy_value(struct record *r, const uint8_t *src, size_t len)",
+        "define_lines": {
+          "base": [],
+          "candidate": []
+        },
+        "defines": [],
+        "file": "tlvparse.c",
+        "functions": [
+          {
+            "end": 40,
+            "file": "tlvparse.c",
+            "function": "load_name",
+            "short": "load_name",
+            "start": 36,
+            "version": "candidate"
+          },
+          {
+            "end": 38,
+            "file": "tlvparse.c",
+            "function": "load_name",
+            "short": "load_name",
+            "start": 36,
+            "version": "base"
+          }
+        ],
+        "id": "h1",
+        "old_file": "tlvparse.c",
+        "removed": [],
+        "unmapped": false,
+        "unmapped_lines": {
+          "base": [],
+          "candidate": []
+        }
+      }
+    ],
+    "path": "sources/versions.patch",
+    "sha256": "52be7e74b01314158a87dae96b6480b00be0fa3b93d003b1d3c3b71560fe3b8b",
+    "snapshot_bundle": "sources/snapshots.bundle",
+    "source_map": {
+      "base": {
+        "callers": {
+          "load_name": [
+            {
+              "file": "tlvparse.c",
+              "function": "parse"
+            }
+          ]
+        },
+        "macro_users": {}
+      },
+      "candidate": {
+        "callers": {
+          "load_name": [
+            {
+              "file": "tlvparse.c",
+              "function": "parse"
+            }
+          ]
+        },
+        "macro_users": {}
+      }
+    },
+    "tool_version": "git version 2.50.1 (Apple Git-155)"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "category": "invalid",
+  "id": "invalid-magic",
+  "input": "inputs/invalid-magic/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 2,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/tlvparse/SPEC.md#Errors"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "ZXJyb3I6IGJhZCBtYWdpYwo=",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": {},
+  "schema_version": "1.0",
+  "sha256": "08a8700a4f65e76debe68a0fd28924ffcd1ec320b8d59a28b410ef8af6cf7840",
+  "signature": null,
+  "size": 7,
+  "target": "tlvparse"
+}

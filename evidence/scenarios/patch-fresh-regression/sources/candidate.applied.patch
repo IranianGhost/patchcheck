@@ -1,0 +1,13 @@
+diff --git a/tlvparse.c b/tlvparse.c
+index 48748bc..1b7e307 100644
+--- a/tlvparse.c
++++ b/tlvparse.c
+@@ -28,6 +28,8 @@ static const char *copy_value(struct record *r, const uint8_t *src, size_t len)
+     r->value = malloc(MAX_VALUE);
+     if (!r->value)
+         return "out of memory";
++    if (len >= MAX_VALUE)
++        return "value too long";
+     memcpy(r->value, src, len);
+     r->len = len;
+     return NULL;

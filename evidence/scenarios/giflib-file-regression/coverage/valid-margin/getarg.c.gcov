@@ -1,0 +1,890 @@
+        -:    0:Source:util/getarg.c
+        -:    0:Graph:gif2rgb-getarg.gcno
+        -:    0:Data:gif2rgb-getarg.gcda
+        -:    0:Runs:1
+        -:    1:/***************************************************************************
+        -:    2:
+        -:    3:getarg.c - routines to grab the parameters from the command line:
+        -:    4:
+        -:    5:Names of all the routines except the main one start with GA (Get
+        -:    6:Arguments) to prevent conflicts.
+        -:    7:
+        -:    8:The following routines are available in this module:
+        -:    9:
+        -:   10:1. int GAGetArgs(argc, argv, CtrlStr, Variables...)
+        -:   11:where argc, argv are received on entry.
+        -:   12:CtrlStr is the contrl string (see below)
+        -:   13:Variables are all the variables to be set according to CtrlStr.
+        -:   14:Note that all the variables MUST be transfered by address.
+        -:   15:Return 0 on correct parsing, otherwise error number (see GetArg.h).
+        -:   16:
+        -:   17:2. GAPrintHowTo(CtrlStr)
+        -:   18:Print the control string to stderr, in the correct format.
+        -:   19:This feature is very useful in case of an error during GetArgs parsing.
+        -:   20:Chars equal to SPACE_CHAR are not printed (regular spaces are NOT
+        -:   21:allowed, and so using SPACE_CHAR you can create space in PrintHowTo).
+        -:   22:
+        -:   23:3. GAPrintErrMsg(Error)
+        -:   24:Describe the error to stderr, according to Error (usually returned by
+        -:   25:GAGetArgs).
+        -:   26:
+        -:   27:CtrlStr format:
+        -:   28:
+        -:   29:The control string passed to GetArgs controls the way argv (argc) are
+        -:   30:parsed. Each entry in this string must not have any spaces in it. The
+        -:   31:First Entry is the name of the program, which is usually ignored except
+        -:   32:when GAPrintHowTo is called. All the other entries (except the last one
+        -:   33:which we will come back to later) must have the following format:
+        -:   34:
+        -:   35:1. One letter which sets the option letter.
+        -:   36:2. '!' or '%' to determines if this option is really optional ('%') or
+        -:   37:   required ('!')...
+        -:   38:3. '-' must always be given.
+        -:   39:4. Alphanumeric string, usually ignored, but used by GAPrintHowTo to
+        -:   40:   print the meaning of this option.
+        -:   41:5. Sequences starts with '!' or '%'. Again if '!' then this sequence
+        -:   42:   must exist (only if its option flag is given of course), and if '%'
+        -:   43:   it is optional. Each sequence will continue with one or two
+        -:   44:   characters which defines the kind of the input:
+        -:   45:a: d, x, o, u - integer is expected (decimal, hex, octal base or unsigned).
+        -:   46:b: D, X, O, U - long integer is expected (same as above).
+        -:   47:c: f - float number is expected.
+        -:   48:d: F - double number is expected.
+        -:   49:e: s - string is expected.
+        -:   50:f: *? - any number of '?' kind (d, x, o, u, D, X, O, U, f, F, s)
+        -:   51:   will match this one. If '?' is numeric, it scans until
+        -:   52:   non-numeric input is given. If '?' is 's' then it scans
+        -:   53:   up to the next option or end of argv.
+        -:   54:
+        -:   55:If the last parameter given in the CtrlStr, is not an option (i.e. the
+        -:   56:second char is not in ['!', '%'] and the third one is not '-'), all what
+        -:   57:remained from argv is linked to it.
+        -:   58:
+        -:   59:The variables passed to GAGetArgs (starting from 4th parameter) MUST
+        -:   60:match the order of the CtrlStr:
+        -:   61:
+        -:   62:For each option, one integer address must be passed. This integer must
+        -:   63:be initialized with 0. If that option is given in the command line, it will
+        -:   64:be set.
+        -:   65:
+        -:   66:In addition, the sequences that might follow an option require the
+        -:   67:following parameters to pass:
+        -:   68:
+        -:   69:1. d, x, o, u - pointer to integer (int *).
+        -:   70:2. D, X, O, U - pointer to long (long *).
+        -:   71:3. f - pointer to float (float *).
+        -:   72:4. F - pointer to double (double *).
+        -:   73:5. s - pointer to char (char *). NO allocation is needed!
+        -:   74:6. *? - TWO variables are passed for each wild request. the first
+        -:   75:   one is (address of) integer, and it will return number of
+        -:   76:   parameters actually matched this sequence, and the second
+        -:   77:   one is a pointer to pointer to ? (? **), and will return an
+        -:   78:   address to a block of pointers to ? kind, terminated with
+        -:   79:   NULL pointer. NO pre-allocation is required. The caller is
+        -:   80:   responsible for freeing this memory, including the pointed to
+        -:   81:   memory.
+        -:   82:
+        -:   83:Note that these two variables are pretty like the argv/argc pair...
+        -:   84:
+        -:   85:Examples:
+        -:   86:
+        -:   87:"Example1 i%-OneInteger!d s%-Strings!*s j%- k!-Float!f Files"
+        -:   88:
+        -:   89:Will match: Example1 -i 77 -s String1 String2 String3 -k 88.2 File1 File2
+        -:   90:or: Example1 -s String1 -k 88.3 -i 999 -j
+        -:   91:but not: Example1 -i 77 78 (option i expects one integer, k must be).
+        -:   92:
+        -:   93:Note the option k must exist, and that the order of the options is not
+        -:   94:important. In the first examples File1 & File2 will match the Files
+        -:   95:in the command line.
+        -:   96:
+        -:   97:A call to GAPrintHowTo with this CtrlStr will print to stderr:
+        -:   98:Example1 [-i OneIngeter] [-s Strings...] [-j] -k Float Files...
+        -:   99:
+        -:  100:Notes:
+        -:  101:
+        -:  102:1. This module assumes that all the pointers to all kind of data types
+        -:  103:have the same length and format, i.e. sizeof(int *) == sizeof(char *).
+        -:  104:
+        -:  105:**************************************************************************/
+        -:  106:
+        -:  107:#include <stdlib.h>
+        -:  108:#include <stdio.h>
+        -:  109:#include <string.h>
+        -:  110:#include <stdbool.h>
+        -:  111:#include <stdarg.h>
+        -:  112: 
+        -:  113:#include "getarg.h"
+        -:  114:
+        -:  115:#define MAX_PARAM           100    /* maximum number of parameters allowed. */
+        -:  116:#define CTRL_STR_MAX_LEN    1024
+        -:  117:
+        -:  118:#define SPACE_CHAR '|'  /* The character not to print using HowTo. */
+        -:  119:
+        -:  120:#define ARG_OK false
+        -:  121:
+        -:  122:#define ISSPACE(x) ((x) <= ' ') /* Not conventional - but works fine! */
+        -:  123:
+        -:  124:/* The two characters '%' and '!' are used in the control string: */
+        -:  125:#define ISCTRLCHAR(x) (((x) == '%') || ((x) == '!'))
+        -:  126:
+        -:  127:static char *GAErrorToken;  /* On error, ErrorToken is set to point to it. */
+        -:  128:static int GATestAllSatis(char *CtrlStrCopy, char *CtrlStr, char **argv_end,
+        -:  129:                          char ***argv, void *Parameters[MAX_PARAM],
+        -:  130:                          int *ParamCount);
+        -:  131:static bool GAUpdateParameters(void *Parameters[], int *ParamCount,
+        -:  132:                              char *Option, char *CtrlStrCopy, char *CtrlStr,
+        -:  133:                              char **argv_end, char ***argv);
+        -:  134:static int GAGetParmeters(void *Parameters[], int *ParamCount,
+        -:  135:                          char *CtrlStrCopy, char *Option, char **argv_end,
+        -:  136:                          char ***argv);
+        -:  137:static int GAGetMultiParmeters(void *Parameters[], int *ParamCount,
+        -:  138:                               char *CtrlStrCopy, char **argv_end, char ***argv);
+        -:  139:static void GASetParamCount(char *CtrlStr, int Max, int *ParamCount);
+        -:  140:static bool GAOptionExists(char **argv_end, char **argv);
+        -:  141:
+        -:  142:/***************************************************************************
+        -:  143: Allocate or die
+        -:  144:***************************************************************************/
+        -:  145:static void *
+function xmalloc called 0 returned 0% blocks executed 0%
+    #####:  146:xmalloc(unsigned size) {
+        -:  147:
+        -:  148:    void *p;
+        -:  149:
+    #####:  150:    if ((p = malloc(size)) != NULL)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  151:        return p;
+        -:  152:
+    #####:  153:    fprintf(stderr, "Not enough memory, exit.\n");
+call    0 never executed
+    #####:  154:    exit(2);
+call    0 never executed
+        -:  155:
+        -:  156:    return NULL;    /* Makes warning silent. */
+        -:  157:}
+        -:  158:/***************************************************************************
+        -:  159: Routine to access the command line argument and interpret them:       
+        -:  160: Return ARG_OK (0) is case of successful parsing, error code else...       
+        -:  161:***************************************************************************/
+        -:  162:bool
+function GAGetArgs called 1 returned 100% blocks executed 94%
+        1:  163:GAGetArgs(int argc,
+        -:  164:        char **argv,
+        -:  165:        char *CtrlStr, ...) {
+        -:  166:
+        1:  167:    int i, ParamCount = 0;
+        1:  168:    bool Error = false;
+        -:  169:    void *Parameters[MAX_PARAM];     /* Save here parameter addresses. */
+        -:  170:    char *Option, CtrlStrCopy[CTRL_STR_MAX_LEN];
+        1:  171:    char **argv_end = argv + argc;
+        -:  172:    va_list ap;
+        -:  173:
+        1:  174:    strncpy(CtrlStrCopy, CtrlStr, sizeof(CtrlStrCopy)-1);
+        1:  175:    GASetParamCount(CtrlStr, strlen(CtrlStr), &ParamCount);
+call    0 returned 1
+        1:  176:    va_start(ap, CtrlStr);
+       13:  177:    for (i = 1; i <= ParamCount; i++)
+branch  0 taken 12
+branch  1 taken 1 (fallthrough)
+       12:  178:        Parameters[i - 1] = va_arg(ap, void *);
+call    0 returned 12
+        1:  179:    va_end(ap);
+        -:  180:
+        1:  181:    argv++;    /* Skip the program name (first in argv/c list). */
+        2:  182:    while (argv < argv_end) {
+branch  0 taken 2
+branch  1 taken 0 (fallthrough)
+        2:  183:        if (!GAOptionExists(argv_end, argv))
+call    0 returned 2
+branch  1 taken 1 (fallthrough)
+branch  2 taken 1
+        1:  184:            break;    /* The loop. */
+        1:  185:        Option = *argv++;
+        1:  186:        if ((Error = GAUpdateParameters(Parameters, &ParamCount, Option,
+call    0 returned 1
+branch  1 taken 0 (fallthrough)
+branch  2 taken 1
+        -:  187:                                        CtrlStrCopy, CtrlStr, argv_end,
+        -:  188:                                        &argv)) != false)
+    #####:  189:            return Error;
+        -:  190:    }
+        -:  191:    /* Check for results and update trail of command line: */
+        1:  192:    return GATestAllSatis(CtrlStrCopy, CtrlStr, argv_end, &argv, Parameters,
+call    0 returned 1
+        1:  193:                          &ParamCount) != ARG_OK;
+        -:  194:}
+        -:  195:
+        -:  196:/***************************************************************************
+        -:  197: Routine to search for unsatisfied flags - simply scan the list for !- 
+        -:  198: sequence. Before this scan, this routine updates the rest of the command
+        -:  199: line into the last two parameters if it is requested by the CtrlStr 
+        -:  200: (last item in CtrlStr is NOT an option). 
+        -:  201: Return ARG_OK if all satisfied, CMD_ERR_AllSatis error else. 
+        -:  202:***************************************************************************/
+        -:  203:static int
+function GATestAllSatis called 1 returned 100% blocks executed 94%
+        1:  204:GATestAllSatis(char *CtrlStrCopy,
+        -:  205:               char *CtrlStr,
+        -:  206:               char **argv_end,
+        -:  207:               char ***argv,
+        -:  208:               void *Parameters[MAX_PARAM],
+        -:  209:               int *ParamCount) {
+        -:  210:
+        -:  211:    int i;
+        -:  212:    static char *LocalToken = NULL;
+        -:  213:
+        -:  214:    /* If LocalToken is not initialized - do it now. Note that this string
+        -:  215:     * should be writable as well so we can not assign it directly.
+        -:  216:     */
+        1:  217:    if (LocalToken == NULL) {
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        1:  218:        LocalToken = (char *)malloc(3);
+        1:  219:        strcpy(LocalToken, "-?");
+        -:  220:    }
+        -:  221:
+        -:  222:    /* Check if last item is an option. If not then copy rest of command
+        -:  223:     * line into it as 1. NumOfprm, 2. pointer to block of pointers.
+        -:  224:     */
+       11:  225:    for (i = strlen(CtrlStr) - 1; i > 0 && !ISSPACE(CtrlStr[i]); i--) ;
+branch  0 taken 11 (fallthrough)
+branch  1 taken 0
+branch  2 taken 10
+branch  3 taken 1 (fallthrough)
+        1:  226:    if (!ISCTRLCHAR(CtrlStr[i + 2])) {
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0
+        1:  227:        GASetParamCount(CtrlStr, i, ParamCount); /* Point in correct param. */
+call    0 returned 1
+        1:  228:        *(int *)Parameters[(*ParamCount)++] = argv_end - *argv;
+        1:  229:	*(char ***)Parameters[(*ParamCount)++] = *argv;
+        -:  230:    }
+        -:  231:
+        1:  232:    i = 0;
+       80:  233:    while (++i < (int)strlen(CtrlStrCopy))
+branch  0 taken 79
+branch  1 taken 1 (fallthrough)
+       79:  234:        if ((CtrlStrCopy[i] == '-') && (CtrlStrCopy[i - 1] == '!')) {
+branch  0 taken 5 (fallthrough)
+branch  1 taken 74
+branch  2 taken 0 (fallthrough)
+branch  3 taken 5
+    #####:  235:            GAErrorToken = LocalToken;
+    #####:  236:            LocalToken[1] = CtrlStrCopy[i - 2];    /* Set the correct flag. */
+    #####:  237:            return CMD_ERR_AllSatis;
+        -:  238:        }
+        -:  239:
+        1:  240:    return ARG_OK;
+        -:  241:}
+        -:  242:
+        -:  243:/***************************************************************************
+        -:  244: Routine to update the parameters according to the given Option:
+        -:  245: **************************************************************************/
+        -:  246:static bool
+function GAUpdateParameters called 1 returned 100% blocks executed 59%
+        1:  247:GAUpdateParameters(void *Parameters[],
+        -:  248:                   int *ParamCount,
+        -:  249:                   char *Option,
+        -:  250:                   char *CtrlStrCopy,
+        -:  251:                   char *CtrlStr,
+        -:  252:                   char **argv_end,
+        -:  253:                   char ***argv) {
+        -:  254:
+        -:  255:    int i;
+        1:  256:    bool BooleanTrue = Option[2] != '-';
+        -:  257:
+        1:  258:    if (Option[0] != '-') {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:  259:        GAErrorToken = Option;
+    #####:  260:        return CMD_ERR_NotAnOpt;
+        -:  261:    }
+        1:  262:    i = 0;    /* Scan the CtrlStrCopy for that option: */
+       46:  263:    while (i + 2 < (int)strlen(CtrlStrCopy)) {
+branch  0 taken 46
+branch  1 taken 0 (fallthrough)
+      46*:  264:        if ((CtrlStrCopy[i] == Option[1]) && (ISCTRLCHAR(CtrlStrCopy[i + 1]))
+branch  0 taken 1 (fallthrough)
+branch  1 taken 45
+branch  2 taken 0 (fallthrough)
+branch  3 taken 1
+branch  4 never executed (fallthrough)
+branch  5 never executed
+        1:  265:            && (CtrlStrCopy[i + 2] == '-')) {
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        -:  266:            /* We found that option! */
+        1:  267:            break;
+        -:  268:        }
+       45:  269:        i++;
+        -:  270:    }
+        1:  271:    if (i + 2 >= (int)strlen(CtrlStrCopy)) {
+branch  0 taken 0 (fallthrough)
+branch  1 taken 1
+    #####:  272:        GAErrorToken = Option;
+    #####:  273:        return CMD_ERR_NoSuchOpt;
+        -:  274:    }
+        -:  275:
+        -:  276:    /* If we are here, then we found that option in CtrlStr - Strip it off: */
+        1:  277:    CtrlStrCopy[i] = CtrlStrCopy[i + 1] = CtrlStrCopy[i + 2] = (char)' ';
+        1:  278:    GASetParamCount(CtrlStr, i, ParamCount); /* Set it to point in
+call    0 returned 1
+        -:  279:                                                correct prm. */
+        1:  280:    i += 3;
+        -:  281:    /* Set boolean flag for that option. */
+        1:  282:    *(bool *)Parameters[(*ParamCount)++] = BooleanTrue;
+        1:  283:    if (ISSPACE(CtrlStrCopy[i]))
+branch  0 taken 1 (fallthrough)
+branch  1 taken 0
+        1:  284:        return ARG_OK;    /* Only a boolean flag is needed. */
+        -:  285:
+        -:  286:    /* Skip the text between the boolean option and data follows: */
+    #####:  287:    while (!ISCTRLCHAR(CtrlStrCopy[i]))
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed (fallthrough)
+    #####:  288:        i++;
+        -:  289:    /* Get the parameters and return the appropriete return code: */
+    #####:  290:    return GAGetParmeters(Parameters, ParamCount, &CtrlStrCopy[i],
+call    0 never executed
+        -:  291:                          Option, argv_end, argv);
+        -:  292:}
+        -:  293:
+        -:  294:/***************************************************************************
+        -:  295: Routine to get parameters according to the CtrlStr given from argv/argc
+        -:  296:***************************************************************************/
+        -:  297:static int
+function GAGetParmeters called 0 returned 0% blocks executed 0%
+    #####:  298:GAGetParmeters(void *Parameters[],
+        -:  299:               int *ParamCount,
+        -:  300:               char *CtrlStrCopy,
+        -:  301:               char *Option,
+        -:  302:               char **argv_end,
+        -:  303:               char ***argv) {
+        -:  304:
+    #####:  305:    int i = 0, ScanRes;
+        -:  306:
+    #####:  307:    while (!(ISSPACE(CtrlStrCopy[i]))) {
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  308:        switch (CtrlStrCopy[i + 1]) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+branch  8 never executed
+branch  9 never executed
+branch 10 never executed
+branch 11 never executed
+branch 12 never executed
+    #####:  309:          case 'd':    /* Get signed integers. */
+        -:  310:	      // cppcheck-suppress invalidscanf 
+    #####:  311:              ScanRes = sscanf(*((*argv)++), "%d",
+    #####:  312:                               (int *)Parameters[(*ParamCount)++]);
+    #####:  313:              break;
+    #####:  314:          case 'u':    /* Get unsigned integers. */
+        -:  315:	      // cppcheck-suppress invalidscanf 
+    #####:  316:              ScanRes = sscanf(*((*argv)++), "%u",
+    #####:  317:                               (unsigned *)Parameters[(*ParamCount)++]);
+    #####:  318:              break;
+    #####:  319:          case 'x':    /* Get hex integers. */
+        -:  320:	      // cppcheck-suppress invalidscanf 
+    #####:  321:              ScanRes = sscanf(*((*argv)++), "%x",
+    #####:  322:                               (unsigned int *)Parameters[(*ParamCount)++]);
+    #####:  323:              break;
+    #####:  324:          case 'o':    /* Get octal integers. */
+        -:  325:	      // cppcheck-suppress invalidscanf 
+    #####:  326:              ScanRes = sscanf(*((*argv)++), "%o",
+    #####:  327:                               (unsigned int *)Parameters[(*ParamCount)++]);
+    #####:  328:              break;
+    #####:  329:          case 'D':    /* Get signed long integers. */
+        -:  330:	      // cppcheck-suppress invalidscanf 
+    #####:  331:              ScanRes = sscanf(*((*argv)++), "%ld",
+    #####:  332:                               (long *)Parameters[(*ParamCount)++]);
+    #####:  333:              break;
+    #####:  334:          case 'U':    /* Get unsigned long integers. */
+        -:  335:	      // cppcheck-suppress invalidscanf 
+    #####:  336:              ScanRes = sscanf(*((*argv)++), "%lu",
+    #####:  337:                               (unsigned long *)Parameters[(*ParamCount)++]);
+    #####:  338:              break;
+    #####:  339:          case 'X':    /* Get hex long integers. */
+        -:  340:	      // cppcheck-suppress invalidscanf 
+    #####:  341:              ScanRes = sscanf(*((*argv)++), "%lx",
+    #####:  342:                               (unsigned long *)Parameters[(*ParamCount)++]);
+    #####:  343:              break;
+    #####:  344:          case 'O':    /* Get octal long integers. */
+        -:  345:	      // cppcheck-suppress invalidscanf 
+    #####:  346:              ScanRes = sscanf(*((*argv)++), "%lo",
+    #####:  347:                               (unsigned long *)Parameters[(*ParamCount)++]);
+    #####:  348:              break;
+    #####:  349:          case 'f':    /* Get float number. */
+        -:  350:	      // cppcheck-suppress invalidscanf 
+    #####:  351:              ScanRes = sscanf(*((*argv)++), "%f",
+    #####:  352:                               (float *)Parameters[(*ParamCount)++]);
+    #####:  353:	      break;
+    #####:  354:          case 'F':    /* Get double float number. */
+        -:  355:	      // cppcheck-suppress invalidscanf 
+    #####:  356:              ScanRes = sscanf(*((*argv)++), "%lf",
+    #####:  357:                               (double *)Parameters[(*ParamCount)++]);
+    #####:  358:              break;
+    #####:  359:          case 's':    /* It as a string. */
+    #####:  360:              ScanRes = 1;    /* Allways O.K. */
+    #####:  361:	      *(char **)Parameters[(*ParamCount)++] = *((*argv)++);
+    #####:  362:              break;
+    #####:  363:          case '*':    /* Get few parameters into one: */
+    #####:  364:              ScanRes = GAGetMultiParmeters(Parameters, ParamCount,
+call    0 never executed
+        -:  365:                                            &CtrlStrCopy[i], argv_end, argv);
+    #####:  366:              if ((ScanRes == 0) && (CtrlStrCopy[i] == '!')) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed (fallthrough)
+branch  3 never executed
+    #####:  367:                  GAErrorToken = Option;
+    #####:  368:                  return CMD_ERR_WildEmpty;
+        -:  369:              }
+    #####:  370:              break;
+    #####:  371:          default:
+    #####:  372:              ScanRes = 0;    /* Make optimizer warning silent. */
+        -:  373:        }
+        -:  374:        /* If reading fails and this number is a must (!) then error: */
+    #####:  375:        if ((ScanRes == 0) && (CtrlStrCopy[i] == '!')) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed (fallthrough)
+branch  3 never executed
+    #####:  376:            GAErrorToken = Option;
+    #####:  377:            return CMD_ERR_NumRead;
+        -:  378:        }
+    #####:  379:        if (CtrlStrCopy[i + 1] != '*') {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  380:            i += 2;    /* Skip to next parameter (if any). */
+        -:  381:        } else
+    #####:  382:            i += 3;    /* Skip the '*' also! */
+        -:  383:    }
+        -:  384:
+    #####:  385:    return ARG_OK;
+        -:  386:}
+        -:  387:
+        -:  388:/***************************************************************************
+        -:  389: Routine to get a few parameters into one pointer such that the returned
+        -:  390: pointer actually points on a block of pointers to the parameters...
+        -:  391: For example *F means a pointer to pointers on floats.
+        -:  392: Returns number of parameters actually read.
+        -:  393: This routine assumes that all pointers (on any kind of scalar) has the
+        -:  394: same size (and the union below is totally ovelapped bteween dif. arrays)
+        -:  395:***************************************************************************/
+        -:  396:static int
+function GAGetMultiParmeters called 0 returned 0% blocks executed 0%
+    #####:  397:GAGetMultiParmeters(void *Parameters[],
+        -:  398:                    int *ParamCount,
+        -:  399:                    char *CtrlStrCopy,
+        -:  400:                    char **argv_end,
+        -:  401:                    char ***argv) {
+        -:  402:
+    #####:  403:    int i = 0, ScanRes, NumOfPrm = 0;
+        -:  404:    void **Pmain, **Ptemp;
+        -:  405:    union TmpArray {    /* Save here the temporary data before copying it to */
+        -:  406:        void *VoidArray[MAX_PARAM];    /* the returned pointer block. */
+        -:  407:        int *IntArray[MAX_PARAM];
+        -:  408:        long *LngArray[MAX_PARAM];
+        -:  409:        float *FltArray[MAX_PARAM];
+        -:  410:        double *DblArray[MAX_PARAM];
+        -:  411:        char *ChrArray[MAX_PARAM];
+        -:  412:    } TmpArray;
+        -:  413:
+        -:  414:    do {
+    #####:  415:        switch (CtrlStrCopy[2]) { /* CtrlStr == '!*?' or '%*?' where ? is. */
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+branch  7 never executed
+branch  8 never executed
+branch  9 never executed
+branch 10 never executed
+branch 11 never executed
+    #####:  416:          case 'd':    /* Format to read the parameters: */
+    #####:  417:              TmpArray.IntArray[NumOfPrm] = xmalloc(sizeof(int));
+call    0 never executed
+        -:  418:	      // cppcheck-suppress invalidscanf 
+    #####:  419:              ScanRes = sscanf(*((*argv)++), "%d",
+    #####:  420:                               (int *)TmpArray.IntArray[NumOfPrm++]);
+    #####:  421:              break;
+    #####:  422:          case 'u':
+    #####:  423:              TmpArray.IntArray[NumOfPrm] = xmalloc(sizeof(int));
+call    0 never executed
+        -:  424:	      // cppcheck-suppress invalidscanf 
+    #####:  425:              ScanRes = sscanf(*((*argv)++), "%u",
+    #####:  426:                               (unsigned int *)TmpArray.IntArray[NumOfPrm++]);
+    #####:  427:              break;
+    #####:  428:          case 'o':
+    #####:  429:              TmpArray.IntArray[NumOfPrm] = xmalloc(sizeof(int));
+call    0 never executed
+        -:  430:	      // cppcheck-suppress invalidscanf 
+    #####:  431:              ScanRes = sscanf(*((*argv)++), "%o",
+    #####:  432:                               (unsigned int *)TmpArray.IntArray[NumOfPrm++]);
+    #####:  433:              break;
+    #####:  434:          case 'x':
+    #####:  435:              TmpArray.IntArray[NumOfPrm] = xmalloc(sizeof(int));
+call    0 never executed
+        -:  436:	      // cppcheck-suppress invalidscanf 
+    #####:  437:              ScanRes = sscanf(*((*argv)++), "%x",
+    #####:  438:                               (unsigned int *)TmpArray.IntArray[NumOfPrm++]);
+    #####:  439:              break;
+    #####:  440:          case 'D':
+    #####:  441:              TmpArray.LngArray[NumOfPrm] = xmalloc(sizeof(long));
+call    0 never executed
+        -:  442:	      // cppcheck-suppress invalidscanf 
+    #####:  443:              ScanRes = sscanf(*((*argv)++), "%ld",
+    #####:  444:                               (long *)TmpArray.IntArray[NumOfPrm++]);
+    #####:  445:              break;
+    #####:  446:          case 'U':
+    #####:  447:              TmpArray.LngArray[NumOfPrm] = xmalloc(sizeof(long));
+call    0 never executed
+        -:  448:	      // cppcheck-suppress invalidscanf 
+    #####:  449:              ScanRes = sscanf(*((*argv)++), "%lu",
+        -:  450:                               (unsigned long *)TmpArray.
+    #####:  451:                               IntArray[NumOfPrm++]);
+    #####:  452:              break;
+    #####:  453:          case 'O':
+    #####:  454:              TmpArray.LngArray[NumOfPrm] = xmalloc(sizeof(long));
+call    0 never executed
+        -:  455:	      // cppcheck-suppress invalidscanf 
+    #####:  456:              ScanRes = sscanf(*((*argv)++), "%lo",
+        -:  457:                               (unsigned long *)TmpArray.
+    #####:  458:                               IntArray[NumOfPrm++]);
+    #####:  459:              break;
+    #####:  460:          case 'X':
+    #####:  461:              TmpArray.LngArray[NumOfPrm] = xmalloc(sizeof(long));
+call    0 never executed
+        -:  462:	      // cppcheck-suppress invalidscanf 
+    #####:  463:              ScanRes = sscanf(*((*argv)++), "%lx",
+        -:  464:                               (unsigned long *)TmpArray.
+    #####:  465:                               IntArray[NumOfPrm++]);
+    #####:  466:              break;
+    #####:  467:          case 'f':
+    #####:  468:              TmpArray.FltArray[NumOfPrm] = xmalloc(sizeof(float));
+call    0 never executed
+        -:  469:	      // cppcheck-suppress invalidscanf 
+    #####:  470:              ScanRes = sscanf(*((*argv)++), "%f",
+    #####:  471:                               (float *)TmpArray.LngArray[NumOfPrm++]);
+    #####:  472:              break;
+    #####:  473:          case 'F':
+    #####:  474:              TmpArray.DblArray[NumOfPrm] = xmalloc(sizeof(double));
+call    0 never executed
+        -:  475:	      // cppcheck-suppress invalidscanf 
+    #####:  476:              ScanRes = sscanf(*((*argv)++), "%lf",
+    #####:  477:                               (double *)TmpArray.LngArray[NumOfPrm++]);
+    #####:  478:              break;
+    #####:  479:          case 's':
+    #####:  480:              while ((*argv < argv_end) && ((**argv)[0] != '-')) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed (fallthrough)
+    #####:  481:                  TmpArray.ChrArray[NumOfPrm++] = *((*argv)++);
+        -:  482:              }
+    #####:  483:              ScanRes = 0;    /* Force quit from do - loop. */
+    #####:  484:              NumOfPrm++;    /* Updated again immediately after loop! */
+    #####:  485:              (*argv)++;    /* "" */
+    #####:  486:              break;
+    #####:  487:          default:
+    #####:  488:              ScanRes = 0;    /* Make optimizer warning silent. */
+        -:  489:        }
+        -:  490:    }
+    #####:  491:    while (ScanRes == 1);    /* Exactly one parameter was read. */
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  492:    (*argv)--;
+    #####:  493:    NumOfPrm--;
+        -:  494:
+        -:  495:    /* Now allocate the block with the exact size, and set it: */
+    #####:  496:    Ptemp = Pmain = xmalloc((unsigned)(NumOfPrm + 1) * sizeof(void *));
+call    0 never executed
+        -:  497:    /* And here we use the assumption that all pointers are the same: */
+    #####:  498:    for (i = 0; i < NumOfPrm; i++)
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  499:        *Ptemp++ = TmpArray.VoidArray[i];
+    #####:  500:    *Ptemp = NULL;    /* Close the block with NULL pointer. */
+        -:  501:
+        -:  502:    /* That it save the number of parameters read as first parameter to
+        -:  503:     * return and the pointer to the block as second, and return: */
+    #####:  504:    *(int *)Parameters[(*ParamCount)++] = NumOfPrm;
+    #####:  505:    *(void ***)Parameters[(*ParamCount)++] = Pmain;
+        -:  506:    /* free(Pmain); -- can not free here as caller needs to access memory */
+    #####:  507:    return NumOfPrm;
+        -:  508:}
+        -:  509:
+        -:  510:/***************************************************************************
+        -:  511: Routine to scan the CtrlStr, up to Max and count the number of parameters
+        -:  512: to that point:
+        -:  513: 1. Each option is counted as one parameter - boolean variable (int)
+        -:  514: 2. Within an option, each %? or !? is counted once - pointer to something
+        -:  515: 3. Within an option, %*? or !*? is counted twice - one for item count
+        -:  516: and one for pointer to block pointers.
+        -:  517: Note ALL variables are passed by address and so of fixed size (address).
+        -:  518:***************************************************************************/
+        -:  519:static void
+function GASetParamCount called 3 returned 100% blocks executed 100%
+        3:  520:GASetParamCount(char *CtrlStr,
+        -:  521:                int Max,
+        -:  522:                int *ParamCount) {
+        -:  523:    int i;
+        -:  524:
+        3:  525:    *ParamCount = 0;
+      197:  526:    for (i = 0; i < Max; i++)
+branch  0 taken 194
+branch  1 taken 3 (fallthrough)
+      194:  527:        if (ISCTRLCHAR(CtrlStr[i])) {
+branch  0 taken 179 (fallthrough)
+branch  1 taken 15
+branch  2 taken 12 (fallthrough)
+branch  3 taken 167
+       27:  528:            if (CtrlStr[i + 1] == '*')
+branch  0 taken 1 (fallthrough)
+branch  1 taken 26
+        1:  529:                *ParamCount += 2;
+        -:  530:            else
+       26:  531:                (*ParamCount)++;
+        -:  532:        }
+        3:  533:}
+        -:  534:
+        -:  535:/***************************************************************************
+        -:  536: Routine to check if more option (i.e. first char == '-') exists in the
+        -:  537: given list argc, argv:
+        -:  538:***************************************************************************/
+        -:  539:static bool
+function GAOptionExists called 2 returned 100% blocks executed 100%
+        2:  540:GAOptionExists(char **argv_end,
+        -:  541:               char **argv) {
+        -:  542:
+        3:  543:    while (argv < argv_end)
+branch  0 taken 2
+branch  1 taken 1 (fallthrough)
+        2:  544:        if ((*argv++)[0] == '-')
+branch  0 taken 1 (fallthrough)
+branch  1 taken 1
+        1:  545:            return true;
+        1:  546:    return false;
+        -:  547:}
+        -:  548:
+        -:  549:/***************************************************************************
+        -:  550: Routine to print some error messages, for this module:
+        -:  551:***************************************************************************/
+        -:  552:void
+function GAPrintErrMsg called 0 returned 0% blocks executed 0%
+    #####:  553:GAPrintErrMsg(int Error) {
+        -:  554:
+    #####:  555:    fprintf(stderr, "Error in command line parsing - ");
+call    0 never executed
+    #####:  556:    switch (Error) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed
+branch  6 never executed
+    #####:  557:      case 0:;
+    #####:  558:          fprintf(stderr, "Undefined error");
+call    0 never executed
+    #####:  559:          break;
+    #####:  560:      case CMD_ERR_NotAnOpt:
+    #####:  561:          fprintf(stderr, "None option Found");
+call    0 never executed
+    #####:  562:          break;
+    #####:  563:      case CMD_ERR_NoSuchOpt:
+    #####:  564:          fprintf(stderr, "Undefined option Found");
+call    0 never executed
+    #####:  565:          break;
+    #####:  566:      case CMD_ERR_WildEmpty:
+    #####:  567:          fprintf(stderr, "Empty input for '!*?' seq.");
+call    0 never executed
+    #####:  568:          break;
+    #####:  569:      case CMD_ERR_NumRead:
+    #####:  570:          fprintf(stderr, "Failed on reading number");
+call    0 never executed
+    #####:  571:          break;
+    #####:  572:      case CMD_ERR_AllSatis:
+    #####:  573:          fprintf(stderr, "Fail to satisfy");
+call    0 never executed
+    #####:  574:          break;
+        -:  575:    }
+    #####:  576:    fprintf(stderr, " - '%s'.\n", GAErrorToken);
+call    0 never executed
+    #####:  577:}
+        -:  578:
+        -:  579:/***************************************************************************
+        -:  580: Routine to print correct format of command line allowed:
+        -:  581:***************************************************************************/
+        -:  582:void
+function GAPrintHowTo called 0 returned 0% blocks executed 0%
+    #####:  583:GAPrintHowTo(char *CtrlStr) {
+        -:  584:
+    #####:  585:    int i = 0;
+        -:  586:    bool SpaceFlag;
+        -:  587:
+    #####:  588:    fprintf(stderr, "Usage: ");
+call    0 never executed
+        -:  589:    /* Print program name - first word in ctrl. str. (optional): */
+    #####:  590:    while (!(ISSPACE(CtrlStr[i])) && (!ISCTRLCHAR(CtrlStr[i + 1])))
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed (fallthrough)
+branch  3 never executed
+branch  4 never executed
+branch  5 never executed (fallthrough)
+    #####:  591:        fprintf(stderr, "%c", CtrlStr[i++]);
+call    0 never executed
+        -:  592:
+    #####:  593:    while (i < (int)strlen(CtrlStr)) {
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  594:        while ((ISSPACE(CtrlStr[i])) && (i < (int)strlen(CtrlStr)))
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed (fallthrough)
+    #####:  595:            i++;
+    #####:  596:        switch (CtrlStr[i + 1]) {
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+    #####:  597:          case '%':
+    #####:  598:              fprintf(stderr, " [-%c", CtrlStr[i++]);
+call    0 never executed
+    #####:  599:              i += 2;    /* Skip the '%-' or '!- after the char! */
+    #####:  600:              SpaceFlag = true;
+    #####:  601:              while (!ISCTRLCHAR(CtrlStr[i]) && (i < (int)strlen(CtrlStr)) &&
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed (fallthrough)
+branch  3 never executed
+branch  4 never executed (fallthrough)
+branch  5 never executed
+    #####:  602:                     (!ISSPACE(CtrlStr[i])))
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  603:                  if (SpaceFlag) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  604:                      if (CtrlStr[i++] == SPACE_CHAR)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  605:                          fprintf(stderr, " ");
+call    0 never executed
+        -:  606:                      else
+    #####:  607:                          fprintf(stderr, " %c", CtrlStr[i - 1]);
+call    0 never executed
+    #####:  608:                      SpaceFlag = false;
+    #####:  609:                  } else if (CtrlStr[i++] == SPACE_CHAR)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  610:                      fprintf(stderr, " ");
+call    0 never executed
+        -:  611:                  else
+    #####:  612:                      fprintf(stderr, "%c", CtrlStr[i - 1]);
+call    0 never executed
+    #####:  613:              while (!ISSPACE(CtrlStr[i]) && (i < (int)strlen(CtrlStr))) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed (fallthrough)
+    #####:  614:                  if (CtrlStr[i] == '*')
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  615:                      fprintf(stderr, "...");
+call    0 never executed
+    #####:  616:                  i++;    /* Skip the rest of it. */
+        -:  617:              }
+    #####:  618:              fprintf(stderr, "]");
+call    0 never executed
+    #####:  619:              break;
+    #####:  620:          case '!':
+    #####:  621:              fprintf(stderr, " -%c", CtrlStr[i++]);
+call    0 never executed
+    #####:  622:              i += 2;    /* Skip the '%-' or '!- after the char! */
+    #####:  623:              SpaceFlag = true;
+    #####:  624:              while (!ISCTRLCHAR(CtrlStr[i]) && (i < (int)strlen(CtrlStr)) &&
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed (fallthrough)
+branch  3 never executed
+branch  4 never executed (fallthrough)
+branch  5 never executed
+    #####:  625:                     (!ISSPACE(CtrlStr[i])))
+branch  0 never executed
+branch  1 never executed (fallthrough)
+    #####:  626:                  if (SpaceFlag) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  627:                      if (CtrlStr[i++] == SPACE_CHAR)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  628:                          fprintf(stderr, " ");
+call    0 never executed
+        -:  629:                      else
+    #####:  630:                          fprintf(stderr, " %c", CtrlStr[i - 1]);
+call    0 never executed
+    #####:  631:                      SpaceFlag = false;
+    #####:  632:                  } else if (CtrlStr[i++] == SPACE_CHAR)
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  633:                      fprintf(stderr, " ");
+call    0 never executed
+        -:  634:                  else
+    #####:  635:                      fprintf(stderr, "%c", CtrlStr[i - 1]);
+call    0 never executed
+    #####:  636:              while (!ISSPACE(CtrlStr[i]) && (i < (int)strlen(CtrlStr))) {
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed (fallthrough)
+    #####:  637:                  if (CtrlStr[i] == '*')
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  638:                      fprintf(stderr, "...");
+call    0 never executed
+    #####:  639:                  i++;    /* Skip the rest of it. */
+        -:  640:              }
+    #####:  641:              break;
+    #####:  642:          default:    /* Not checked, but must be last one! */
+    #####:  643:              fprintf(stderr, " ");
+call    0 never executed
+    #####:  644:              while (!ISSPACE(CtrlStr[i]) && (i < (int)strlen(CtrlStr)) &&
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed (fallthrough)
+branch  3 never executed
+    #####:  645:                     !ISCTRLCHAR(CtrlStr[i]))
+branch  0 never executed (fallthrough)
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed (fallthrough)
+    #####:  646:                  fprintf(stderr, "%c", CtrlStr[i++]);
+call    0 never executed
+    #####:  647:              fprintf(stderr, "\n");
+call    0 never executed
+    #####:  648:              return;
+        -:  649:        }
+        -:  650:    }
+    #####:  651:    fprintf(stderr, "\n");
+call    0 never executed
+        -:  652:}
+        -:  653:
+        -:  654:/* end */

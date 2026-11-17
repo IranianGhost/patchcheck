@@ -1,0 +1,432 @@
+{
+  "framework_smoke": "passed",
+  "steps": [
+    {
+      "name": "fixture-setup",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "tools/setup_fixtures.py"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "fixture-setup.log",
+      "passed": true
+    },
+    {
+      "name": "unit-tests",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/unit",
+        "-v"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "unit-tests.log",
+      "passed": true
+    },
+    {
+      "name": "integration-tests",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/integration",
+        "-v"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "integration-tests.log",
+      "passed": true
+    },
+    {
+      "name": "bytecount-stdin-validate",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "validate-config",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/bytecount-stdin.json"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "bytecount-stdin-validate.log",
+      "passed": true
+    },
+    {
+      "name": "bytecount-stdin-run",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/bytecount-stdin.json",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/bytecount-stdin"
+      ],
+      "actual_exit_code": 40,
+      "expected_exit_code": 40,
+      "log": "bytecount-stdin-run.log",
+      "passed": true
+    },
+    {
+      "name": "bytecount-file-validate",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "validate-config",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/bytecount-file.json"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "bytecount-file-validate.log",
+      "passed": true
+    },
+    {
+      "name": "bytecount-file-run",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/bytecount-file.json",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/bytecount-file"
+      ],
+      "actual_exit_code": 40,
+      "expected_exit_code": 40,
+      "log": "bytecount-file-run.log",
+      "passed": true
+    },
+    {
+      "name": "lineparse-argv-validate",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "validate-config",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/lineparse-argv.json"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "lineparse-argv-validate.log",
+      "passed": true
+    },
+    {
+      "name": "lineparse-argv-run",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/lineparse-argv.json",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/lineparse-argv"
+      ],
+      "actual_exit_code": 40,
+      "expected_exit_code": 40,
+      "log": "lineparse-argv-run.log",
+      "passed": true
+    },
+    {
+      "name": "tlvparse-file-validate",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "validate-config",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/tlvparse-file.json"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "tlvparse-file-validate.log",
+      "passed": true
+    },
+    {
+      "name": "giflib-file-validate",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "validate-config",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/giflib-file.json"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "giflib-file-validate.log",
+      "passed": true
+    },
+    {
+      "name": "tlvparse-file-correct",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/tlvparse-file.json",
+        "--candidate",
+        "correct",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/tlvparse-file-correct"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "tlvparse-file-correct.log",
+      "passed": true
+    },
+    {
+      "name": "tlvparse-file-incomplete",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/tlvparse-file.json",
+        "--candidate",
+        "incomplete",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/tlvparse-file-incomplete"
+      ],
+      "actual_exit_code": 10,
+      "expected_exit_code": 10,
+      "log": "tlvparse-file-incomplete.log",
+      "passed": true
+    },
+    {
+      "name": "tlvparse-file-regression",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/tlvparse-file.json",
+        "--candidate",
+        "regression",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/tlvparse-file-regression"
+      ],
+      "actual_exit_code": 20,
+      "expected_exit_code": 20,
+      "log": "tlvparse-file-regression.log",
+      "passed": true
+    },
+    {
+      "name": "giflib-file-correct",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/giflib-file.json",
+        "--candidate",
+        "correct",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/giflib-file-correct"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "giflib-file-correct.log",
+      "passed": true
+    },
+    {
+      "name": "giflib-file-incomplete",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/giflib-file.json",
+        "--candidate",
+        "incomplete",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/giflib-file-incomplete"
+      ],
+      "actual_exit_code": 10,
+      "expected_exit_code": 10,
+      "log": "giflib-file-incomplete.log",
+      "passed": true
+    },
+    {
+      "name": "giflib-file-regression",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/giflib-file.json",
+        "--candidate",
+        "regression",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/giflib-file-regression"
+      ],
+      "actual_exit_code": 20,
+      "expected_exit_code": 20,
+      "log": "giflib-file-regression.log",
+      "passed": true
+    },
+    {
+      "name": "patch-unseen",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/giflib-file.json",
+        "--patch",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/unseen.diff",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/patch-unseen"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "patch-unseen.log",
+      "passed": true
+    },
+    {
+      "name": "patch-fresh-regression",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/tlvparse-file.json",
+        "--patch",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/fresh-regression.diff",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/patch-fresh-regression"
+      ],
+      "actual_exit_code": 20,
+      "expected_exit_code": 20,
+      "log": "patch-fresh-regression.log",
+      "passed": true
+    },
+    {
+      "name": "fixture-replay",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "replay",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/bytecount-stdin/report.json",
+        "--test",
+        "marker",
+        "--count",
+        "3"
+      ],
+      "actual_exit_code": 40,
+      "expected_exit_code": 40,
+      "log": "fixture-replay.log",
+      "passed": true
+    },
+    {
+      "name": "fixture-minimize",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "minimize",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/bytecount-stdin/report.json",
+        "--test",
+        "marker"
+      ],
+      "actual_exit_code": 40,
+      "expected_exit_code": 40,
+      "log": "fixture-minimize.log",
+      "passed": true
+    },
+    {
+      "name": "fixture-regression-reload",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/bytecount-stdin.json",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/regression-reload"
+      ],
+      "actual_exit_code": 40,
+      "expected_exit_code": 40,
+      "log": "fixture-regression-reload.log",
+      "passed": true
+    },
+    {
+      "name": "tlvparse-file-minimize",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "minimize",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/tlvparse-file-correct/report.json",
+        "--test",
+        "poc-long-blob"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "tlvparse-file-minimize.log",
+      "passed": true
+    },
+    {
+      "name": "tlvparse-file-regression-reload",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/tlvparse-file.json",
+        "--candidate",
+        "correct",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/tlvparse-file-regression-reload"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "tlvparse-file-regression-reload.log",
+      "passed": true
+    },
+    {
+      "name": "giflib-file-minimize",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "minimize",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/giflib-file-correct/report.json",
+        "--test",
+        "poc-bg-oob"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "giflib-file-minimize.log",
+      "passed": true
+    },
+    {
+      "name": "giflib-file-regression-reload",
+      "command": [
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.venv/bin/python",
+        "-m",
+        "patchcheck",
+        "run",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/giflib-file.json",
+        "--candidate",
+        "correct",
+        "--out",
+        "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/giflib-file-regression-reload"
+      ],
+      "actual_exit_code": 0,
+      "expected_exit_code": 0,
+      "log": "giflib-file-regression-reload.log",
+      "passed": true
+    }
+  ],
+  "bundles": {
+    "fixture_exit": 40,
+    "real_target_exit": 10
+  }
+}

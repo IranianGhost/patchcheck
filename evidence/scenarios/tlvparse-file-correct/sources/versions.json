@@ -1,0 +1,118 @@
+{
+  "base": {
+    "archive": "sources/base.tar",
+    "archive_sha256": "6cd14c8c7e6eb43ca485898d9f232f47607035d260ca3e204e9800128df8ac09",
+    "commit": "e9f37539fbac0026e7006bf973f6f5bf83089c9e",
+    "dirty": false,
+    "manifest": "sources/base.manifest.json",
+    "path": "sources/base",
+    "requested_ref": "base"
+  },
+  "candidate": {
+    "archive": "sources/candidate.tar",
+    "archive_sha256": "237edf67c0825d90a36bf7bb19b7b380097724e7cb3bcd7715cf4594d54997c9",
+    "commit": "e4635443a7ea3ab773d95f8c5a52b509392620fd",
+    "dirty": false,
+    "manifest": "sources/candidate.manifest.json",
+    "path": "sources/candidate",
+    "requested_ref": "correct"
+  },
+  "diff": {
+    "files": [
+      "tlvparse.c"
+    ],
+    "hunks": [
+      {
+        "added": [
+          28,
+          29
+        ],
+        "after": {
+          "count": 8,
+          "start": 25
+        },
+        "before": {
+          "count": 6,
+          "start": 25
+        },
+        "context": "struct record {",
+        "define_lines": {
+          "base": [],
+          "candidate": []
+        },
+        "defines": [],
+        "file": "tlvparse.c",
+        "functions": [
+          {
+            "end": 36,
+            "file": "tlvparse.c",
+            "function": "copy_value",
+            "short": "copy_value",
+            "start": 27,
+            "version": "candidate"
+          },
+          {
+            "end": 34,
+            "file": "tlvparse.c",
+            "function": "copy_value",
+            "short": "copy_value",
+            "start": 27,
+            "version": "base"
+          }
+        ],
+        "id": "h1",
+        "old_file": "tlvparse.c",
+        "removed": [],
+        "unmapped": false,
+        "unmapped_lines": {
+          "base": [],
+          "candidate": []
+        }
+      }
+    ],
+    "path": "sources/versions.patch",
+    "sha256": "23127bca8e70ebd6478d3d562803dd1e8a9c14cc5b830a9160a46476ef0f047f",
+    "snapshot_bundle": "sources/snapshots.bundle",
+    "source_map": {
+      "base": {
+        "callers": {
+          "copy_value": [
+            {
+              "file": "tlvparse.c",
+              "function": "load_name"
+            },
+            {
+              "file": "tlvparse.c",
+              "function": "load_number"
+            },
+            {
+              "file": "tlvparse.c",
+              "function": "load_blob"
+            }
+          ]
+        },
+        "macro_users": {}
+      },
+      "candidate": {
+        "callers": {
+          "copy_value": [
+            {
+              "file": "tlvparse.c",
+              "function": "load_name"
+            },
+            {
+              "file": "tlvparse.c",
+              "function": "load_number"
+            },
+            {
+              "file": "tlvparse.c",
+              "function": "load_blob"
+            }
+          ]
+        },
+        "macro_users": {}
+      }
+    },
+    "tool_version": "git version 2.50.1 (Apple Git-155)"
+  }
+}

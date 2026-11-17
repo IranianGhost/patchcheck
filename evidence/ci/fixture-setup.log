@@ -1,0 +1,5 @@
+bytecount: base, candidate
+giflib: base, correct, incomplete, regression
+lineparse: base, candidate
+tlvparse: base, correct, incomplete, regression
+Fixture Git revisions ready in .fixture-repos/

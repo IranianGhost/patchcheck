@@ -1,0 +1,13 @@
+util/gif2rgb.c: In function 'SaveGif':
+util/gif2rgb.c:177:5: warning: this 'if' clause does not guard... [-Wmisleading-indentation]
+  177 |     if (EGifPutScreenDesc(GifFile,
+      |     ^~
+util/gif2rgb.c:184:9: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+  184 |         exit(EXIT_FAILURE);
+      |         ^~~~
+util/gif2rgb.c:198:5: warning: this 'if' clause does not guard... [-Wmisleading-indentation]
+  198 |     if (EGifCloseFile(GifFile, &Error) == GIF_ERROR)
+      |     ^~
+util/gif2rgb.c:200:9: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'if'
+  200 |         exit(EXIT_FAILURE);
+      |         ^~~~

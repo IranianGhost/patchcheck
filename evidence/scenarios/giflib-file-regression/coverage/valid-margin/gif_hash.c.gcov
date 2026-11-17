@@ -1,0 +1,152 @@
+        -:    0:Source:lib/gif_hash.c
+        -:    0:Graph:gif2rgb-gif_hash.gcno
+        -:    0:Data:gif2rgb-gif_hash.gcda
+        -:    0:Runs:1
+        -:    1:/*****************************************************************************
+        -:    2:
+        -:    3:gif_hash.c -- module to support the following operations:
+        -:    4:
+        -:    5:1. InitHashTable - initialize hash table.
+        -:    6:2. ClearHashTable - clear the hash table to an empty state.
+        -:    7:2. InsertHashTable - insert one item into data structure.
+        -:    8:3. ExistsHashTable - test if item exists in data structure.
+        -:    9:
+        -:   10:This module is used to hash the GIF codes during encoding.
+        -:   11:
+        -:   12:*****************************************************************************/
+        -:   13:
+        -:   14:#include <unistd.h>
+        -:   15:#include <stdint.h>
+        -:   16:#include <stdlib.h>
+        -:   17:#include <fcntl.h>
+        -:   18:#include <stdio.h>
+        -:   19:#include <string.h>
+        -:   20:
+        -:   21:#include "gif_lib.h"
+        -:   22:#include "gif_hash.h"
+        -:   23:#include "gif_lib_private.h"
+        -:   24:
+        -:   25:/* #define  DEBUG_HIT_RATE    Debug number of misses per hash Insert/Exists. */
+        -:   26:
+        -:   27:#ifdef	DEBUG_HIT_RATE
+        -:   28:static long NumberOfTests = 0,
+        -:   29:	    NumberOfMisses = 0;
+        -:   30:#endif	/* DEBUG_HIT_RATE */
+        -:   31:
+        -:   32:static int KeyItem(uint32_t Item);
+        -:   33:
+        -:   34:/******************************************************************************
+        -:   35: Initialize HashTable - allocate the memory needed and clear it.	      *
+        -:   36:******************************************************************************/
+function _InitHashTable called 0 returned 0% blocks executed 0%
+    #####:   37:GifHashTableType *_InitHashTable(void)
+        -:   38:{
+        -:   39:    GifHashTableType *HashTable;
+        -:   40:
+    #####:   41:    if ((HashTable = (GifHashTableType *) malloc(sizeof(GifHashTableType)))
+branch  0 never executed (fallthrough)
+branch  1 never executed
+        -:   42:	== NULL)
+    #####:   43:	return NULL;
+        -:   44:
+    #####:   45:    _ClearHashTable(HashTable);
+call    0 never executed
+        -:   46:
+    #####:   47:    return HashTable;
+        -:   48:}
+        -:   49:
+        -:   50:/******************************************************************************
+        -:   51: Routine to clear the HashTable to an empty state.			      *
+        -:   52: This part is a little machine depended. Use the commented part otherwise.   *
+        -:   53:******************************************************************************/
+function _ClearHashTable called 0 returned 0% blocks executed 0%
+    #####:   54:void _ClearHashTable(GifHashTableType *HashTable)
+        -:   55:{
+    #####:   56:    memset(HashTable -> HTable, 0xFF, HT_SIZE * sizeof(uint32_t));
+    #####:   57:}
+        -:   58:
+        -:   59:/******************************************************************************
+        -:   60: Routine to insert a new Item into the HashTable. The data is assumed to be  *
+        -:   61: new one.								      *
+        -:   62:******************************************************************************/
+function _InsertHashTable called 0 returned 0% blocks executed 0%
+    #####:   63:void _InsertHashTable(GifHashTableType *HashTable, uint32_t Key, int Code)
+        -:   64:{
+    #####:   65:    int HKey = KeyItem(Key);
+call    0 never executed
+    #####:   66:    uint32_t *HTable = HashTable -> HTable;
+        -:   67:
+        -:   68:#ifdef DEBUG_HIT_RATE
+        -:   69:	NumberOfTests++;
+        -:   70:	NumberOfMisses++;
+        -:   71:#endif /* DEBUG_HIT_RATE */
+        -:   72:
+    #####:   73:    while (HT_GET_KEY(HTable[HKey]) != 0xFFFFFL) {
+branch  0 never executed
+branch  1 never executed (fallthrough)
+        -:   74:#ifdef DEBUG_HIT_RATE
+        -:   75:	    NumberOfMisses++;
+        -:   76:#endif /* DEBUG_HIT_RATE */
+    #####:   77:	HKey = (HKey + 1) & HT_KEY_MASK;
+        -:   78:    }
+    #####:   79:    HTable[HKey] = HT_PUT_KEY(Key) | HT_PUT_CODE(Code);
+    #####:   80:}
+        -:   81:
+        -:   82:/******************************************************************************
+        -:   83: Routine to test if given Key exists in HashTable and if so returns its code *
+        -:   84: Returns the Code if key was found, -1 if not.				      *
+        -:   85:******************************************************************************/
+function _ExistsHashTable called 0 returned 0% blocks executed 0%
+    #####:   86:int _ExistsHashTable(GifHashTableType *HashTable, uint32_t Key)
+        -:   87:{
+    #####:   88:    int HKey = KeyItem(Key);
+call    0 never executed
+    #####:   89:    uint32_t *HTable = HashTable -> HTable, HTKey;
+        -:   90:
+        -:   91:#ifdef DEBUG_HIT_RATE
+        -:   92:	NumberOfTests++;
+        -:   93:	NumberOfMisses++;
+        -:   94:#endif /* DEBUG_HIT_RATE */
+        -:   95:
+    #####:   96:    while ((HTKey = HT_GET_KEY(HTable[HKey])) != 0xFFFFFL) {
+branch  0 never executed
+branch  1 never executed (fallthrough)
+        -:   97:#ifdef DEBUG_HIT_RATE
+        -:   98:	    NumberOfMisses++;
+        -:   99:#endif /* DEBUG_HIT_RATE */
+    #####:  100:	if (Key == HTKey) return HT_GET_CODE(HTable[HKey]);
+branch  0 never executed (fallthrough)
+branch  1 never executed
+    #####:  101:	HKey = (HKey + 1) & HT_KEY_MASK;
+        -:  102:    }
+        -:  103:
+    #####:  104:    return -1;
+        -:  105:}
+        -:  106:
+        -:  107:/******************************************************************************
+        -:  108: Routine to generate an HKey for the hashtable out of the given unique key.  *
+        -:  109: The given Key is assumed to be 20 bits as follows: lower 8 bits are the     *
+        -:  110: new postfix character, while the upper 12 bits are the prefix code.	      *
+        -:  111: Because the average hit ratio is only 2 (2 hash references per entry),      *
+        -:  112: evaluating more complex keys (such as twin prime keys) does not worth it!   *
+        -:  113:******************************************************************************/
+function KeyItem called 0 returned 0% blocks executed 0%
+    #####:  114:static int KeyItem(uint32_t Item)
+        -:  115:{
+    #####:  116:    return ((Item >> 12) ^ Item) & HT_KEY_MASK;
+        -:  117:}
+        -:  118:
+        -:  119:#ifdef	DEBUG_HIT_RATE
+        -:  120:/******************************************************************************
+        -:  121: Debugging routine to print the hit ratio - number of times the hash table   *
+        -:  122: was tested per operation. This routine was used to test the KeyItem routine *
+        -:  123:******************************************************************************/
+        -:  124:void HashTablePrintHitRatio(void)
+        -:  125:{
+        -:  126:    printf("Hash Table Hit Ratio is %ld/%ld = %ld%%.\n",
+        -:  127:	NumberOfMisses, NumberOfTests,
+        -:  128:	NumberOfMisses * 100 / NumberOfTests);
+        -:  129:}
+        -:  130:#endif	/* DEBUG_HIT_RATE */
+        -:  131:
+        -:  132:/* end */

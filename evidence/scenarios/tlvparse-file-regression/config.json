@@ -1,0 +1,215 @@
+{
+  "analyzers": [],
+  "builds": {
+    "coverage": {
+      "binary": "tlvparse",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "tlvparse.c",
+        "-o",
+        "tlvparse"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-Wextra",
+        "-O0",
+        "-g",
+        "--coverage"
+      ]
+    },
+    "release": {
+      "binary": "tlvparse",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "tlvparse.c",
+        "-o",
+        "tlvparse"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-D_FORTIFY_SOURCE=2",
+        "-O2"
+      ]
+    },
+    "sanitized": {
+      "binary": "tlvparse",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "tlvparse.c",
+        "-o",
+        "tlvparse"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined"
+      ],
+      "instrumentation": [
+        "__asan_init"
+      ]
+    }
+  },
+  "corpus_dir": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/regressions/tlvparse-file",
+  "environment": {
+    "image": "patchcheck-framework:1.0",
+    "variables": {
+      "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+      "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+    }
+  },
+  "fixture": false,
+  "input": {
+    "argv": [
+      "{binary}",
+      "{input}"
+    ],
+    "cwd": ".",
+    "mode": "file"
+  },
+  "limits": {
+    "build_wall_seconds": 90,
+    "cpu_seconds": 2,
+    "file_bytes": 16777216,
+    "memory_mb": 384,
+    "output_bytes": 1048576,
+    "pids": 32,
+    "wall_seconds": 3
+  },
+  "minimization": {
+    "max_attempts": 300,
+    "wall_seconds": 900
+  },
+  "schema_version": "1.0",
+  "source": {
+    "base": "base",
+    "candidate": "regression",
+    "repo": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/.fixture-repos/tlvparse"
+  },
+  "target": "tlvparse",
+  "tests": [
+    {
+      "category": "valid",
+      "id": "valid-basic",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/valid-basic.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/valid-basic.json",
+      "signature": null
+    },
+    {
+      "category": "valid",
+      "id": "valid-empty",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/valid-empty.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/valid-empty.json",
+      "signature": null
+    },
+    {
+      "category": "valid",
+      "id": "valid-negative",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/valid-negative.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/valid-negative.json",
+      "signature": null
+    },
+    {
+      "category": "boundary",
+      "id": "boundary-name32",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/boundary-name32.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/boundary-name32.json",
+      "signature": null
+    },
+    {
+      "category": "boundary",
+      "id": "boundary-blob32",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/boundary-blob32.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/boundary-blob32.json",
+      "signature": null
+    },
+    {
+      "category": "boundary",
+      "id": "boundary-16records",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/boundary-16records.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/boundary-16records.json",
+      "signature": null
+    },
+    {
+      "category": "invalid",
+      "id": "invalid-magic",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/invalid-magic.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/invalid-magic.json",
+      "signature": null
+    },
+    {
+      "category": "invalid",
+      "id": "invalid-truncated",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/invalid-truncated.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/invalid-truncated.json",
+      "signature": null
+    },
+    {
+      "category": "invalid",
+      "id": "invalid-type",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/invalid-type.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/invalid-type.json",
+      "signature": null
+    },
+    {
+      "category": "invalid",
+      "id": "invalid-numlen",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/invalid-numlen.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/invalid-numlen.json",
+      "signature": null
+    },
+    {
+      "category": "invalid",
+      "id": "invalid-17records",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/invalid-17records.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/invalid-17records.json",
+      "signature": null
+    },
+    {
+      "category": "original",
+      "id": "poc-long-name",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/poc-long-name.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/poc-long-name.json",
+      "signature": {
+        "error_type": "heap-buffer-overflow",
+        "key": "WRITE",
+        "location": "tlvparse.c:copy_value"
+      }
+    },
+    {
+      "category": "original",
+      "id": "poc-long-blob",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/corpus/tlvparse/inputs/poc-long-blob.bin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/oracles/tlvparse/poc-long-blob.json",
+      "signature": {
+        "error_type": "heap-buffer-overflow",
+        "key": "WRITE",
+        "location": "tlvparse.c:copy_value"
+      }
+    }
+  ],
+  "tools": {
+    "g++": "g\\+\\+ .*",
+    "gcc": "gcc .*",
+    "git": "git version .*",
+    "python3": "Python 3\\..*",
+    "readelf": "GNU readelf .*"
+  }
+}

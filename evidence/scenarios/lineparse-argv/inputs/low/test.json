@@ -1,0 +1,29 @@
+{
+  "category": "boundary",
+  "id": "low",
+  "input": "inputs/low/original.bin",
+  "input_mode": "argv",
+  "oracle": {
+    "exit_code": 0,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/lineparse/SPEC.md#boundary"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "MTAwMDAK",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "b96b3036632771349308fbbe5d7a3f3f762c9e8f3eedd5785b13ff322e05fd9d",
+  "signature": null,
+  "size": 4,
+  "target": "lineparse"
+}

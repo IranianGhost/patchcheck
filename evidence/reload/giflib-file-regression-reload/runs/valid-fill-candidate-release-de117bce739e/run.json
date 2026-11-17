@@ -1,0 +1,113 @@
+{
+  "analysis": {
+    "complete": true,
+    "observations": [],
+    "reason": "normal termination with exit code 0"
+  },
+  "build_id": "candidate-release",
+  "build_type": "release",
+  "command": [
+    "/binary",
+    "-1",
+    "/case-input"
+  ],
+  "cwd": "/work",
+  "diagnostics": [],
+  "duration_seconds": 0.03729120900015914,
+  "environment": {
+    "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+    "HOME": "/tmp",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "TZ": "UTC",
+    "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+  },
+  "exit_code": 0,
+  "id": "valid-fill-candidate-release-de117bce739e",
+  "input": "inputs/valid-fill/original.bin",
+  "input_sha256": "29e2174e84096f1666c8c64a5a0bded72758f96825326a178694f5c72f0c956a",
+  "limits": {
+    "build_wall_seconds": 180,
+    "cpu_seconds": 4,
+    "file_bytes": 16777216,
+    "memory_mb": 512,
+    "output_bytes": 4194304,
+    "pids": 32,
+    "wall_seconds": 5
+  },
+  "oracle": {
+    "checks": {
+      "exit_code": true,
+      "stderr": true,
+      "stdout": true
+    },
+    "source": "oracles/giflib/SPEC.md#Rendering",
+    "status": "pass"
+  },
+  "output_truncated": false,
+  "replay_of": null,
+  "resource_status": "ok",
+  "runner_error": null,
+  "rusage": {
+    "major_faults": 1,
+    "max_rss_kb": 20956,
+    "minor_faults": 1186,
+    "system_seconds": 0.0009109999999999999,
+    "user_seconds": 0.010938999999999999
+  },
+  "sandbox": {
+    "host_config": {
+      "CapAdd": [
+        "CAP_SETGID",
+        "CAP_SETUID"
+      ],
+      "CapDrop": [
+        "ALL"
+      ],
+      "Memory": 536870912,
+      "MemorySwap": 536870912,
+      "NanoCpus": 500000000,
+      "NetworkMode": "none",
+      "PidsLimit": 32,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges:true"
+      ]
+    },
+    "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "image": {
+      "architecture": "amd64",
+      "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+      "os": "linux",
+      "repo_digests": [],
+      "requested": "patchcheck-framework:1.0"
+    },
+    "name": "patchcheck-e6a3d5cb510b427595ed57c0d686c533",
+    "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+    "state": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 0,
+      "FinishedAt": "2026-11-17T00:34:39.519552261Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "2026-11-17T00:34:39.054923344Z",
+      "Status": "exited"
+    },
+    "target_uid": 65534
+  },
+  "schema_version": "1.0",
+  "signal": null,
+  "stderr": "runs/valid-fill-candidate-release-de117bce739e/stderr.bin",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout": "runs/valid-fill-candidate-release-de117bce739e/stdout.bin",
+  "stdout_sha256": "2bd1930b69eb9dbfc662201a3a099250d4f67ca6eefe3e8088db413f62571f10",
+  "test_id": "valid-fill",
+  "timeout": false,
+  "trace": [],
+  "version": "candidate"
+}

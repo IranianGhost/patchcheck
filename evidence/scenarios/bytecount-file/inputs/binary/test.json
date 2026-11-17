@@ -1,0 +1,29 @@
+{
+  "category": "valid",
+  "id": "binary",
+  "input": "inputs/binary/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 0,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/bytecount/SPEC.md#accepted"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "T0sK",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "77cb6bea091ff250af304a09024b0c526be6a21014a91ab56e788c63a69e811f",
+  "signature": null,
+  "size": 5,
+  "target": "bytecount"
+}

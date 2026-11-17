@@ -1,0 +1,29 @@
+{
+  "category": "invalid",
+  "id": "invalid-truncated",
+  "input": "inputs/invalid-truncated/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 2,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/tlvparse/SPEC.md#Errors"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "ZXJyb3I6IHRydW5jYXRlZCByZWNvcmQK",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": {},
+  "schema_version": "1.0",
+  "sha256": "09a0a037d3af45f97781c6255b3e6f4610915b1b413ff423300f8655ee67b9ef",
+  "signature": null,
+  "size": 9,
+  "target": "tlvparse"
+}

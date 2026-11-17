@@ -1,0 +1,29 @@
+{
+  "category": "valid",
+  "id": "valid-negative",
+  "input": "inputs/valid-negative/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 0,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/tlvparse/SPEC.md#Input format"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "bnVtYmVyOiAtNwpuYW1lOiAKcmVjb3JkczogMgo=",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "7b4e22a90fba7fb87e86bcc90096c55dabb05f53260617bbdb99d34a5ab51a48",
+  "signature": null,
+  "size": 12,
+  "target": "tlvparse"
+}

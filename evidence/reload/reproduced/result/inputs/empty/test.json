@@ -1,0 +1,29 @@
+{
+  "category": "boundary",
+  "id": "empty",
+  "input": "inputs/empty/original.bin",
+  "input_mode": "stdin",
+  "oracle": {
+    "exit_code": 0,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/bytecount/SPEC.md#accepted"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "T0sK",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": {},
+  "schema_version": "1.0",
+  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "signature": null,
+  "size": 0,
+  "target": "bytecount"
+}

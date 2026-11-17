@@ -1,0 +1,29 @@
+{
+  "category": "invalid",
+  "id": "invalid",
+  "input": "inputs/invalid/original.bin",
+  "input_mode": "argv",
+  "oracle": {
+    "exit_code": 2,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/lineparse/SPEC.md#invalid"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "aW52YWxpZAo=",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "2f05d4b689d270cafb02285f35f44866f7dc8a2d368a3f9d1124373eeab31fb1",
+  "signature": null,
+  "size": 3,
+  "target": "lineparse"
+}

@@ -1,0 +1,29 @@
+{
+  "category": "boundary",
+  "id": "boundary-bg-max",
+  "input": "inputs/boundary-bg-max/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 0,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/giflib/SPEC.md#Rendering"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "AAD/AAD/AAD/AAD/AAD//wAA/wAAAAD/AAD//wAA/wAAAAD/AAD/AAD/AAD/AAD/",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "2e671c4fdf15a9aed93264d9a2c4b58ea524914e218dc6a3cb9d76ce713852f9",
+  "signature": null,
+  "size": 41,
+  "target": "giflib"
+}

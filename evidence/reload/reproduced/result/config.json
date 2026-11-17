@@ -1,0 +1,165 @@
+{
+  "analyzers": [
+    "fixture-marker"
+  ],
+  "builds": {
+    "release": {
+      "binary": "program",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "main.c",
+        "-o",
+        "program"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O2"
+      ]
+    },
+    "sanitized": {
+      "binary": "program",
+      "command": [
+        "{compiler}",
+        "{flags}",
+        "main.c",
+        "-o",
+        "program"
+      ],
+      "compiler": "gcc",
+      "flags": [
+        "-Wall",
+        "-Wextra",
+        "-fstack-protector-strong",
+        "-fPIE",
+        "-pie",
+        "-Wl,-z,relro,-z,now",
+        "-O1",
+        "-g",
+        "-fno-omit-frame-pointer",
+        "-fsanitize=address,undefined"
+      ],
+      "instrumentation": [
+        "__asan_init"
+      ]
+    }
+  },
+  "corpus_dir": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/reproduced/fresh-corpus",
+  "environment": {
+    "image": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+    "variables": {
+      "ASAN_OPTIONS": "detect_leaks=0:abort_on_error=1:symbolize=1",
+      "UBSAN_OPTIONS": "print_stacktrace=1:halt_on_error=1"
+    }
+  },
+  "fixture": true,
+  "input": {
+    "argv": [
+      "{binary}",
+      "stdin"
+    ],
+    "cwd": ".",
+    "mode": "stdin"
+  },
+  "limits": {
+    "build_wall_seconds": 90,
+    "cpu_seconds": 2,
+    "file_bytes": 16777216,
+    "memory_mb": 384,
+    "output_bytes": 1048576,
+    "pids": 32,
+    "wall_seconds": 3
+  },
+  "minimization": {
+    "max_attempts": 100,
+    "wall_seconds": 180
+  },
+  "schema_version": "1.0",
+  "source": {
+    "base": "base",
+    "candidate": "candidate",
+    "repo": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/reproduced/restored-source"
+  },
+  "target": "bytecount",
+  "tests": [
+    {
+      "category": "valid",
+      "id": "binary",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/reproduced/.bundle/evidence/inputs/binary/original.bin",
+      "input_mode": "stdin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/reproduced/reference-oracles/binary.json",
+      "regression": {},
+      "sha256": "77cb6bea091ff250af304a09024b0c526be6a21014a91ab56e788c63a69e811f",
+      "signature": null
+    },
+    {
+      "category": "boundary",
+      "id": "empty",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/reproduced/.bundle/evidence/inputs/empty/original.bin",
+      "input_mode": "stdin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/reproduced/reference-oracles/empty.json",
+      "regression": {},
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "signature": null
+    },
+    {
+      "category": "invalid",
+      "id": "invalid",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/reproduced/.bundle/evidence/inputs/invalid/original.bin",
+      "input_mode": "stdin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/reproduced/reference-oracles/invalid.json",
+      "regression": {},
+      "sha256": "592534c8be30f54776713ee54a9e769a2403328bdc71815e75b4d3016bc1c3e7",
+      "signature": null
+    },
+    {
+      "category": "original",
+      "id": "marker",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/reproduced/.bundle/evidence/inputs/marker/original.bin",
+      "input_mode": "stdin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/reproduced/reference-oracles/marker.json",
+      "regression": {},
+      "sha256": "01373fa47828d39cb442e88b718cf1876ec39da102e323c5972bf440b1e2b9b7",
+      "signature": {
+        "error_type": "fixture-marker",
+        "key": "MARK",
+        "location": "marker-check"
+      }
+    },
+    {
+      "category": "minimized",
+      "id": "min-c76b5c10ac93",
+      "input": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/reproduced/.bundle/evidence/minimization/c76b5c10ac93/minimized.bin",
+      "input_mode": "stdin",
+      "oracle": "/Users/ghost/Documents/deepseek-harness/default-workspace/patchcheck-review/patchcheck-corrected/artifacts/ci/reproduced/reference-oracles/min-c76b5c10ac93.json",
+      "regression": {
+        "base_match_required": true,
+        "candidate_absence_and_oracle_required": true,
+        "signature": {
+          "error_type": "fixture-marker",
+          "key": "MARK",
+          "location": "marker-check"
+        }
+      },
+      "sha256": "b6a8193f5bda341ef44444aad719348bec8a8ce06fe06bb5f4478b2bf558d65e",
+      "signature": {
+        "error_type": "fixture-marker",
+        "key": "MARK",
+        "location": "marker-check"
+      }
+    }
+  ],
+  "tools": {
+    "g++": "g\\+\\+ .*",
+    "gcc": "gcc .*",
+    "git": "git version .*",
+    "python3": "Python 3\\..*",
+    "readelf": "GNU readelf .*"
+  }
+}

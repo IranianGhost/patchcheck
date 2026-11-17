@@ -1,0 +1,33 @@
+{
+  "category": "original",
+  "id": "marker",
+  "input": "inputs/marker/original.bin",
+  "input_mode": "stdin",
+  "oracle": {
+    "exit_code": 0,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/bytecount/SPEC.md#accepted"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "T0sK",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "01373fa47828d39cb442e88b718cf1876ec39da102e323c5972bf440b1e2b9b7",
+  "signature": {
+    "error_type": "fixture-marker",
+    "key": "MARK",
+    "location": "marker-check"
+  },
+  "size": 17,
+  "target": "bytecount"
+}

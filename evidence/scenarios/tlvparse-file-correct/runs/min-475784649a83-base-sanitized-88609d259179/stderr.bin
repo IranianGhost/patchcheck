@@ -1,0 +1,54 @@
+=================================================================
+==6==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x503000000060 at pc 0x7fffff1ee7ef bp 0x7ffffffc78b0 sp 0x7ffffffc7070
+WRITE of size 66 at 0x503000000060 thread T0
+    #0 0x7fffff1ee7ee in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115
+    #1 0x555555558399 in copy_value /work/tlvparse.c:31
+    #2 0x555555558ad7 in load_name /work/tlvparse.c:37
+    #3 0x555555558ad7 in parse /work/tlvparse.c:68
+    #4 0x555555558ad7 in main /work/tlvparse.c:117
+    #5 0x7ffffe91eca7  (/lib/x86_64-linux-gnu/libc.so.6+0x29ca7) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)
+    #6 0x7ffffe91ed64 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29d64) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)
+    #7 0x555555558230 in _start (/binary+0x4230) (BuildId: b77d34b9088df450c9e36f6bb3d0bbdf6bc64c77)
+
+0x503000000060 is located 0 bytes after 32-byte region [0x503000000040,0x503000000060)
+allocated by thread T0 here:
+    #0 0x7fffff1f0c57 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x555555558316 in copy_value /work/tlvparse.c:28
+    #2 0x555555558ad7 in load_name /work/tlvparse.c:37
+    #3 0x555555558ad7 in parse /work/tlvparse.c:68
+    #4 0x555555558ad7 in main /work/tlvparse.c:117
+    #5 0x7ffffe91eca7  (/lib/x86_64-linux-gnu/libc.so.6+0x29ca7) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:115 in memcpy
+Shadow bytes around the buggy address:
+  0x502ffffffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502ffffffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502ffffffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502fffffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x502fffffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x503000000000: fa fa 00 00 00 fa fa fa 00 00 00 00[fa]fa fa fa
+  0x503000000080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x503000000280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==6==ABORTING

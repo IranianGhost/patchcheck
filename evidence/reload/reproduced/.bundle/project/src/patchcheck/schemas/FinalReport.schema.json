@@ -1,0 +1,1182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:patchcheck:FinalReport",
+  "$ref": "#/$defs/FinalReport",
+  "$defs": {
+    "Axes": {
+      "type": "object",
+      "properties": {
+        "security": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "unknown",
+                "fixed",
+                "issue"
+              ]
+            },
+            "baseline_reproduced": {
+              "type": "boolean"
+            },
+            "confirmed_issues": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "fixture_observations": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "status",
+            "baseline_reproduced",
+            "confirmed_issues",
+            "fixture_observations"
+          ],
+          "additionalProperties": false
+        },
+        "functional": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "enum": [
+                "preserved",
+                "regression",
+                "unknown"
+              ]
+            },
+            "comparisons": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FunctionalPair"
+              }
+            },
+            "decision_engine_code": {
+              "enum": [
+                0,
+                10,
+                20,
+                30,
+                40
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "comparisons",
+            "decision_engine_code"
+          ],
+          "additionalProperties": false
+        },
+        "completeness": {
+          "type": "object",
+          "properties": {
+            "complete": {
+              "type": "boolean"
+            },
+            "reasons": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "complete",
+            "reasons"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "security",
+        "functional",
+        "completeness"
+      ],
+      "additionalProperties": false
+    },
+    "BuildRecord": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,159}$"
+        },
+        "version": {
+          "enum": [
+            "base",
+            "candidate"
+          ]
+        },
+        "build_type": {
+          "enum": [
+            "release",
+            "sanitized"
+          ]
+        },
+        "commit": {
+          "type": "string"
+        },
+        "source": {
+          "type": "object"
+        },
+        "binary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "binary_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "architecture": {
+          "enum": [
+            "x86_64",
+            "unknown"
+          ]
+        },
+        "file_type": {
+          "enum": [
+            "ELF",
+            "unknown"
+          ]
+        },
+        "compiler": {
+          "type": "object"
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "environment": {
+          "type": "object"
+        },
+        "result": {
+          "enum": [
+            "success",
+            "failed"
+          ]
+        },
+        "error": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stdout": {
+          "type": "string"
+        },
+        "stderr": {
+          "type": "string"
+        },
+        "hardening": {
+          "type": "object"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "version",
+        "build_type",
+        "commit",
+        "source",
+        "binary",
+        "binary_sha256",
+        "architecture",
+        "file_type",
+        "compiler",
+        "flags",
+        "command",
+        "environment",
+        "result",
+        "error",
+        "stdout",
+        "stderr",
+        "hardening",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "Comparator": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "const": "exact"
+            },
+            "base64": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "mode",
+            "base64"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "const": "regex"
+            },
+            "pattern": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "mode",
+            "pattern"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "const": "json"
+            },
+            "value": {}
+          },
+          "required": [
+            "mode",
+            "value"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "FinalReport": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "id": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "fixture": {
+          "type": "boolean"
+        },
+        "config": {
+          "type": "string"
+        },
+        "versions": {
+          "type": "object"
+        },
+        "environment": {
+          "type": "object"
+        },
+        "builds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BuildRecord"
+          }
+        },
+        "tests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TestCase"
+          }
+        },
+        "runs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RunRecord"
+          }
+        },
+        "axes": {
+          "$ref": "#/$defs/Axes"
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Finding"
+          }
+        },
+        "patch_relations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PatchRelation"
+          }
+        },
+        "diff": {
+          "type": "object"
+        },
+        "hardening": {
+          "type": "object"
+        },
+        "replays": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "minimized": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "minimization_scope": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "finding_id": {
+                "type": "string"
+              },
+              "covered": {
+                "type": "boolean"
+              },
+              "reason": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "finding_id",
+              "covered",
+              "reason"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "bundles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unstable": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "technical_errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_index": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "exit_code": {
+          "enum": [
+            0,
+            10,
+            20,
+            30,
+            40
+          ]
+        },
+        "stage": {
+          "enum": [
+            1,
+            2
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "target",
+        "fixture",
+        "config",
+        "versions",
+        "environment",
+        "builds",
+        "tests",
+        "runs",
+        "axes",
+        "findings",
+        "patch_relations",
+        "diff",
+        "hardening",
+        "replays",
+        "minimized",
+        "minimization_scope",
+        "bundles",
+        "unstable",
+        "unknowns",
+        "technical_errors",
+        "evidence_index",
+        "exit_code",
+        "stage"
+      ],
+      "additionalProperties": false
+    },
+    "Finding": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,159}$"
+        },
+        "error_type": {
+          "type": "string"
+        },
+        "detection_method": {
+          "type": "string"
+        },
+        "confirmation": {
+          "enum": [
+            "confirmed",
+            "fixture",
+            "unknown"
+          ]
+        },
+        "signature": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Signature"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "location": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "base_run_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "candidate_run_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "replay_stability": {
+          "enum": [
+            "stable",
+            "unstable",
+            "not_run",
+            "unknown"
+          ]
+        },
+        "status": {
+          "enum": [
+            "Fixed",
+            "Incomplete Fix",
+            "New Issue",
+            "Functional Regression",
+            "Inconclusive"
+          ]
+        },
+        "root_cause": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_sufficiency": {
+          "enum": [
+            "sufficient",
+            "fixture_only",
+            "insufficient"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "complete_evidence": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "error_type",
+        "detection_method",
+        "confirmation",
+        "signature",
+        "location",
+        "base_run_ids",
+        "candidate_run_ids",
+        "replay_stability",
+        "status",
+        "root_cause",
+        "evidence_sufficiency",
+        "evidence",
+        "complete_evidence"
+      ],
+      "additionalProperties": false
+    },
+    "FunctionalPair": {
+      "type": "object",
+      "properties": {
+        "test_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "build_type": {
+          "enum": [
+            "release",
+            "sanitized"
+          ]
+        },
+        "base": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "candidate": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "status": {
+          "enum": [
+            "preserved",
+            "regression",
+            "both_fail",
+            "unknown",
+            "baseline_fail",
+            "invalid_behavior_changed"
+          ]
+        },
+        "observed_status": {
+          "enum": [
+            "preserved",
+            "regression",
+            "both_fail",
+            "unknown",
+            "baseline_fail",
+            "invalid_behavior_changed"
+          ]
+        },
+        "replay_stability": {
+          "enum": [
+            "stable",
+            "unstable",
+            "unknown",
+            "not_run"
+          ]
+        },
+        "base_run_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,159}$"
+        },
+        "candidate_run_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,159}$"
+        },
+        "generated_regression": {
+          "type": "object",
+          "properties": {
+            "base_match": {
+              "enum": [
+                "match",
+                "mismatch",
+                "unknown"
+              ]
+            },
+            "candidate_absence_and_oracle": {
+              "type": "boolean"
+            },
+            "status": {
+              "enum": [
+                "pass",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "base_match",
+            "candidate_absence_and_oracle",
+            "status"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "test_id",
+        "build_type",
+        "base",
+        "candidate",
+        "status",
+        "observed_status",
+        "replay_stability",
+        "base_run_id",
+        "candidate_run_id"
+      ],
+      "additionalProperties": false
+    },
+    "Limits": {
+      "type": "object",
+      "properties": {
+        "wall_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 120
+        },
+        "cpu_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "memory_mb": {
+          "type": "integer",
+          "minimum": 32,
+          "maximum": 2048
+        },
+        "pids": {
+          "type": "integer",
+          "minimum": 4,
+          "maximum": 128
+        },
+        "output_bytes": {
+          "type": "integer",
+          "minimum": 128,
+          "maximum": 16777216
+        },
+        "file_bytes": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 67108864
+        },
+        "build_wall_seconds": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 300
+        }
+      },
+      "required": [
+        "wall_seconds",
+        "cpu_seconds",
+        "memory_mb",
+        "pids",
+        "output_bytes",
+        "file_bytes",
+        "build_wall_seconds"
+      ],
+      "additionalProperties": false
+    },
+    "Oracle": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "provenance": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "minLength": 1
+            },
+            "independent": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "source",
+            "independent"
+          ],
+          "additionalProperties": false
+        },
+        "exit_code": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "stdout": {
+          "$ref": "#/$defs/Comparator"
+        },
+        "stderr": {
+          "$ref": "#/$defs/Comparator"
+        }
+      },
+      "required": [
+        "schema_version",
+        "provenance",
+        "exit_code",
+        "stdout"
+      ],
+      "additionalProperties": false
+    },
+    "OracleEvaluation": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "checks": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "PatchRelation": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "finding_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,159}$"
+        },
+        "hunk_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "paired_run_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "relation": {
+          "enum": [
+            "confirmed",
+            "unknown",
+            "rejected"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "limitation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "finding_id",
+        "hunk_ids",
+        "locations",
+        "paired_run_ids",
+        "relation",
+        "evidence",
+        "limitation"
+      ],
+      "additionalProperties": false
+    },
+    "RunRecord": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,159}$"
+        },
+        "version": {
+          "enum": [
+            "base",
+            "candidate"
+          ]
+        },
+        "build_type": {
+          "enum": [
+            "release",
+            "sanitized"
+          ]
+        },
+        "build_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,159}$"
+        },
+        "test_id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "input": {
+          "type": "string"
+        },
+        "input_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cwd": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "object"
+        },
+        "limits": {
+          "$ref": "#/$defs/Limits"
+        },
+        "duration_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "exit_code": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 255
+        },
+        "signal": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "timeout": {
+          "type": "boolean"
+        },
+        "resource_status": {
+          "enum": [
+            "ok",
+            "cpu_limit",
+            "memory_limit",
+            "file_limit",
+            "output_limit",
+            "unknown"
+          ]
+        },
+        "output_truncated": {
+          "type": "boolean"
+        },
+        "runner_error": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stdout": {
+          "type": "string"
+        },
+        "stderr": {
+          "type": "string"
+        },
+        "stdout_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "stderr_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "trace": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rusage": {
+          "type": "object"
+        },
+        "sandbox": {
+          "type": "object"
+        },
+        "oracle": {
+          "$ref": "#/$defs/OracleEvaluation"
+        },
+        "analysis": {
+          "type": "object",
+          "properties": {
+            "complete": {
+              "type": "boolean"
+            },
+            "observations": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "reason": {
+              "type": "string"
+            },
+            "fixture_observation": {
+              "type": [
+                "object",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "complete",
+            "observations",
+            "reason"
+          ],
+          "additionalProperties": false
+        },
+        "replay_of": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "version",
+        "build_type",
+        "build_id",
+        "test_id",
+        "input",
+        "input_sha256",
+        "command",
+        "cwd",
+        "environment",
+        "limits",
+        "duration_seconds",
+        "exit_code",
+        "signal",
+        "timeout",
+        "resource_status",
+        "output_truncated",
+        "runner_error",
+        "stdout",
+        "stderr",
+        "stdout_sha256",
+        "stderr_sha256",
+        "diagnostics",
+        "trace",
+        "rusage",
+        "sandbox",
+        "oracle",
+        "analysis",
+        "replay_of"
+      ],
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "properties": {
+            "exit_code": {
+              "type": "integer"
+            },
+            "signal": {
+              "type": "null"
+            }
+          }
+        },
+        {
+          "properties": {
+            "exit_code": {
+              "type": "null"
+            },
+            "signal": {
+              "type": "integer"
+            }
+          }
+        },
+        {
+          "properties": {
+            "exit_code": {
+              "type": "null"
+            },
+            "signal": {
+              "type": "null"
+            }
+          }
+        }
+      ]
+    },
+    "Signature": {
+      "type": "object",
+      "properties": {
+        "error_type": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "error_type",
+        "location",
+        "key"
+      ],
+      "additionalProperties": false
+    },
+    "TestCase": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,79}$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,159}$"
+        },
+        "category": {
+          "enum": [
+            "valid",
+            "boundary",
+            "invalid",
+            "original",
+            "minimized"
+          ]
+        },
+        "input": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "input_mode": {
+          "enum": [
+            "stdin",
+            "file",
+            "argv"
+          ]
+        },
+        "oracle": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Oracle"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "signature": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Signature"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "origin": {
+          "type": "string"
+        },
+        "regression": {
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "target",
+        "category",
+        "input",
+        "sha256",
+        "size",
+        "input_mode",
+        "oracle",
+        "signature",
+        "origin",
+        "regression"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

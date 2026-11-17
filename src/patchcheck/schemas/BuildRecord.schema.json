@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:patchcheck:BuildRecord",
+  "$ref": "#/$defs/BuildRecord",
+  "$defs": {
+    "BuildRecord": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,159}$"
+        },
+        "version": {
+          "enum": [
+            "base",
+            "candidate"
+          ]
+        },
+        "build_type": {
+          "enum": [
+            "release",
+            "sanitized"
+          ]
+        },
+        "commit": {
+          "type": "string"
+        },
+        "source": {
+          "type": "object"
+        },
+        "binary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "binary_sha256": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "architecture": {
+          "enum": [
+            "x86_64",
+            "unknown"
+          ]
+        },
+        "file_type": {
+          "enum": [
+            "ELF",
+            "unknown"
+          ]
+        },
+        "compiler": {
+          "type": "object"
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "environment": {
+          "type": "object"
+        },
+        "result": {
+          "enum": [
+            "success",
+            "failed"
+          ]
+        },
+        "error": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stdout": {
+          "type": "string"
+        },
+        "stderr": {
+          "type": "string"
+        },
+        "hardening": {
+          "type": "object"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "version",
+        "build_type",
+        "commit",
+        "source",
+        "binary",
+        "binary_sha256",
+        "architecture",
+        "file_type",
+        "compiler",
+        "flags",
+        "command",
+        "environment",
+        "result",
+        "error",
+        "stdout",
+        "stderr",
+        "hardening",
+        "evidence"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

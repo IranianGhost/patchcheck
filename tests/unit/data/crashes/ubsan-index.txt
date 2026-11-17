@@ -1,0 +1,7 @@
+crashzoo.c:19:59: runtime error: index 4 out of bounds for type 'int [4]'
+    #0 0x5555555574ee in array_index /work/crashzoo.c:19
+    #1 0x555555557c45 in main /work/crashzoo.c:32
+    #2 0x7ffffe91eca7  (/lib/x86_64-linux-gnu/libc.so.6+0x29ca7) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)
+    #3 0x7ffffe91ed64 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29d64) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)
+    #4 0x5555555571e0 in _start (/work/san+0x31e0) (BuildId: 6e752b1aa23e33ef1ee75651bff9e993b076e348)
+

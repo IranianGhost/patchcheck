@@ -1,0 +1,20 @@
+{
+  "base": {
+    "archive": "sources/base.tar",
+    "archive_sha256": "0c91a8f507b8d634a93b85134a0a2607043143c73f896059bded2b9c7d451992",
+    "commit": "e9f37539fbac0026e7006bf973f6f5bf83089c9e",
+    "dirty": false,
+    "manifest": "sources/base.manifest.json",
+    "path": "sources/base",
+    "requested_ref": "base"
+  },
+  "candidate": {
+    "archive": "sources/candidate.tar",
+    "archive_sha256": "128825f845022b7f3a308c5211a1f1a89266b5b4659c0d002e7995c13d2db7d9",
+    "commit": "2e845e88c9c2157ae3f70ef6fef8c731eee1bc01",
+    "dirty": false,
+    "manifest": "sources/candidate.manifest.json",
+    "path": "sources/candidate",
+    "requested_ref": "incomplete"
+  }
+}

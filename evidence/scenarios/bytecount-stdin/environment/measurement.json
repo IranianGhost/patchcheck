@@ -1,0 +1,76 @@
+{
+  "duration_seconds": 0.8984053759999711,
+  "effective_env": {
+    "HOME": "/tmp",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "TZ": "UTC"
+  },
+  "effective_limits": {
+    "build_wall_seconds": 90,
+    "cpu_seconds": 30,
+    "file_bytes": 16777216,
+    "memory_mb": 384,
+    "output_bytes": 1048576,
+    "pids": 32,
+    "wall_seconds": 90
+  },
+  "exit_code": 0,
+  "output_truncated": false,
+  "resource_status": "ok",
+  "runner_error": null,
+  "rusage": {
+    "major_faults": 0,
+    "max_rss_kb": 25808,
+    "minor_faults": 11247,
+    "system_seconds": 0.044397,
+    "user_seconds": 0.39203899999999997
+  },
+  "sandbox": {
+    "host_config": {
+      "CapAdd": [
+        "CAP_SETGID",
+        "CAP_SETUID"
+      ],
+      "CapDrop": [
+        "ALL"
+      ],
+      "Memory": 402653184,
+      "MemorySwap": 402653184,
+      "NanoCpus": 500000000,
+      "NetworkMode": "none",
+      "PidsLimit": 32,
+      "ReadonlyRootfs": true,
+      "SecurityOpt": [
+        "no-new-privileges:true"
+      ]
+    },
+    "host_platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "image": {
+      "architecture": "amd64",
+      "id": "sha256:2b961b573f5b9d73bb917915847db1f4eab161c4b98cdac3e7a5834055c34b9a",
+      "os": "linux",
+      "repo_digests": [],
+      "requested": "patchcheck-framework:1.0"
+    },
+    "name": "patchcheck-f27c6c9c287641e896e1cb9d47e3d92a",
+    "native_status_channel": "root-worker-only stdout; child pipes captured separately",
+    "state": {
+      "Dead": false,
+      "Error": "",
+      "ExitCode": 0,
+      "FinishedAt": "2026-11-16T21:58:58.381399293Z",
+      "OOMKilled": false,
+      "Paused": false,
+      "Pid": 0,
+      "Restarting": false,
+      "Running": false,
+      "StartedAt": "2026-11-16T21:58:56.722708542Z",
+      "Status": "exited"
+    },
+    "target_uid": 65534
+  },
+  "signal": null,
+  "timeout": false
+}

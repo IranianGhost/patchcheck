@@ -1,0 +1,16 @@
+{
+  "exit_code": 0,
+  "provenance": {
+    "independent": true,
+    "source": "oracles/tlvparse/SPEC.md#Input format"
+  },
+  "schema_version": "1.0",
+  "stderr": {
+    "base64": "",
+    "mode": "exact"
+  },
+  "stdout": {
+    "base64": "bnVtYmVyOiAxCm51bWJlcjogMgpudW1iZXI6IDMKbnVtYmVyOiA0Cm51bWJlcjogNQpudW1iZXI6IDYKbnVtYmVyOiA3Cm51bWJlcjogOApudW1iZXI6IDkKbnVtYmVyOiAxMApudW1iZXI6IDExCm51bWJlcjogMTIKbnVtYmVyOiAxMwpudW1iZXI6IDE0Cm51bWJlcjogMTUKbnVtYmVyOiAxNgpyZWNvcmRzOiAxNgo=",
+    "mode": "exact"
+  }
+}

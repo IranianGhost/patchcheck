@@ -1,0 +1,29 @@
+{
+  "category": "invalid",
+  "id": "invalid-zero-dim",
+  "input": "inputs/invalid-zero-dim/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 1,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/giflib/SPEC.md#Errors"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "SW1hZ2Ugb2Ygd2lkdGggb3IgaGVpZ2h0IDAK",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "5f39420e3bd68fdbc5258a1b7a48d39698c28e00e44c20e0f64008c5aa5dea60",
+  "signature": null,
+  "size": 26,
+  "target": "giflib"
+}

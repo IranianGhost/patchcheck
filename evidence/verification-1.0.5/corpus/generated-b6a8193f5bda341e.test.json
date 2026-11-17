@@ -1,0 +1,23 @@
+{
+  "category": "minimized",
+  "id": "generated-b6a8193f5bda341e",
+  "input": "generated-b6a8193f5bda341e.bin",
+  "input_mode": "stdin",
+  "oracle": "generated-b6a8193f5bda341e.oracle.json",
+  "origin": "automatic-minimization",
+  "regression": {
+    "base_match_required": true,
+    "candidate_absence_and_oracle_required": true,
+    "signature": {
+      "error_type": "fixture-marker",
+      "key": "MARK",
+      "location": "marker-check"
+    }
+  },
+  "sha256": "b6a8193f5bda341ef44444aad719348bec8a8ce06fe06bb5f4478b2bf558d65e",
+  "signature": {
+    "error_type": "fixture-marker",
+    "key": "MARK",
+    "location": "marker-check"
+  }
+}

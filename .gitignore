@@ -1,0 +1,26 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+dist/
+build/
+
+# Tool outputs and generated data
+artifacts/*
+!artifacts/.gitkeep
+.fixture-repos/
+# Generated regression tests are committed deliberately (see docs); only the
+# per-run attempt evidence under artifacts/ stays ignored.
+.patchcheck-server.lock
+
+# Editors / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Agent / local working folders
+.superpowers/
+.worktrees/
+_old-handoff/

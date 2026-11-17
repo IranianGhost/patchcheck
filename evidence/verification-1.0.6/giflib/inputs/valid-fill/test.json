@@ -1,0 +1,29 @@
+{
+  "category": "valid",
+  "id": "valid-fill",
+  "input": "inputs/valid-fill/original.bin",
+  "input_mode": "file",
+  "oracle": {
+    "exit_code": 0,
+    "provenance": {
+      "independent": true,
+      "source": "oracles/giflib/SPEC.md#Rendering"
+    },
+    "schema_version": "1.0",
+    "stderr": {
+      "base64": "",
+      "mode": "exact"
+    },
+    "stdout": {
+      "base64": "AAAA/wAAAP8AAAD//wAAAP8AAAD/AAAAAP8AAAD/AAAA/wAAAAD/AAAA/wAAAP8A",
+      "mode": "exact"
+    }
+  },
+  "origin": "configured",
+  "regression": null,
+  "schema_version": "1.0",
+  "sha256": "29e2174e84096f1666c8c64a5a0bded72758f96825326a178694f5c72f0c956a",
+  "signature": null,
+  "size": 45,
+  "target": "giflib"
+}
