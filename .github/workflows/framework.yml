@@ -4,7 +4,7 @@ permissions:
   contents: read
 jobs:
   framework:
-    runs-on: ubuntu-24.04
+    runs-on: self-hosted
     timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
