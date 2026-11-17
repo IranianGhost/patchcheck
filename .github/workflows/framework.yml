@@ -5,15 +5,13 @@ permissions:
 jobs:
   framework:
     runs-on: self-hosted
-    timeout-minutes: 50
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Install locked dependencies from checked wheels
+      - name: Install locked dependencies from checked wheels (system Python 3.11)
         run: |
-          python -m venv .venv
+          python3 --version
+          python3 -m venv .venv
           .venv/bin/python ci/bootstrap.py
       - name: Build frozen Linux x86_64 toolchain
         run: docker build --platform linux/amd64 -t patchcheck-framework:1.0 -f environment/Dockerfile .
